@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 using GLTFast;
 using System.Threading.Tasks;
 using System.IO;
+using CandyCoded.env;
 
 
 public class UseMeshyMesh : MonoBehaviour
@@ -12,13 +13,17 @@ public class UseMeshyMesh : MonoBehaviour
     public GltfImport gltf;
 
 
-    private readonly string meshyApiKey = "msy_fIpmhBKgcBzOef383zGyxNIpFjUPdOWtAH5O";
+    private readonly string meshyApiKey = env.variables["MeshyKey"];
 
+    private void Start()
+    {
+        SetMesh("ehaha");
+    }
 
     public async void SetMesh(string meshId)
     {
         if (await LoadModel(meshId)) return;
-
+        Debug.Log(meshyApiKey);
         StartCoroutine(MakeRequest(meshyApiKey, meshId));
     }
 

@@ -10,6 +10,11 @@ public class ServerConnection : MonoBehaviour
     [SerializeField]
     private WebSocketConnection websocket;
 
+    [SerializeField]
+    private CameraManager cameraManager;
+    
+
+
 
     [SerializeField]
     private GameObject characterPrefab;
