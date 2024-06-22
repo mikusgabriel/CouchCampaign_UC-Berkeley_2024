@@ -15,10 +15,7 @@ public class UseMeshyMesh : MonoBehaviour
 
     private readonly string meshyApiKey = env.variables["MeshyKey"];
 
-    private void Start()
-    {
-        SetMesh("ehaha");
-    }
+    
 
     public async void SetMesh(string meshId)
     {
