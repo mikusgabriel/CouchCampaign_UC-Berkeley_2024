@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class ServerConnection : MonoBehaviour
 {
-    public class Tester : MonoBehaviour
+    private WebSocketConnection websocket;
+
+    private void Start()
     {
-        public WebSocketConnection _Connection;
-        public string _Url = "wss://ws.postman-echo.com/raw";
+        websocket = new WebSocketConnection();
+        websocket.Connect("wss://ws.postman-echo.com/raw");
     }
+
 }
