@@ -6,7 +6,15 @@ using UnityEngine;
 
 public class ServerConnection : MonoBehaviour
 {
+
+    [SerializeField]
     private WebSocketConnection websocket;
+
+
+    [SerializeField]
+    private GameObject characterPrefab;
+
+
 
     private void Start()
     {
@@ -46,6 +54,8 @@ public class ServerConnection : MonoBehaviour
         }
     }
 
+
+    //Dunno why there is an error here
     async void OnMessageReceived(string type, string message)
     {
         Debug.Log(message);
@@ -60,6 +70,21 @@ public class ServerConnection : MonoBehaviour
 
         }
     }
+
+
+
+    public void SendJson(object obj)
+    {
+        var message = JsonUtility.ToJson(obj);
+        SendString(message);
+    }
+
+
+    public void SendString(string message)
+    {
+        websocket.AddOutgoingMessage(message);
+    }
+
 
     [Serializable]
     private class JsonData
