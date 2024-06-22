@@ -1,5 +1,8 @@
 using MikeSchweitzer.WebSocket;
 using System;
+using System.Threading.Tasks;
+using UnityEngine;
+
 
 public class ServerConnection : MonoBehaviour
 {
@@ -23,7 +26,7 @@ public class ServerConnection : MonoBehaviour
         {
             var json = JsonUtility.FromJson<JsonData>(message);
 
-            //Do something here...
+            OnMessageReceived(json.type,message);
         }
     }
 
@@ -40,6 +43,21 @@ public class ServerConnection : MonoBehaviour
         {
             Debug.Log("Server Disconnected");
             websocket.Connect();
+        }
+    }
+
+    async void OnMessageReceived(string type, string message)
+    {
+        Debug.Log(message);
+
+        switch (type)
+        {
+            case "type":
+                {
+                    Debug.Log("here?"); break;
+                }
+
+
         }
     }
 
