@@ -78,7 +78,7 @@ class GameManager:
         await self._connections.send_client(
             userId, {"type": "user", "user": player.toPOJO()}
         )
-        await self._connections.send_client(userId, {"type": "state", "state": "wait"})
+        await self._connections.send_client(userId, {"type": "status", "status": "wait"})
 
         # Notify Unity
         await self._connections.send_unity(

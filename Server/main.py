@@ -2,7 +2,14 @@ import asyncio
 import base64
 import json
 
-from fastapi import FastAPI, Response, WebSocket, WebSocketDisconnect
+from fastapi import (
+    Request,
+    FastAPI,
+    HTTPException,
+    Response,
+    WebSocket,
+    WebSocketDisconnect,
+)
 from pydantic import BaseModel
 
 import voiceApi
@@ -11,24 +18,24 @@ from game import GameManager
 
 app = FastAPI()
 connections = Connections()
-gameManager = GameManager()
+gameManager = GameManager(connections)
 
 
-class LoginInfo(BaseModel):
+class LoginBody(BaseModel):
     name: str
 
 
 @app.post("/login")
-async def login_POST(info: LoginInfo, res: Response):
-    userId = info.name
+async def login_POST(body: LoginBody, res: Response):
+    userId = body.name
     res.set_cookie("id", userId)
 
     if gameManager.getPlayer(userId) is None:
-        return {"success": True, "id": userId, "state": "create"}
+        return {"success": True, "id": userId, "status": "create"}
     return {
         "success": True,
         "id": userId,
-        "state": "wait",
+        "status": "wait",
         "user": gameManager.getPlayer(userId).toPOJO(),
     }
 
@@ -39,17 +46,44 @@ async def logout_POST(res: Response):
     return {"success": True}
 
 
-@app.websocket("/ws")
+class PlayerCreateBody(BaseModel):
+    race: str
+    classe: str
+    description: str
+
+
+@app.post("/player/create")
+async def player_create_POST(body: PlayerCreateBody, req: Request):
+    userId = req.cookies.get("id")
+    if userId is None:
+        raise HTTPException(status_code=401, detail="Please login in first.")
+    if gameManager.getPlayer(userId) is not None:
+        raise HTTPException(status_code=400, detail="Player already exists.")
+
+    if gameManager.currentTurn is not None:
+        raise HTTPException(status_code=400, detail="A game is already in progress.")
+
+    await gameManager.createPlayer(userId, body.race, body.classe, body.description)
+    await connections.send_client(userId, {"type": "status", "status": "wait"})
+    return {"success": True}
+
+
+@app.websocket("/player/ws")
 async def ws_WEBSOCKET(ws: WebSocket):
     userId = ws.cookies.get("id")
-    if (userId is None) or (gameManager.getPlayer(userId) is None):
-        return {"success": False, "message": "Please login in first."}
+    if userId is None:
+        raise HTTPException(status_code=401, detail="Please login in first.")
 
     await ws.accept()
     connections.add_client(userId, ws)
 
     if gameManager.getPlayer(userId) is None:
-        await connections.send_client(userId, {"type": "user", "state": "create"})
+        await connections.send_client(userId, {"type": "status", "status": "create"})
+    else:
+        await connections.send_client(userId, {"type": "status", "status": "wait"})
+        await connections.send_client(
+            userId, {"type": "user", "user": gameManager.getPlayer(userId).toPOJO()}
+        )
 
     try:
         while True:
@@ -74,20 +108,6 @@ async def ws_WEBSOCKET(ws: WebSocket):
                     )
 
                     await ws.send_json({"type": "transcript", "data": transcript})
-
-                case "create":
-                    if gameManager.currentTurn is not None:
-                        await ws.send_json(
-                            {
-                                "type": "error",
-                                "message": "A game is already in progress",
-                            }
-                        )
-                        continue
-
-                    await gameManager.createPlayer(
-                        userId, data["race"], data["classe"], data["description"]
-                    )
 
                 case "move":
                     if gameManager.currentTurn.player.id() != userId:
