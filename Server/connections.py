@@ -10,12 +10,19 @@ class Connections:
 
     def add_client(self, id: str, ws: WebSocket):
         self._clients_ws[id] = ws
+        print("Websocket connected:", id)
 
     def remove_client(self, id: str):
         self._clients_ws.pop(id, None)
+        print("Websocket disconnected:", id)
 
     def set_unity(self, ws: WebSocket):
         self._unity_ws = ws
+
+        if ws is None:
+            print("Unity disconnected")
+        else:
+            print("Unity connected")
 
     async def send_client(self, id: str, message):
         await self._clients_ws[id].send_json(message)
