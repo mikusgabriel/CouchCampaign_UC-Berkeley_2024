@@ -1,8 +1,11 @@
+import asyncio
+import base64
 import json
 
 from fastapi import FastAPI, Response, WebSocket, WebSocketDisconnect
 from pydantic import BaseModel
 
+import voiceApi
 from connections import Connections
 
 app = FastAPI()
@@ -40,6 +43,14 @@ async def ws_WEBSOCKET(ws: WebSocket):
         while True:
             data = json.loads(await ws.receive_text())
             print("User data:", userId, data)
+
+            recordingAudioData = base64.b64decode(data["recording"].split(",")[1])
+            [transcript, emotions] = asyncio.gather(
+                voiceApi.getVoiceTranscript(recordingAudioData),
+                voiceApi.getVoiceEmotions(recordingAudioData),
+            )
+
+            connections.send_client(userId, {"type": "transcript", "data": transcript})
 
     except WebSocketDisconnect:
         connections.remove_client(userId)
