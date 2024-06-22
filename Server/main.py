@@ -65,6 +65,9 @@ async def player_create_POST(body: PlayerCreateBody, req: Request):
 
     await gameManager.createPlayer(userId, body.race, body.classe, body.description)
     await connections.send_client(userId, {"type": "status", "status": "wait"})
+    await connections.send_client(
+        userId, {"type": "user", "user": gameManager.getPlayer(userId).toPOJO()}
+    )
     return {"success": True}
 
 
