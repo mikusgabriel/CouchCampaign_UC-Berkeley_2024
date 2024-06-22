@@ -6,6 +6,7 @@ from fastapi import WebSocket
 class Connections:
     def __init__(self) -> None:
         self._clients_ws: dict[str, WebSocket] = {}
+        self._unity_ws = None
 
     def add_client(self, id: str, ws: WebSocket):
         self._clients_ws[id] = ws
@@ -21,3 +22,7 @@ class Connections:
 
     async def broadcast_client(self, message):
         await asyncio.gather([self.send_client(id, message) for id in self._clients_ws])
+
+    async def send_unity(self, message):
+        if self._unity_ws:
+            await self._unity_ws.send_json(message)

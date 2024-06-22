@@ -56,3 +56,18 @@ async def ws_WEBSOCKET(ws: WebSocket):
     except WebSocketDisconnect:
         connections.remove_client(userId)
         print("websocket disconnected")
+
+
+@app.websocket("/ws/unity")
+async def ws_WEBSOCKET_UNITY(ws: WebSocket):
+    await ws.accept()
+    connections.set_unity(ws)
+
+    try:
+        while True:
+            data = json.dumps(await ws.receive_text())
+            print("received", data)
+
+    except WebSocketDisconnect:
+        connections.set_unity(None)
+        print("websocket disconnected")
