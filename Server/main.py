@@ -6,6 +6,7 @@ from fastapi import FastAPI, Response, WebSocket, WebSocketDisconnect
 from pydantic import BaseModel
 
 import voiceApi
+import meshyApi
 from connections import Connections
 
 app = FastAPI()
