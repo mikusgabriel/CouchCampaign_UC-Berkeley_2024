@@ -11,6 +11,59 @@ import base64
 import re
 import string
 
+
+mapidgatepairs = []
+pairsinlist = []
+def generate_random_string(length=10):
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(length))
+
+
+
+
+def generateNode():
+    rnd_filename = generate_random_string()
+    random_filename = rnd_filename + ".png"
+
+    while True:
+        # Initialize the first node
+        first_type = random.choice(places)
+        response = json.loads(requests.get("https://6a6f-104-196-242-9.ngrok-free.app/imagen").text)
+        first_biome = response["type"]
+        image_data = base64.b64decode(response["bs64"])
+        # Generate a random filename
+        # Ensure the directory exists
+        output_directory = "./maps/"
+        os.makedirs(output_directory, exist_ok=True)
+        # Save the image with the random filename
+        file_path = os.path.join(output_directory, random_filename)
+        with open(file_path, "wb") as fh:
+            fh.write(image_data)
+        print(f"Image saved successfully as {random_filename}.")
+        
+        first_name = generateNodeName(first_biome, first_type)
+        first_node = mapNode(first_type, first_biome)
+        first_node.name = first_name
+        first_node.mapurl = file_path
+        temp1, temp2, first_node.entrancelocations = mapEnemyNpcPlacements(first_node.mapurl,0,0)
+
+        first_node.description, first_node.npcs, first_node.enemies = generateDescription(first_node.biome, first_node.maptype, first_node.name, first_node.connectingnodes)
+        first_node.enemytiles, first_node.npctiles, first_node.entrancelocations = mapEnemyNpcPlacements(first_node.mapurl,0,0)
+        
+        if len(first_node.entrancelocations) >= 2:
+            first_node.id = rnd_filename
+            first_node.description, first_node.npcs, first_node.enemies = generateDescription(first_node.biome, first_node.maptype, first_node.name, first_node.connectingnodes)
+            first_node.enemytiles, first_node.npctiles, first_node.entrancelocations = mapEnemyNpcPlacements(first_node.mapurl,len(first_node.npcs),len(first_node.enemies))
+            listofpairs = []
+            for i in range(1,len(first_node.entrancelocations)+1):
+                mapidgatepairs.append((first_node.id,i))
+                listofpairs.append((first_node.id,i))
+            pairsinlist.append(listofpairs)
+            return first_node
+        else:
+            print("Not enough entrances, requesting a new image...")
+
+
 def coordinatesRange(range,location):
     return np.vstack((np.tile(np.arange(-range,range+1,1),range*2+1),np.floor(np.arange(0,(range*2+1)**2,1) / (range*2+1)) - range)).T + location
     
@@ -151,7 +204,6 @@ def mapEnemyNpcPlacements(mapurl,npccount,enemycount):
     # print("Image processing complete.")
     return enemytiles, npctiles, spawnableareas
 
-
 functions = [
    {
       "name": "getInfoDND",
@@ -175,7 +227,7 @@ def getMeshID(promptInput):
         "art_style": "realistic",
         "negative_prompt": "low quality, low resolution, low poly, ugly, has a base, has no feet, not dnd style",
     }
-    apiKey = "msy_fIpmhBKgcBzOef383zGyxNIpFjUPdOWtAH5O"
+    apiKey = "msy_HMkhArlvcFGHPne1NIACphRLNrcqRy3rZYP6"
     headers = {"Authorization": f"Bearer {apiKey}"}
 
     response = requests.post(
@@ -242,6 +294,8 @@ class mapNode():
         self.entrancenumbers = []
         self.entrancelocations = []
         self.entracenumbers = []
+        self.entranceconnections = []
+        self.id = ""
         
 client = OpenAI(api_key="sk-proj-xklwW5mYFK3AmpTgxULaT3BlbkFJP1pz572EVZqPRXxcNIy6")
 places = [
@@ -303,65 +357,47 @@ def generateDescription(biome_chosen, type_chosen, name,connecting_nodes):
     )
     description, npcs, enemies = json.loads(response.choices[0].message.content)["description"], json.loads(response.choices[0].message.content)["npcs"], json.loads(response.choices[0].message.content)["enemies"]
     return description, npcs, enemies
-
 def generateWorld():
-    totalentrances = []
     npclist = []
     enemylist = []
-    map_connection_dict = {}
     map_node_list = []
-    currentnodecount = 0
+    nodeAmount = 3
 
-    images = os.listdir("./maps")
+    for i in range(nodeAmount):
+        map_node_list.append(generateNode())
+    print(len(pairsinlist[0]))
+    print(pairsinlist[0])
 
-    # Initialize the first node
-    first_type = random.choice(places)
-    def generate_random_string(length=10):
-        letters = string.ascii_lowercase
-        return ''.join(random.choice(letters) for i in range(length))
+    while len(pairsinlist[0]) != 0:
+        randomnode = random.randint(1,nodeAmount-1)
+        randomentrance = random.randint(0,len(pairsinlist[randomnode])-1)
+        pair1 = (pairsinlist[0][0],pairsinlist[randomnode][randomentrance])
+        pair2 = (pairsinlist[randomnode][randomentrance],pairsinlist[0][0])
+        print(pair1)
+        pairsinlist[0].pop(0)
+        pairsinlist[randomnode].pop(randomentrance)
 
-    response = json.loads(requests.get("https://27fa-104-196-242-9.ngrok-free.app/imagen").text)
-    first_biome = response["type"]
+        map_node_list[0].entranceconnections.append(pair1)
+        map_node_list[randomnode].entranceconnections.append(pair2)
 
-    image_data = base64.b64decode(response["bs64"])
 
-    # Generate a random filename
-    random_filename = generate_random_string() + ".png"
 
-    # Ensure the directory exists
-    output_directory = "./maps/"
-    os.makedirs(output_directory, exist_ok=True)
 
-    # Save the image with the random filename
-    file_path = os.path.join(output_directory, random_filename)
-    with open(file_path, "wb") as fh:
-        fh.write(image_data)
 
-    print(f"Image saved successfully as {random_filename}.")
+    for nodes in map_node_list:
+        counter = 0
+        for names in nodes.npcs:
+            npclist.append(generateNPC(f"Name: {names}. Area they are in: {nodes.description} and located at {nodes.npctiles[counter]}"))
+            npclist[len(npclist)-1]["mapid"] = nodes.id
+            counter +=1
+        counter = 0
+        for names in nodes.enemies:
+            print(counter)
+            
+            enemylist.append(generateNPC(f"Name: {names}. Area they are in: {nodes.description} and located at {nodes.enemytiles[counter]}"))
+            enemylist[len(enemylist)-1]["mapid"] = nodes.id
 
-    first_name = generateNodeName(first_biome, first_type)
-    first_node = mapNode(first_type, first_biome)
-    first_node.name = first_name
-    first_node.mapurl = file_path
-
-    map_node_list.append(first_node)
-
-    first_node.description, first_node.npcs, first_node.enemies = generateDescription(first_node.biome, first_node.maptype, first_node.name, first_node.connectingnodes)
-    first_node.enemytiles, first_node.npctiles, first_node.entrancelocations = mapEnemyNpcPlacements(first_node.mapurl,len(first_node.npcs),len(first_node.enemies))
-    counter = 0
-    for names in first_node.npcs:
-        npclist.append(generateNPC(f"Name: {names}. Area they are in: {first_node.description} and located at {first_node.npctiles[counter]}"))
-        counter +=1
-    counter = 0
-    for names in first_node.enemies:
-        print(counter)
-        enemylist.append(generateNPC(f"Name: {names}. Area they are in: {first_node.description} and located at {first_node.enemytiles[counter]}"))
-        counter+=1
-
-    prevnodecount = 0
-    currentnodecount = len(first_node.entrancelocations)
-    first_node.entrancenumbers = [x + prevnodecount for x in range(1, currentnodecount + 1)]
-    print(first_node.entrancenumbers)
+            counter+=1
 
     completemap = []
     # Output or further processing
@@ -375,22 +411,24 @@ def generateWorld():
             "npcs": node.npcs,
             "enemies": node.enemies,
             "map": node.mapurl,
-            "entrancenumbers": first_node.entrancenumbers,
+            "mapid": node.id,
+            "entrancepairs": map_node_list[0].entranceconnections,
             "entrancecount": len(node.entrancelocations),
             "spawningarea": node.entrancelocations
         })
 
+    print(mapidgatepairs)
+
     f = open("5e-SRD-Maps.json", "w")
     json.dump(completemap,f,indent=5)
     f.close()
-
 
     f = open("5e-SRD-Npcs.json", "w")
     json.dump(npclist,f,indent=5)
     f.close()
     f = open("5e-SRD-Enemies.json", "w")
     json.dump(enemylist,f,indent=5)
-    f.close()    
+    f.close()
 
 def generateNPC(prompt):
     jsonFormat = json.load(open("5e-SRD-NPC-Sheet.json"))
@@ -438,7 +476,7 @@ def generateNPC(prompt):
                 
     result = json.loads(result)
     result["meshyid"] = None
-    # result["meshyid"] = getMeshID(result["appearance"])
+    result["meshyid"] = getMeshID(result["appearance"])
 
     return result
                 

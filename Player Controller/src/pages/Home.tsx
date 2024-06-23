@@ -80,6 +80,13 @@ export default function HomePage() {
                             <div className="flex flex-col gap-2 px-8 py-4">
                                 <VoiceRecorder />
 
+                                {status.emotions && (
+                                    <p>
+                                        You sound <span className="font-semibold">{status.emotions[0].emotion}</span>
+                                        and <span className="font-semibold">{status.emotions[1].emotion}</span>
+                                    </p>
+                                )}
+
                                 <Button onClick={() => server.send({ type: "end-turn" })}>End conversation</Button>
                             </div>
                         )}

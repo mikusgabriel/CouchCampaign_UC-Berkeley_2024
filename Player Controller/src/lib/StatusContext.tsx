@@ -32,10 +32,11 @@ export default function useStatus() {
 type StatusCreate = { status: "create" };
 type StatusChoice = {
     status: "choice";
-    name: "string";
-    description: string;
-    options: { name: string }[];
-    count: number;
+    choices: {
+        name: string;
+        "choice-count": number;
+        options: { name: string; description: string }[];
+    }[];
 };
 type StatusLobby = { status: "lobby"; players: { name: string; race: string; classe: string }[] };
 type StatusWait = { status: "wait" };
@@ -49,5 +50,5 @@ export type StatusPlay = {
         abilities: { name: string; description: string }[];
     };
 };
-type StatusSpeak = { status: "talk"; to: string };
+type StatusSpeak = { status: "talk"; to: string; emotions?: { emotion: string; score: number }[] };
 export type Status = StatusCreate | StatusChoice | StatusLobby | StatusWait | StatusPlay | StatusSpeak;

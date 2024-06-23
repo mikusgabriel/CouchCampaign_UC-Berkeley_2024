@@ -1,14 +1,335 @@
 [
      {
+          "name": "Giant Eagle",
+          "appearance": "A majestic creature with a wingspan that stretches nearly twenty feet. Its feathers gleam with shades of brown and gold, and its sharp, piercing eyes reflect a deep intelligence. The beak and talons of the giant eagle are both formidable and graceful, designed for swift and lethal attacks from the sky.",
+          "description": "A giant eagle is a noble beast that exudes both power and grace. Living in the rugged expanse of the Aethercrag Wilderness, these creatures are known for their keen sight and swift flight. They speak their own language and can understand common speech, which makes them unique among other beasts.",
+          "meshyid": "01904540-42b7-7895-a736-3725432ffb22",
+          "class": "",
+          "level": 1,
+          "type": "beast",
+          "race": "Giant Eagle",
+          "mapid": "ryvzyrqpfk",
+          "alignment": "Neutral Good",
+          "attributes": {
+               "STR": 16,
+               "DEX": 17,
+               "CON": 13,
+               "INT": 8,
+               "WIS": 14,
+               "CHA": 10
+          },
+          "skills": {
+               "Acrobatics": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Animal Handling": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Arcana": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Athletics": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Deception": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "History": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Insight": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Intimidation": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Investigation": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Medicine": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Nature": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Perception": {
+                    "proficient": true,
+                    "bonus": 4
+               },
+               "Performance": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Persuasion": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Religion": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Sleight of Hand": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Stealth": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Survival": {
+                    "proficient": false,
+                    "bonus": 0
+               }
+          },
+          "savingThrows": {
+               "strength": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "dexterity": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "constitution": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "intelligence": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "wisdom": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "charisma": {
+                    "proficient": false,
+                    "bonus": 0
+               }
+          },
+          "armorClass": 13,
+          "hitPoints": {
+               "current": 26,
+               "maximum": 26,
+               "temporary": 0
+          },
+          "hitDice": {
+               "total": "4d10",
+               "current": "4d10+4"
+          },
+          "speed": 80,
+          "proficiencies": {
+               "weapons": [],
+               "tools": [],
+               "languages": [
+                    "Giant Eagle",
+                    "understands Common and Auran but can't speak"
+               ]
+          },
+          "equipment": [],
+          "features": [
+               "Keen Sight: The eagle has advantage on Wisdom (Perception) checks that rely on sight."
+          ],
+          "spells": {
+               "level1": [],
+               "level2": [],
+               "level3": [],
+               "level4": [],
+               "level5": [],
+               "level6": [],
+               "level7": [],
+               "level8": [],
+               "level9": []
+          },
+          "location": {
+               "x": 35,
+               "y": 2
+          },
+          "notes": "Giant eagles often make their nests in high and inaccessible cliff faces, overlooking wide expanses of terrain. They are fierce protectors of their young and will aggressively attack anything that threatens their territory.",
+          "relationships": {}
+     },
+     {
+          "name": "Hill Giant",
+          "appearance": "Standing over 16 feet tall, the Hill Giant has a massive, bulky frame covered in thick, patchy skin. Its hair is long, matted, and brown, almost blending with the rocky, earthy tones of its surroundings. The Hill Giant's eyes are small and beady, filled with a cunning yet savage intelligence.",
+          "description": "Hill Giants are brutes typically found in isolated, mountainous areas. They are known for their immense strength and ferocity. In the Aethercrag Wilderness, they can be an alarming presence, blending with the rugged terrain and launching dangerous ambushes on unsuspecting travelers or adventurers. Despite their low intelligence, Hill Giants can be cunning hunters, making use of the natural environment to surprise their prey.",
+          "meshyid": "01904540-8513-7895-a1bf-6510a8edecab",
+          "class": "Brute",
+          "level": 5,
+          "type": "giant",
+          "race": "Giant",
+          "mapid": "ryvzyrqpfk",
+          "alignment": "chaotic evil",
+          "attributes": {
+               "STR": 21,
+               "DEX": 8,
+               "CON": 19,
+               "INT": 5,
+               "WIS": 9,
+               "CHA": 6
+          },
+          "skills": {
+               "Acrobatics": {
+                    "proficient": false,
+                    "bonus": -1
+               },
+               "Animal Handling": {
+                    "proficient": false,
+                    "bonus": -1
+               },
+               "Arcana": {
+                    "proficient": false,
+                    "bonus": -3
+               },
+               "Athletics": {
+                    "proficient": false,
+                    "bonus": 5
+               },
+               "Deception": {
+                    "proficient": false,
+                    "bonus": -2
+               },
+               "History": {
+                    "proficient": false,
+                    "bonus": -3
+               },
+               "Insight": {
+                    "proficient": false,
+                    "bonus": -1
+               },
+               "Intimidation": {
+                    "proficient": false,
+                    "bonus": -2
+               },
+               "Investigation": {
+                    "proficient": false,
+                    "bonus": -3
+               },
+               "Medicine": {
+                    "proficient": false,
+                    "bonus": -1
+               },
+               "Nature": {
+                    "proficient": false,
+                    "bonus": -3
+               },
+               "Perception": {
+                    "proficient": true,
+                    "bonus": 2
+               },
+               "Performance": {
+                    "proficient": false,
+                    "bonus": -2
+               },
+               "Persuasion": {
+                    "proficient": false,
+                    "bonus": -2
+               },
+               "Religion": {
+                    "proficient": false,
+                    "bonus": -3
+               },
+               "Sleight of Hand": {
+                    "proficient": false,
+                    "bonus": -1
+               },
+               "Stealth": {
+                    "proficient": false,
+                    "bonus": -1
+               },
+               "Survival": {
+                    "proficient": false,
+                    "bonus": -1
+               }
+          },
+          "savingThrows": {
+               "strength": {
+                    "proficient": false,
+                    "bonus": 5
+               },
+               "dexterity": {
+                    "proficient": false,
+                    "bonus": -1
+               },
+               "constitution": {
+                    "proficient": false,
+                    "bonus": 4
+               },
+               "intelligence": {
+                    "proficient": false,
+                    "bonus": -3
+               },
+               "wisdom": {
+                    "proficient": false,
+                    "bonus": -1
+               },
+               "charisma": {
+                    "proficient": false,
+                    "bonus": -2
+               }
+          },
+          "armorClass": 13,
+          "hitPoints": {
+               "current": 105,
+               "maximum": 105,
+               "temporary": 0
+          },
+          "hitDice": {
+               "total": "10d12",
+               "current": "10d12"
+          },
+          "speed": 40,
+          "proficiencies": {
+               "weapons": [
+                    "Greatclub",
+                    "Rock"
+               ],
+               "tools": [],
+               "languages": [
+                    "Giant"
+               ]
+          },
+          "equipment": [],
+          "features": [],
+          "spells": {
+               "level1": [],
+               "level2": [],
+               "level3": [],
+               "level4": [],
+               "level5": [],
+               "level6": [],
+               "level7": [],
+               "level8": [],
+               "level9": []
+          },
+          "location": {
+               "x": 19,
+               "y": 50
+          },
+          "notes": "",
+          "relationships": {}
+     },
+     {
           "name": "Griffon",
-          "appearance": "A majestic creature with the body of a lion and the head, wings, and talons of an eagle. The griffon's fur is a mix of tawny golds and deep browns, while its feathers shimmer with hues of gold and white. Its eyes are piercing, always on the lookout, reflecting its sharp intelligence.",
-          "description": "Griffons are formidable creatures found in the Everpeak Highlands. They are often seen soaring high above the cliffs and valleys, keeping a vigilant watch over their territory. Despite their fearsome appearance, they are known to be loyal companions to those who earn their trust.",
-          "meshyid": null,
-          "class": "Monstrosity",
+          "appearance": "The Griffon stands majestically with the body, tail, and back legs of a lion, combined seamlessly with the head and wings of a giant eagle. Its feathers are a mixture of gold and brown, while its sleek lion fur glistens, wet from the rains. Its eyes are keen and perceptive, constantly scanning the treacherous surroundings of Thunderclap Heights.",
+          "description": "Griffons are fierce, territorial creatures often found in isolated and hazardous regions such as Thunderclap Heights. They are known for their keen sight and formidable combat abilities. These majestic beasts inhabit the cliff formations, preying on various mountain creatures and defending their territory fiercely.",
+          "meshyid": "01904541-6afe-7895-be26-a9f17eee3150",
+          "class": "N/A",
           "level": 2,
-          "type": "Monstrosity",
-          "race": "",
-          "alignment": "Unaligned",
+          "type": "monstrosity",
+          "race": "Griffon",
+          "mapid": "filpdhqvqh",
+          "alignment": "unaligned",
           "attributes": {
                "STR": 18,
                "DEX": 15,
@@ -64,7 +385,7 @@
                },
                "Perception": {
                     "proficient": true,
-                    "bonus": 7
+                    "bonus": 5
                },
                "Performance": {
                     "proficient": false,
@@ -135,7 +456,10 @@
           },
           "equipment": [],
           "features": [
-               "Keen Sight: The griffon has advantage on Wisdom (Perception) checks that rely on sight."
+               {
+                    "name": "Keen Sight",
+                    "description": "The griffon has advantage on Wisdom (Perception) checks that rely on sight."
+               }
           ],
           "spells": {
                "level1": [],
@@ -149,29 +473,30 @@
                "level9": []
           },
           "location": {
-               "x": 17,
-               "y": 63
+               "x": 11,
+               "y": 45
           },
           "notes": "",
           "relationships": {}
      },
      {
-          "name": "Yeti",
-          "appearance": "The Yeti is a hulking, fur-covered creature with an imposing stature, standing close to 10 feet tall. Its fur is thick and white, blending seamlessly with the snowy landscape. Its eyes are a piercing blue that seem to almost glow in the dark, and its hands are large, with sharp claws capable of rending through flesh and armor alike.",
-          "description": "The Yeti, a legendary creature in the Everpeak Highlands, is often spoken of in hushed tones around campfires. Rumored to be the guardian of the mystical ruins scattered across the highlands, the Yeti is both feared and revered. It is said that the Yeti has lived for centuries, its longevity granted by the ancient magics of the ruins it protects. Despite its ferocious appearance, some believe that the Yeti may have a deeper connection to the ancient civilization that once thrived in these highlands.",
-          "meshyid": null,
-          "class": "Beast",
-          "level": 7,
-          "type": "Enemy",
-          "race": "Monstrosity",
+          "name": "Air Elemental",
+          "appearance": "A swirling mass of air and vapor, almost transparent but for the occasional flicker of lightning within its form. It moves with a graceful yet violent demeanor, constantly shifting and flowing like a miniature storm.",
+          "description": "Air Elementals are beings of pure air and energy, often found in places where storms are frequent and wild. They are known for their incredible speed and agility, able to navigate through even the most treacherous terrains with ease. In Thunderclap Heights, these beings are particularly dangerous due to the chaotic winds and frequent thunderstorms that seem to empower them.",
+          "meshyid": "01904541-c418-7895-b60f-c826130b243c",
+          "class": "",
+          "level": 5,
+          "type": "elemental",
+          "race": "Elemental",
+          "mapid": "filpdhqvqh",
           "alignment": "Neutral",
           "attributes": {
-               "STR": 18,
-               "DEX": 12,
-               "CON": 16,
-               "INT": 7,
-               "WIS": 12,
-               "CHA": 7
+               "STR": 14,
+               "DEX": 20,
+               "CON": 14,
+               "INT": 6,
+               "WIS": 10,
+               "CHA": 6
           },
           "skills": {
                "Acrobatics": {
@@ -187,8 +512,8 @@
                     "bonus": 0
                },
                "Athletics": {
-                    "proficient": true,
-                    "bonus": 7
+                    "proficient": false,
+                    "bonus": 0
                },
                "Deception": {
                     "proficient": false,
@@ -203,8 +528,8 @@
                     "bonus": 0
                },
                "Intimidation": {
-                    "proficient": true,
-                    "bonus": 3
+                    "proficient": false,
+                    "bonus": 0
                },
                "Investigation": {
                     "proficient": false,
@@ -219,8 +544,8 @@
                     "bonus": 0
                },
                "Perception": {
-                    "proficient": true,
-                    "bonus": 4
+                    "proficient": false,
+                    "bonus": 0
                },
                "Performance": {
                     "proficient": false,
@@ -239,8 +564,8 @@
                     "bonus": 0
                },
                "Stealth": {
-                    "proficient": true,
-                    "bonus": 3
+                    "proficient": false,
+                    "bonus": 0
                },
                "Survival": {
                     "proficient": false,
@@ -249,57 +574,54 @@
           },
           "savingThrows": {
                "strength": {
-                    "proficient": true,
-                    "bonus": 7
+                    "proficient": false,
+                    "bonus": 0
                },
                "dexterity": {
                     "proficient": false,
-                    "bonus": 1
+                    "bonus": 0
                },
                "constitution": {
-                    "proficient": true,
-                    "bonus": 5
+                    "proficient": false,
+                    "bonus": 0
                },
                "intelligence": {
                     "proficient": false,
-                    "bonus": -2
+                    "bonus": 0
                },
                "wisdom": {
                     "proficient": false,
-                    "bonus": 1
+                    "bonus": 0
                },
                "charisma": {
                     "proficient": false,
-                    "bonus": -2
+                    "bonus": 0
                }
           },
-          "armorClass": 12,
+          "armorClass": 15,
           "hitPoints": {
-               "current": 84,
-               "maximum": 84,
+               "current": 90,
+               "maximum": 90,
                "temporary": 0
           },
           "hitDice": {
-               "total": "7d10+21",
-               "current": "7d10"
+               "total": "12d10+24",
+               "current": "12d10"
           },
-          "speed": 40,
+          "speed": 90,
           "proficiencies": {
-               "weapons": [
-                    "Claws",
-                    "Fists"
-               ],
+               "weapons": [],
                "tools": [],
                "languages": [
-                    "Yeti",
-                    "Basic understanding of Ancient Ruin Glyphs"
+                    "Auran"
                ]
           },
           "equipment": [],
           "features": [
-               "Snow Camouflage: The Yeti has advantage on Dexterity (Stealth) checks made to hide in snowy terrain.",
-               "Fear of Fire: The Yeti is frightened while within 30 feet of an open flame.",
-               "Keen Smell: The Yeti has advantage on Wisdom (Perception) checks that rely on smell."
+               {
+                    "name": "Air Form",
+                    "desc": "The elemental can enter a hostile creature's space and stop there. It can move through a space as narrow as 1 inch wide without squeezing."
+               }
           ],
           "spells": {
                "level1": [],
@@ -313,10 +635,10 @@
                "level9": []
           },
           "location": {
-               "x": 37,
-               "y": 15
+               "x": 19,
+               "y": 77
           },
-          "notes": "The Yeti can be a formidable guardian or an unexpected ally, depending on how the players interact with it. Knowledge of the ancient civilization's glyphs may help in communicating with the Yeti.",
+          "notes": "",
           "relationships": {}
      }
 ]
