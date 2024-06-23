@@ -1,5 +1,3 @@
-import type { ClasseKey } from "@/lib/data/classes";
-import type { RaceKey } from "@/lib/data/races";
 import type { Status } from "./StatusContext";
 import type { User } from "./UserContext";
 

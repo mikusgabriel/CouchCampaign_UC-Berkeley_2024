@@ -37,6 +37,28 @@ class Player:
         self._y = y
         self.choices = None
 
+        self.level = None
+        self.alignment = None
+        self.background = None
+        self.experiencePoints = None
+        self.attributes = None
+        self.skills = None
+        self.savingThrows = None
+        self.armorClass = None
+        self.hitPoints = None
+        self.hitDice = None
+        self.speed = None
+        self.proficiencies = None
+        self.equipment = None
+        self.features = None
+        self.spells = None
+        self.personalityTraits = None
+        self.ideals = None
+        self.bonds = None
+        self.flaws = None
+        self.notes = None
+        self.currentConditions = None
+
     def id(self):
         return self._id
 
@@ -60,6 +82,7 @@ class Player:
         self._y = y
 
     def setFullStatSheet(self, stats: dict[str, any]):
+        print(stats)
         self.level = stats["level"]
         self.alignment = stats["alignment"]
         self.background = stats["background"]
@@ -95,7 +118,7 @@ class Player:
             "skills": self.skills,
             "savingThrows": self.savingThrows,
             "armorClass": self.armorClass,
-            "hitPoints": self.hitPoints,
+            "hitPoints": self.hitPoints["current"] if self.hitPoints else 0,
             "hitDice": self.hitDice,
             "speed": self.speed,
             "proficiencies": self.proficiencies,
@@ -134,7 +157,20 @@ class GameManager:
         await asyncio.gather(
             *[
                 self._connections.send_client(
-                    p.id(), {"type": "user", "user": p.toPOJO()}
+                    p.id(),
+                    {
+                        "type": "user",
+                        "user": p.toPOJO(),
+                        "level": p.level,
+                        "experiencePoints": p.experiencePoints,
+                        "attributes": p.attributes,
+                        "skills": p.skills,
+                        "savingThrows": p.savingThrows,
+                        "armorClass": p.armorClass,
+                        "hitPoints": p.hitPoints,
+                        "hitDice": p.hitDice,
+                        "speed": p.speed,
+                    },
                 )
                 for p in self._players.values()
             ]

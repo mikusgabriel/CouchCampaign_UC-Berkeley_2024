@@ -5,7 +5,23 @@ import { type ReactNode, createContext, useContext, useEffect, useState } from "
 import useServer from "./ServerContext";
 import useStatus from "./StatusContext";
 
-export type User = { name: string; race: RaceKey; classe: ClasseKey; meshyId: string; x: number; y: number };
+export type User = {
+    name: string;
+    race: RaceKey;
+    classe: ClasseKey;
+    meshyId: string;
+    x: number;
+    y: number;
+
+    experiencePoints?: string;
+    attributes?: string;
+    skills?: string;
+    savingThrows?: string;
+    armorClass?: string;
+    hitPoints?: string;
+    hitDice?: string;
+    speed?: string;
+};
 const userContext = createContext<User | null>(null);
 
 type ProviderProps = { children: ReactNode };
