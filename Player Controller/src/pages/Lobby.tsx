@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { FadeDiv } from "@/components/ui/FadeDiv";
 import useStatus from "@/lib/StatusContext";
 import useUser from "@/lib/UserContext";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { AnimatePresence } from "framer-motion";
 import { LoaderCircle, UserRoundX } from "lucide-react";
 
 export default function LobbyPage() {
@@ -30,26 +32,29 @@ export default function LobbyPage() {
             <h2 className="text-center text-xl text-foreground/80">Couch Campaign</h2>
             <h1 className="text-center text-3xl font-semibold">Lobby</h1>
 
-            <Card className="gap-2 divide-y pt-2">
-                {players.map((p) => (
-                    <div className="flex justify-between gap-4 items-center px-2 pb-2" key={p.name}>
-                        <div>
-                            <h1 className="font-semibold">{p.name}</h1>
-                            <p>
-                                {p.race} · {p.classe}
-                            </p>
-                        </div>
-
-                        {p.name === user.name ? (
-                            <span className="text-foreground/80">you</span>
-                        ) : (
-                            <Button variant="ghost" size="icon" onClick={() => deletePlayer.mutate(p.name)}>
-                                <UserRoundX />
-                            </Button>
-                        )}
-                    </div>
-                ))}
-            </Card>
+            <AnimatePresence>
+                <Card className="gap-2 divide-y pt-2">
+                    {players.map((p) => (
+                        <FadeDiv key={p.name}>
+                            <div className="flex justify-between gap-4 items-center px-2 pb-2">
+                                <div>
+                                    <h1 className="font-semibold">{p.name}</h1>
+                                    <p>
+                                        {p.race} · {p.classe}
+                                    </p>
+                                </div>
+                                {p.name === user.name ? (
+                                    <span className="text-foreground/80">you</span>
+                                ) : (
+                                    <Button variant="ghost" size="icon" onClick={() => deletePlayer.mutate(p.name)}>
+                                        <UserRoundX />
+                                    </Button>
+                                )}
+                            </div>
+                        </FadeDiv>
+                    ))}
+                </Card>
+            </AnimatePresence>
 
             <div className="h-fit grid">
                 {error && <p className="text-destructive">An error occured, please try again</p>}
