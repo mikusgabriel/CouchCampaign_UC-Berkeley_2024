@@ -79,6 +79,15 @@ async def player_play_POST(body: PlayerPlayBody, req: Request):
     match body.action:
         case "move":
             await gameManager.movePlayer(userId, body.x, body.y)
+            positions = gameManager.currentMap[0]
+            player = gameManager.getPlayer(userId)
+            for i in range(1, len(positions)):
+                if (
+                    positions[i][0] == player.position()["x"]
+                    and positions[i][1] == player.position()["y"]
+                ):
+                    gameManager.setMap(gameManager.currentMap["mapid"])
+                    break
             await gameManager.nextTurn()
 
         case "talk":
