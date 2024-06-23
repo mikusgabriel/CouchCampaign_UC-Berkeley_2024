@@ -1,185 +1,20 @@
 [
      {
-          "name": "Giant Eagle",
-          "appearance": "A majestic bird with a wingspan that stretches to nearly 20 feet, covered in golden-brown feathers that shimmer in the sunlight. Its sharp, piercing eyes constantly scan the surroundings from high above.",
-          "description": "A giant eagle is a noble creature that speaks its own language and understands speech in the Common tongue. A mated pair of giant eagles typically has up to four eggs or young in their nest (treat the young as normal eagles).",
-          "meshyid": "019045e1-a2f5-789f-b1cf-6e91fc145950",
-          "class": "Beast",
-          "level": 1,
+          "name": "Wood Woad",
+          "appearance": "A humanoid figure made entirely of wood and bark, with moss and vines intertwining upon its body. The eyes glow with an eerie green light, and its limbs are strong, resembling that of tree branches.",
+          "description": "Wood Woads are guardians of the forests and sacred places of nature. Created from the remains of a warrior bound with druidic magic, these beings protect their domain from any desecration.",
+          "meshyid": "01904602-4708-78a3-96a8-9089c730528b",
+          "class": "Druidic Guardian",
+          "level": 5,
           "type": "Enemy",
-          "race": "Giant Eagle",
-          "mapid": "mivmmlcslm",
-          "alignment": "Neutral Good",
+          "race": "Construct",
+          "mapid": "gusdlwqkok",
+          "alignment": "Neutral",
           "attributes": {
-               "STR": 16,
-               "DEX": 17,
-               "CON": 13,
-               "INT": 8,
-               "WIS": 14,
-               "CHA": 10
-          },
-          "skills": {
-               "Acrobatics": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Animal Handling": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Arcana": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Athletics": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Deception": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "History": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Insight": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Intimidation": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Investigation": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Medicine": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Nature": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Perception": {
-                    "proficient": true,
-                    "bonus": 4
-               },
-               "Performance": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Persuasion": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Religion": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Sleight of Hand": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Stealth": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Survival": {
-                    "proficient": false,
-                    "bonus": 0
-               }
-          },
-          "savingThrows": {
-               "strength": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "dexterity": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "constitution": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "intelligence": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "wisdom": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "charisma": {
-                    "proficient": false,
-                    "bonus": 0
-               }
-          },
-          "armorClass": 13,
-          "hitPoints": {
-               "current": 26,
-               "maximum": 26,
-               "temporary": 0
-          },
-          "hitDice": {
-               "total": "4d10",
-               "current": "4d10+4"
-          },
-          "speed": 80,
-          "proficiencies": {
-               "weapons": [],
-               "tools": [],
-               "languages": [
-                    "Giant Eagle",
-                    "Understands Common",
-                    "Understands Auran"
-               ],
-               "armor": []
-          },
-          "equipment": [],
-          "features": [
-               {
-                    "name": "Keen Sight",
-                    "description": "The eagle has advantage on Wisdom (Perception) checks that rely on sight."
-               }
-          ],
-          "spells": {
-               "level1": [],
-               "level2": [],
-               "level3": [],
-               "level4": [],
-               "level5": [],
-               "level6": [],
-               "level7": [],
-               "level8": [],
-               "level9": []
-          },
-          "location": {
-               "x": 52,
-               "y": 26
-          },
-          "notes": "",
-          "relationships": {}
-     },
-     {
-          "name": "Hippogriff",
-          "appearance": "A Hippogriff is a majestic creature with the body of a horse and the head and wings of a giant eagle. Its fierce eyes have a keen sight, and its plumage transitions seamlessly from coarse feathers on its head and wings to the tough hide on its equine body.",
-          "description": "A Hippogriff is a noble and proud creature, often seen soaring the skies of the Eagle's Perch Wilds. They are fiercely territorial and are known to defend their nests from any intruders with unparalleled ferocity. Their diet consists of small mammals and birds they catch while gliding over the forested valleys below.",
-          "meshyid": "019045e1-e504-789f-9905-1a63f38655ce",
-          "class": "Monstrosity",
-          "level": 1,
-          "type": "Enemy",
-          "race": "Hippogriff",
-          "mapid": "mivmmlcslm",
-          "alignment": "Unaligned",
-          "attributes": {
-               "STR": 17,
-               "DEX": 13,
-               "CON": 13,
-               "INT": 2,
+               "STR": 18,
+               "DEX": 10,
+               "CON": 16,
+               "INT": 10,
                "WIS": 12,
                "CHA": 8
           },
@@ -197,6 +32,341 @@
                     "bonus": 0
                },
                "Athletics": {
+                    "proficient": true,
+                    "bonus": 6
+               },
+               "Deception": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "History": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Insight": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Intimidation": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Investigation": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Medicine": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Nature": {
+                    "proficient": true,
+                    "bonus": 3
+               },
+               "Perception": {
+                    "proficient": true,
+                    "bonus": 3
+               },
+               "Performance": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Persuasion": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Religion": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Sleight of Hand": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Stealth": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Survival": {
+                    "proficient": true,
+                    "bonus": 3
+               }
+          },
+          "savingThrows": {
+               "strength": {
+                    "proficient": true,
+                    "bonus": 6
+               },
+               "dexterity": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "constitution": {
+                    "proficient": true,
+                    "bonus": 5
+               },
+               "intelligence": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "wisdom": {
+                    "proficient": true,
+                    "bonus": 3
+               },
+               "charisma": {
+                    "proficient": false,
+                    "bonus": 0
+               }
+          },
+          "armorClass": 16,
+          "hitPoints": {
+               "current": 60,
+               "maximum": 60,
+               "temporary": 0
+          },
+          "hitDice": {
+               "total": "5d10+15",
+               "current": "5d10+15"
+          },
+          "speed": 30,
+          "proficiencies": {
+               "weapons": [
+                    "clubs",
+                    "staffs"
+               ],
+               "tools": [
+                    "herbalism kit"
+               ],
+               "languages": [
+                    "Common",
+                    "Sylvan",
+                    "Druidic"
+               ]
+          },
+          "equipment": {
+               "weapons": [
+                    "Wooden Club"
+               ],
+               "armor": [
+                    "Barkskin Armor"
+               ],
+               "miscellaneous": [
+                    "Herbalism Kit",
+                    "Druidic Focus"
+               ]
+          },
+          "features": [
+               "Innate Spellcasting",
+               "Regeneration",
+               "Shield of Thorns"
+          ],
+          "spells": {
+               "level1": [
+                    "Entangle",
+                    "Goodberry"
+               ],
+               "level2": [
+                    "Barkskin",
+                    "Spike Growth"
+               ],
+               "level3": [
+                    "Plant Growth",
+                    "Speak with Plants"
+               ],
+               "level4": [
+                    "Grasping Vine"
+               ],
+               "level5": [],
+               "level6": [],
+               "level7": [],
+               "level8": [],
+               "level9": []
+          },
+          "location": {
+               "x": 30,
+               "y": 12
+          },
+          "notes": "Wood Woads are created when a druid or priest sacrifices a willing warrior to protect a sacred site. Once created, they are bound to the area and will fiercely defend it.",
+          "relationships": {}
+     },
+     {
+          "name": "Owlbear",
+          "appearance": "A large, fearsome creature with the body of a bear and the head of an owl. Its fur is matted and dark, blending into the shadows of the forest, and its large eyes gleam with a predatory intelligence.",
+          "description": "The Owlbear is a monstrous creature known for its ferocity and unmistakable appearance. With the body of a bear and the head of an owl, its screeches echo through the Cragshade Wilderness. Despite being unaligned, it is fiercely territorial and poses a significant threat to adventurers who wander too close.",
+          "meshyid": "01904602-8e10-78a3-906f-1b2775e9ea1b",
+          "class": "",
+          "level": 3,
+          "type": "monstrosity",
+          "race": "Owlbear",
+          "mapid": "gusdlwqkok",
+          "alignment": "unaligned",
+          "attributes": {
+               "STR": 20,
+               "DEX": 12,
+               "CON": 17,
+               "INT": 3,
+               "WIS": 12,
+               "CHA": 7
+          },
+          "skills": {
+               "Acrobatics": {
+                    "proficient": false,
+                    "bonus": 1
+               },
+               "Animal Handling": {
+                    "proficient": false,
+                    "bonus": 1
+               },
+               "Arcana": {
+                    "proficient": false,
+                    "bonus": -4
+               },
+               "Athletics": {
+                    "proficient": false,
+                    "bonus": 5
+               },
+               "Deception": {
+                    "proficient": false,
+                    "bonus": -2
+               },
+               "History": {
+                    "proficient": false,
+                    "bonus": -4
+               },
+               "Insight": {
+                    "proficient": false,
+                    "bonus": 1
+               },
+               "Intimidation": {
+                    "proficient": false,
+                    "bonus": -2
+               },
+               "Investigation": {
+                    "proficient": false,
+                    "bonus": -4
+               },
+               "Medicine": {
+                    "proficient": false,
+                    "bonus": 1
+               },
+               "Nature": {
+                    "proficient": false,
+                    "bonus": -4
+               },
+               "Perception": {
+                    "proficient": true,
+                    "bonus": 3
+               },
+               "Performance": {
+                    "proficient": false,
+                    "bonus": -2
+               },
+               "Persuasion": {
+                    "proficient": false,
+                    "bonus": -2
+               },
+               "Religion": {
+                    "proficient": false,
+                    "bonus": -4
+               },
+               "Sleight of Hand": {
+                    "proficient": false,
+                    "bonus": 1
+               },
+               "Stealth": {
+                    "proficient": false,
+                    "bonus": 1
+               },
+               "Survival": {
+                    "proficient": false,
+                    "bonus": 1
+               }
+          },
+          "savingThrows": {
+               "strength": {
+                    "proficient": false,
+                    "bonus": 5
+               },
+               "dexterity": {
+                    "proficient": false,
+                    "bonus": 1
+               },
+               "constitution": {
+                    "proficient": false,
+                    "bonus": 3
+               },
+               "intelligence": {
+                    "proficient": false,
+                    "bonus": -4
+               },
+               "wisdom": {
+                    "proficient": false,
+                    "bonus": 1
+               },
+               "charisma": {
+                    "proficient": false,
+                    "bonus": -2
+               }
+          },
+          "armorClass": 13,
+          "hitPoints": {
+               "current": 59,
+               "maximum": 59,
+               "temporary": 0
+          },
+          "hitDice": {
+               "total": "7d10",
+               "current": "7d10"
+          },
+          "speed": 40,
+          "proficiencies": {
+               "weapons": [],
+               "tools": [],
+               "languages": []
+          },
+          "equipment": [],
+          "features": [],
+          "spells": null,
+          "location": {
+               "x": 79,
+               "y": 11
+          },
+          "notes": "Has keen sight and smell, granting it advantage on Wisdom (Perception) checks relying on sight or smell.",
+          "relationships": {}
+     },
+     {
+          "name": "Giant Crocodile",
+          "appearance": "The Giant Crocodile is an intimidating presence with a massive, armored body covered in scales. Its gaping maw is filled with sharp, serrated teeth, and its long, muscular tail finishes in a powerful fin. The creature's eyes reflect the ethereal blue of the lake water, exhibiting an eerie, otherworldly glow.",
+          "description": "Lurking in the Azure Serpent's Lair, this Giant Crocodile is a master of ambush and stealth. It waits patiently, submerged just beneath the lake\u2019s surface, ready to strike at any unsuspecting prey that dares to approach.",
+          "meshyid": "01904603-62be-78a3-bfb1-52f0df03783b",
+          "class": "",
+          "level": 1,
+          "type": "beast",
+          "race": "",
+          "mapid": "pnyaykjnjs",
+          "alignment": "unaligned",
+          "attributes": {
+               "STR": 21,
+               "DEX": 9,
+               "CON": 17,
+               "INT": 2,
+               "WIS": 10,
+               "CHA": 7
+          },
+          "skills": {
+               "Acrobatics": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Animal Handling": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Arcana": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Athletics": {
                     "proficient": false,
                     "bonus": 0
                },
@@ -229,8 +399,8 @@
                     "bonus": 0
                },
                "Perception": {
-                    "proficient": true,
-                    "bonus": 5
+                    "proficient": false,
+                    "bonus": 0
                },
                "Performance": {
                     "proficient": false,
@@ -249,8 +419,8 @@
                     "bonus": 0
                },
                "Stealth": {
-                    "proficient": false,
-                    "bonus": 0
+                    "proficient": true,
+                    "bonus": 5
                },
                "Survival": {
                     "proficient": false,
@@ -283,19 +453,19 @@
                     "bonus": 0
                }
           },
-          "armorClass": 11,
+          "armorClass": 14,
           "hitPoints": {
-               "current": 19,
-               "maximum": 19,
+               "current": 85,
+               "maximum": 85,
                "temporary": 0
           },
           "hitDice": {
-               "total": "3d10",
-               "current": "3d10"
+               "total": "9d12",
+               "current": "9d12+27"
           },
           "speed": {
-               "walk": 40,
-               "fly": 60
+               "walk": 30,
+               "swim": 50
           },
           "proficiencies": {
                "weapons": [],
@@ -305,28 +475,8 @@
           "equipment": [],
           "features": [
                {
-                    "name": "Keen Sight",
-                    "desc": "The Hippogriff has advantage on Wisdom (Perception) checks that rely on sight."
-               }
-          ],
-          "actions": [
-               {
-                    "name": "Multiattack",
-                    "desc": "The Hippogriff makes two attacks: one with its beak and one with its claws.",
-                    "actions": [
-                         {
-                              "action_name": "Beak",
-                              "count": 1,
-                              "type": "melee",
-                              "desc": "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 8 (1d10+3) piercing damage."
-                         },
-                         {
-                              "action_name": "Claws",
-                              "count": 1,
-                              "type": "melee",
-                              "desc": "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 10 (2d6+3) slashing damage."
-                         }
-                    ]
+                    "name": "Hold Breath",
+                    "description": "The crocodile can hold its breath for 30 minutes."
                }
           ],
           "spells": {
@@ -341,30 +491,30 @@
                "level9": []
           },
           "location": {
-               "x": 26,
+               "x": 1,
                "y": 3
           },
           "notes": "",
           "relationships": {}
      },
      {
-          "name": "Giant Eagle",
-          "appearance": "A majestic creature with a massive wingspan that stretches nearly 20 feet. Its feathers are a blend of rich brown and gold, shimmering in the sunlight. The eagle's piercing eyes glow with intelligence and vigilance, and its sharp beak and talons are both beautiful and deadly.",
-          "description": "A giant eagle is a noble creature that speaks its own language and understands speech in the Common tongue. A mated pair of giant eagles typically has up to four eggs or young in their nest (treat the young as normal eagles).",
-          "meshyid": "019045e2-7d1c-789f-9185-1a2c3cce2341",
-          "class": "",
-          "level": 1,
-          "type": "beast",
-          "race": "Beast",
-          "mapid": "bcypesvvei",
-          "alignment": "Neutral Good",
+          "name": "Water Weird",
+          "appearance": "An ethereal, serpentine creature composed entirely of water. The Water Weird is mostly invisible while in water, only revealing itself as a vague shimmer or ripple.",
+          "description": "The Water Weird is a guardian of The Azure Serpent's Lair. It is bound to protect these waters and the secrets they hold. Often mistaken for harmless currents, the Water Weird strikes only when intruders disturb the natural tranquility of its domain.",
+          "meshyid": "01904603-a354-78a3-91f8-2f8bd42f494c",
+          "class": "Aquatic Guardian",
+          "level": 4,
+          "type": "Elemental",
+          "race": "Water Weird",
+          "mapid": "pnyaykjnjs",
+          "alignment": "Neutral",
           "attributes": {
-               "STR": 16,
-               "DEX": 17,
+               "STR": 14,
+               "DEX": 16,
                "CON": 13,
-               "INT": 8,
-               "WIS": 14,
-               "CHA": 10
+               "INT": 10,
+               "WIS": 12,
+               "CHA": 11
           },
           "skills": {
                "Acrobatics": {
@@ -413,7 +563,7 @@
                },
                "Perception": {
                     "proficient": true,
-                    "bonus": 4
+                    "bonus": 2
                },
                "Performance": {
                     "proficient": false,
@@ -432,8 +582,8 @@
                     "bonus": 0
                },
                "Stealth": {
-                    "proficient": false,
-                    "bonus": 0
+                    "proficient": true,
+                    "bonus": 3
                },
                "Survival": {
                     "proficient": false,
@@ -442,12 +592,12 @@
           },
           "savingThrows": {
                "strength": {
-                    "proficient": false,
-                    "bonus": 0
+                    "proficient": true,
+                    "bonus": 2
                },
                "dexterity": {
-                    "proficient": false,
-                    "bonus": 0
+                    "proficient": true,
+                    "bonus": 3
                },
                "constitution": {
                     "proficient": false,
@@ -468,502 +618,33 @@
           },
           "armorClass": 13,
           "hitPoints": {
-               "current": 26,
-               "maximum": 26,
+               "current": 45,
+               "maximum": 45,
                "temporary": 0
           },
           "hitDice": {
-               "total": "4d10",
-               "current": "4d10"
-          },
-          "speed": 80,
-          "proficiencies": {
-               "weapons": [],
-               "tools": [],
-               "languages": [
-                    "Giant Eagle",
-                    "understands Common and Auran but can't speak"
-               ]
-          },
-          "equipment": [],
-          "features": [
-               "Keen Sight: The eagle has advantage on Wisdom (Perception) checks that rely on sight."
-          ],
-          "spells": {
-               "level1": [],
-               "level2": [],
-               "level3": [],
-               "level4": [],
-               "level5": [],
-               "level6": [],
-               "level7": [],
-               "level8": [],
-               "level9": []
-          },
-          "location": {
-               "x": 29,
-               "y": 1
-          },
-          "notes": "",
-          "relationships": {}
-     },
-     {
-          "name": "Griffon",
-          "appearance": "A formidable hybrid beast with the body of a lion and the head, wings, and talons of an eagle. Its feathers are a sharp mix of gold and brown, blending seamlessly into its powerful leonine frame.",
-          "description": "Griffons are known to be powerful predators of the skies and land, often seen patrolling their territory from high above. They are highly territorial and blend aggressive hunting prowess with sharp surveillance skills.",
-          "meshyid": "019045e2-bd76-789f-aad3-ab6158db316b",
-          "class": "",
-          "level": 2,
-          "type": "Monstrosity",
-          "race": "Griffon",
-          "mapid": "bcypesvvei",
-          "alignment": "Unaligned",
-          "attributes": {
-               "STR": 18,
-               "DEX": 15,
-               "CON": 16,
-               "INT": 2,
-               "WIS": 13,
-               "CHA": 8
-          },
-          "skills": {
-               "Acrobatics": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Animal Handling": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Arcana": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Athletics": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Deception": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "History": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Insight": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Intimidation": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Investigation": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Medicine": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Nature": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Perception": {
-                    "proficient": true,
-                    "bonus": 5
-               },
-               "Performance": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Persuasion": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Religion": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Sleight of Hand": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Stealth": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Survival": {
-                    "proficient": false,
-                    "bonus": 0
-               }
-          },
-          "savingThrows": {
-               "strength": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "dexterity": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "constitution": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "intelligence": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "wisdom": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "charisma": {
-                    "proficient": false,
-                    "bonus": 0
-               }
-          },
-          "armorClass": 12,
-          "hitPoints": {
-               "current": 59,
-               "maximum": 59,
-               "temporary": 0
-          },
-          "hitDice": {
-               "total": "7d10",
-               "current": "7d10"
+               "total": "6d8",
+               "current": "6d8"
           },
           "speed": 30,
           "proficiencies": {
-               "weapons": [],
-               "tools": [],
-               "languages": []
-          },
-          "equipment": [],
-          "features": [
-               "Multiattack",
-               "Keen Sight"
-          ],
-          "spells": {
-               "level1": [],
-               "level2": [],
-               "level3": [],
-               "level4": [],
-               "level5": [],
-               "level6": [],
-               "level7": [],
-               "level8": [],
-               "level9": []
-          },
-          "location": {
-               "x": 49,
-               "y": 8
-          },
-          "notes": "",
-          "relationships": {}
-     },
-     {
-          "name": "Griffon",
-          "appearance": "A majestic creature with the body of a lion and the wings and head of an eagle. Its large, golden eyes have an intense, predatory gaze, and its beak is sharp and strong. The wings are powerful, capable of creating strong gusts of wind with each flap.",
-          "description": "Griffons are fierce predators often sighted in mountainous regions. With their superior vision and agile flight capabilities, they dominate the skies and cliffs. The Razorpeak Ambush makes for a suitable habitat, where they can launch deadly assaults on unsuspecting travelers.",
-          "meshyid": "019045e3-4457-789f-a3bf-1364da672416",
-          "class": "",
-          "level": 2,
-          "type": "monstrosity",
-          "race": "",
-          "mapid": "ziwabowpdp",
-          "alignment": "unaligned",
-          "attributes": {
-               "STR": 18,
-               "DEX": 15,
-               "CON": 16,
-               "INT": 2,
-               "WIS": 13,
-               "CHA": 8
-          },
-          "skills": {
-               "Acrobatics": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Animal Handling": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Arcana": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Athletics": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Deception": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "History": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Insight": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Intimidation": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Investigation": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Medicine": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Nature": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Perception": {
-                    "proficient": true,
-                    "bonus": 5
-               },
-               "Performance": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Persuasion": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Religion": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Sleight of Hand": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Stealth": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Survival": {
-                    "proficient": false,
-                    "bonus": 0
-               }
-          },
-          "savingThrows": {
-               "strength": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "dexterity": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "constitution": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "intelligence": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "wisdom": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "charisma": {
-                    "proficient": false,
-                    "bonus": 0
-               }
-          },
-          "armorClass": 12,
-          "hitPoints": {
-               "current": 59,
-               "maximum": 59,
-               "temporary": 0
-          },
-          "hitDice": {
-               "total": "7d10",
-               "current": "7d10+21"
-          },
-          "speed": 30,
-          "proficiencies": {
-               "weapons": [],
-               "tools": [],
-               "languages": []
-          },
-          "equipment": [],
-          "features": [
-               {
-                    "name": "Keen Sight",
-                    "desc": "The griffon has advantage on Wisdom (Perception) checks that rely on sight."
-               }
-          ],
-          "spells": {
-               "level1": [],
-               "level2": [],
-               "level3": [],
-               "level4": [],
-               "level5": [],
-               "level6": [],
-               "level7": [],
-               "level8": [],
-               "level9": []
-          },
-          "location": {
-               "x": 54,
-               "y": 22
-          },
-          "notes": "",
-          "relationships": {}
-     },
-     {
-          "name": "Harpy",
-          "appearance": "The Harpy has the body and wings of a bird but the torso, head, and arms of a human woman. Its talons are sharp and deadly, and its eyes gleam with malevolent intelligence. Feathers cover its lower half, while its upper half remains bare and covered in grime and muck.",
-          "description": "The Harpy is a savage, predatory creature known for its alluring and deadly song. Dwelling in Razorpeak Ambush, the Harpy uses the treacherous terrain to its advantage, swooping down on unsuspecting travelers from high perches. Its haunting melodies can drive even the most steadfast to madness, compelling them to walk willingly into deadly traps.",
-          "meshyid": "019045e3-8259-789f-92b0-5c2d42ea9e17",
-          "class": "",
-          "level": 1,
-          "type": "monstrosity",
-          "race": "Harpy",
-          "mapid": "ziwabowpdp",
-          "alignment": "chaotic evil",
-          "attributes": {
-               "STR": 12,
-               "DEX": 13,
-               "CON": 12,
-               "INT": 7,
-               "WIS": 10,
-               "CHA": 13
-          },
-          "skills": {
-               "Acrobatics": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Animal Handling": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Arcana": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Athletics": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Deception": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "History": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Insight": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Intimidation": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Investigation": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Medicine": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Nature": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Perception": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Performance": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Persuasion": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Religion": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Sleight of Hand": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Stealth": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Survival": {
-                    "proficient": false,
-                    "bonus": 0
-               }
-          },
-          "savingThrows": {
-               "strength": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "dexterity": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "constitution": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "intelligence": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "wisdom": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "charisma": {
-                    "proficient": false,
-                    "bonus": 0
-               }
-          },
-          "armorClass": 11,
-          "hitPoints": {
-               "current": 38,
-               "maximum": 38,
-               "temporary": 0
-          },
-          "hitDice": {
-               "total": "7d8",
-               "current": "7d8"
-          },
-          "speed": 40,
-          "proficiencies": {
-               "weapons": [],
+               "weapons": [
+                    "natural weapons"
+               ],
                "tools": [],
                "languages": [
+                    "Aquan",
                     "Common"
                ]
           },
-          "equipment": [],
-          "features": [],
+          "equipment": [
+               "None"
+          ],
+          "features": [
+               "Amphibious",
+               "Invisible in Water",
+               "Constricting Grasp"
+          ],
           "spells": {
                "level1": [],
                "level2": [],
@@ -976,8 +657,8 @@
                "level9": []
           },
           "location": {
-               "x": 67,
-               "y": 12
+               "x": 12,
+               "y": 0
           },
           "notes": "",
           "relationships": {}

@@ -28,7 +28,7 @@ def generateNode():
     while True:
         # Initialize the first node
         first_type = random.choice(places)
-        response = json.loads(requests.get("https://6a6f-104-196-242-9.ngrok-free.app/imagen").text)
+        response = json.loads(requests.get("https://7b4a-104-196-242-9.ngrok-free.app/imagen").text)
         first_biome = response["type"]
         image_data = base64.b64decode(response["bs64"])
         # Generate a random filename
@@ -358,10 +358,31 @@ def generateDescription(biome_chosen, type_chosen, name,connecting_nodes):
     description, npcs, enemies = json.loads(response.choices[0].message.content)["description"], json.loads(response.choices[0].message.content)["npcs"], json.loads(response.choices[0].message.content)["enemies"]
     return description, npcs, enemies
 def generateWorld():
+
+
     npclist = []
     enemylist = []
     map_node_list = []
-    nodeAmount = 3
+    nodeAmount = 2
+
+    first_name = generateNodeName("cliff", "npc-conversation")
+    first_node = mapNode("cliff", "npc-conversation")
+    first_node.name = first_name
+    first_node.mapurl = "./maps/base.png"
+    temp1, temp2, first_node.entrancelocations = mapEnemyNpcPlacements(first_node.mapurl,0,0)
+
+    first_node.description, first_node.npcs, first_node.enemies = generateDescription(first_node.biome, first_node.maptype, first_node.name, first_node.connectingnodes)
+    first_node.enemytiles, first_node.npctiles, first_node.entrancelocations = mapEnemyNpcPlacements(first_node.mapurl,0,0)
+    
+    first_node.id = "base"
+    first_node.description, first_node.npcs, first_node.enemies = generateDescription(first_node.biome, first_node.maptype, first_node.name, first_node.connectingnodes)
+    first_node.enemytiles, first_node.npctiles, first_node.entrancelocations = mapEnemyNpcPlacements(first_node.mapurl,len(first_node.npcs),len(first_node.enemies))
+    listofpairs = []
+    for i in range(1,len(first_node.entrancelocations)+1):
+        mapidgatepairs.append((first_node.id,i))
+        listofpairs.append((first_node.id,i))
+    pairsinlist.append(listofpairs)
+
 
     for i in range(nodeAmount):
         map_node_list.append(generateNode())
@@ -541,6 +562,5 @@ def generateStory():
 
 
                 
-generateWorld()
 generateStory()
 
