@@ -6,3 +6,4 @@ numpy
 ruff
 python-dotenv
 requests
+pillow

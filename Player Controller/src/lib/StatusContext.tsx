@@ -39,7 +39,7 @@ type StatusChoice = {
 };
 type StatusLobby = { status: "lobby"; players: { name: string; race: string; classe: string }[] };
 type StatusWait = { status: "wait" };
-type StatusPlay = {
+export type StatusPlay = {
     status: "play";
     options: {
         move: [number, number][];
@@ -49,4 +49,5 @@ type StatusPlay = {
         abilities: { name: string; description: string }[];
     };
 };
-export type Status = StatusCreate | StatusChoice | StatusLobby | StatusWait | StatusPlay;
+type StatusSpeak = { status: "talk"; to: string };
+export type Status = StatusCreate | StatusChoice | StatusLobby | StatusWait | StatusPlay | StatusSpeak;

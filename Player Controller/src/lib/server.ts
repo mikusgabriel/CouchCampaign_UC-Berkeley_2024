@@ -53,7 +53,6 @@ type UserServerMessage = { type: "user"; user: User };
 type ServerMessage = StatusServerMessage | UserServerMessage;
 type ServerMessageHandler = (message: ServerMessage, remove: () => void) => void;
 
+type EndTurnClientMessage = { type: "end-turn" };
 type VoiceClientMessage = { type: "voice"; recording: string };
-type CreateClientMessage = { type: "create"; race: RaceKey; classe: ClasseKey; description: string };
-type MoveClientMessage = { type: "move"; x: number; y: number };
-type ClientMessage = VoiceClientMessage | CreateClientMessage | MoveClientMessage;
+type ClientMessage = EndTurnClientMessage | VoiceClientMessage;

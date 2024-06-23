@@ -1,6 +1,7 @@
 import asyncio
 import json
 import math
+import time
 
 import numpy as np
 import requests
@@ -52,6 +53,7 @@ class GameManager:
         self._players: dict[str, Player] = {}
         self._connections = connections
         self.currentTurn = None
+        self.lastRollResult = None
 
     async def broadcast_client_info(self):
         await asyncio.gather(
@@ -83,14 +85,24 @@ class GameManager:
         else:
             for player in self._players.values():
                 if player == self.currentTurn["player"]:
-                    await self._connections.send_client(
-                        player.id(),
-                        {
-                            "type": "status",
-                            "status": "play",
-                            "data": {"options": self.currentTurn["options"]},
-                        },
-                    )
+                    if self.currentTurn.get("talkingTo", None) is not None:
+                        await self._connections.send_client(
+                            player.id(),
+                            {
+                                "type": "status",
+                                "status": "play",
+                                "data": {"options": self.currentTurn["options"]},
+                            },
+                        )
+                    else:
+                        await self._connections.send_client(
+                            player.id(),
+                            {
+                                "type": "status",
+                                "status": "play",
+                                "data": {"options": self.currentTurn["options"]},
+                            },
+                        )
                 else:
                     await self._connections.send_client(
                         player.id(), {"type": "status", "status": "wait"}
@@ -176,7 +188,7 @@ class GameManager:
             {
                 "role": "system",
                 "content": """
-You are the dungeon master of a game of dungeons and dragons. You will make no assumptions about the game. I want you to call functions for searching.
+You are the dungeon master of a game of dungeons and dragons. Make [no] assumptions about the game. I want you to call functions for searching.
 
 Your role is to return a json object populated with the following keys, according to the current game state, once you have enough knowledge. Call the function to search for information about abilities, equipments, and spells.
 - abilities: an array of objects containing name and description of every ability that the player can use this turn. Make sure to keep the description short and concise, so it can fit in one line. Only include spells that can be used by the player this turn. Do not include spells that the player canno't target and therefore cannot use.
@@ -362,7 +374,8 @@ You can request any info you want about the game state, so do not hesistate to c
                       },
                       "location": {
                            "x": player.position()["x"],
-                           "y": player.position()["y"]                      },
+                           "y": player.position()["y"],
+                        },
                       }
                   )}.
                 Map info: {json.dumps({'size': {'x': 80, 'y': 40}})}
@@ -387,37 +400,20 @@ You can request any info you want about the game state, so do not hesistate to c
                                 }
                             },
                         },
-                    },
-                    {
-                        "name": "rollDice",
-                        "description": "This function will speak to the player. After you have either retrieved info, use this to tell the player the info. Do not ask anything after this. If the player has a question, then he can ask it himself.",
-                        "parameters": {
-                            "type": "object",
-                            "properties": {
-                                "input": {
-                                    "type": "string",
-                                    "description": "What will be spoken to the player",
-                                }
-                            },
-                        },
-                    },
+                    }
                 ],
                 function_call="auto",
                 response_format={"type": "json_object"},
                 messages=self.currentTurn["messages"],
             )
-            print("Hey")
-            print(response.choices[0].message)
+
             if response.choices[0].message.function_call is not None:
                 answer = response.choices[0].message.function_call
-                print(answer)
                 functionname = answer.name
-                print(functionname)
                 functionargs = json.loads(answer.arguments)
-                print(functionargs, functionargs["info_wanted"])
+
                 if functionname == "getInfoDND":
                     info = self.getInfoDND(functionargs["info_wanted"])
-                    print(info)
                     self.currentTurn["messages"].append(
                         {
                             "role": "function",
@@ -427,8 +423,6 @@ You can request any info you want about the game state, so do not hesistate to c
                     )
                     return gptGoesBrrrrr()
 
-            print(self.currentTurn["messages"])
-            print(response.choices[0].message.content)
             return json.loads(response.choices[0].message.content)
 
         res = gptGoesBrrrrr()
@@ -452,6 +446,37 @@ You can request any info you want about the game state, so do not hesistate to c
             )
         ).T + np.array(location)
         return nparr.tolist()
+
+    async def rollDice(self, input: str):
+        jsonFormat = {"type": "roll", "values": [4, 6, 6, 8, 10]}
+        response = openAiClient.chat.completions.create(
+            model="gpt-4o",
+            response_format={"type": "json_object"},
+            messages=[
+                {
+                    "role": "system",
+                    "content": f"""Given the input, determine what must be rolled. Your output must in the json form of {jsonFormat}. 
+                    Where for example if its 4d6 and 1d4 then the list [4,6,6,6,6].""",
+                },
+                {
+                    "role": "user",
+                    "content": f"Get the roll info for: {input}",
+                },
+            ],
+        )
+
+        await self._connections.send_unity(
+            json.loads(response.choices[0].message.content)
+        )
+
+        # res = 0
+        # while True:
+        #     # time.sleep(0.2)
+        #     if self.lastRollResult is not None:
+        #         res = self.lastRollResult
+        #         self.lastRollResult = None
+
+        # return res
 
     def getInfoDND(self, info_wanted: str):
         print("🚀 ~ info_wanted:", info_wanted)

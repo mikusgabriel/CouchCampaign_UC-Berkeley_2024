@@ -3,15 +3,16 @@ import base64
 import json
 
 from fastapi import (
-    Request,
     FastAPI,
     HTTPException,
+    Request,
     Response,
     WebSocket,
     WebSocketDisconnect,
 )
 from pydantic import BaseModel
 
+import map
 import voiceApi
 from connections import Connections
 from game import GameManager
@@ -61,7 +62,7 @@ class PlayerPlayBody(BaseModel):
     action: str
     x: int
     y: int
-    # name: str | None = None
+    name: str | None = None
 
 
 @app.post("/player/play")
@@ -81,8 +82,7 @@ async def player_play_POST(body: PlayerPlayBody, req: Request):
             await gameManager.nextTurn()
 
         case "talk":
-            # await gameManager.movePlayer(userId, body.x, body.y)
-            pass
+            gameManager.currentTurn["talkingTo"] = body.name
 
         case "fight":
             # await gameManager.movePlayer(userId, body.x, body.y)
@@ -184,6 +184,9 @@ async def ws_WEBSOCKET(ws: WebSocket):
                     if gameManager.currentTurn.player.id() != userId:
                         continue
 
+                    if gameManager.currentTurn.get("talkingTo", None) is None:
+                        continue
+
                     encodedAudioData = data["recording"].split(",")[1]
                     audioData = base64.b64decode(encodedAudioData)
                     [transcript, emotions] = await asyncio.gather(
@@ -193,31 +196,24 @@ async def ws_WEBSOCKET(ws: WebSocket):
 
                     await ws.send_json({"type": "transcript", "data": transcript})
 
-                case "move":
-                    if gameManager.currentTurn.player.id() != userId:
-                        continue
-
-                    await gameManager.movePlayer(userId, data["x"], data["y"])
-                    await gameManager.nextTurn()
-
     except WebSocketDisconnect:
         connections.remove_client(userId)
 
-
-
-import map
 
 @app.websocket("/ws/unity")
 async def ws_WEBSOCKET_UNITY(ws: WebSocket):
     await ws.accept()
     connections.set_unity(ws)
     string = map.image_to_string("map.png")
-    await ws.send_json({"type": "map", "map": string })
+    await ws.send_json({"type": "map", "map": string})
 
     try:
         while True:
-            data = json.dumps(await ws.receive_text())
+            data = json.loads(await ws.receive_text())
             print("Unity WebSocket received:", data)
+
+            if data["type"] == "roll":
+                gameManager.lastRollResult = data["value"]
 
     except WebSocketDisconnect:
         connections.set_unity(None)
