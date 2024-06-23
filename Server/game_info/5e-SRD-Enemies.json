@@ -1,0 +1,329 @@
+[
+     {
+          "name": "Giant Eagle",
+          "appearance": "A large, majestic bird with a wingspan that stretches nearly 20 feet. Its feathers are a mix of browns and whites, giving it an appearance of rugged beauty. The eyes of the giant eagle are sharp and piercing, able to spot the smallest movements from great distances.",
+          "description": "A giant eagle is a noble creature that speaks its own language and understands speech in the Common tongue. A mated pair of giant eagles typically has up to four eggs or young in their nest (treated as normal eagles). They inhabit the towering rocky formations and narrow paths of the Stonecrag Uprising, where the cold and howling winds prevail.",
+          "meshyid": null,
+          "class": "",
+          "level": 1,
+          "type": "beast",
+          "race": "",
+          "alignment": "neutral good",
+          "attributes": {
+               "STR": 16,
+               "DEX": 17,
+               "CON": 13,
+               "INT": 8,
+               "WIS": 14,
+               "CHA": 10
+          },
+          "skills": {
+               "Acrobatics": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Animal Handling": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Arcana": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Athletics": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Deception": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "History": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Insight": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Intimidation": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Investigation": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Medicine": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Nature": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Perception": {
+                    "proficient": true,
+                    "bonus": 4
+               },
+               "Performance": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Persuasion": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Religion": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Sleight of Hand": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Stealth": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Survival": {
+                    "proficient": false,
+                    "bonus": 0
+               }
+          },
+          "savingThrows": {
+               "strength": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "dexterity": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "constitution": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "intelligence": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "wisdom": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "charisma": {
+                    "proficient": false,
+                    "bonus": 0
+               }
+          },
+          "armorClass": 13,
+          "hitPoints": {
+               "current": 26,
+               "maximum": 26,
+               "temporary": 0
+          },
+          "hitDice": {
+               "total": "4d10",
+               "current": "4d10+4"
+          },
+          "speed": 10,
+          "proficiencies": {
+               "weapons": [],
+               "tools": [],
+               "languages": [
+                    "Giant Eagle",
+                    "understands Common and Auran but can't speak"
+               ]
+          },
+          "equipment": [],
+          "features": [
+               {
+                    "name": "Keen Sight",
+                    "description": "The eagle has advantage on Wisdom (Perception) checks that rely on sight."
+               }
+          ],
+          "spells": {
+               "level1": [],
+               "level2": [],
+               "level3": [],
+               "level4": [],
+               "level5": [],
+               "level6": [],
+               "level7": [],
+               "level8": [],
+               "level9": []
+          },
+          "location": {
+               "x": 37,
+               "y": 75
+          },
+          "notes": "The Giant Eagles of the Stonecrag Uprising are known to have formed an unsteady truce with a local group of mountaineers, leading to occasional aerial rides for travelers seeking safe passage through the treacherous terrain.",
+          "relationships": {
+               "name_of_character": "description of relationship"
+          }
+     },
+     {
+          "name": "Stone Giant",
+          "appearance": "A towering creature, nearly 18 feet tall, with a muscular and rugged build. Its skin is made of tough, granite-like rock and is covered in dust and small patches of hardened moss. The giant's eyes are a deep, earthy brown, and its facial features are weathered and stoic.",
+          "description": "Stone Giants are formidable adversaries, known for their immense strength and rock-solid resilience. Living in the harsh terrain of the Stonecrag Uprising, they are masters of their environment, using the rocky landscape to their advantage in both hunting and combat.",
+          "meshyid": null,
+          "class": "",
+          "level": 1,
+          "type": "enemy",
+          "race": "giant",
+          "alignment": "neutral",
+          "attributes": {
+               "STR": 23,
+               "DEX": 15,
+               "CON": 20,
+               "INT": 10,
+               "WIS": 12,
+               "CHA": 9
+          },
+          "skills": {
+               "Acrobatics": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Animal Handling": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Arcana": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Athletics": {
+                    "proficient": true,
+                    "bonus": 12
+               },
+               "Deception": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "History": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Insight": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Intimidation": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Investigation": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Medicine": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Nature": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Perception": {
+                    "proficient": true,
+                    "bonus": 4
+               },
+               "Performance": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Persuasion": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Religion": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Sleight of Hand": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Stealth": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Survival": {
+                    "proficient": false,
+                    "bonus": 0
+               }
+          },
+          "savingThrows": {
+               "strength": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "dexterity": {
+                    "proficient": true,
+                    "bonus": 5
+               },
+               "constitution": {
+                    "proficient": true,
+                    "bonus": 8
+               },
+               "intelligence": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "wisdom": {
+                    "proficient": true,
+                    "bonus": 4
+               },
+               "charisma": {
+                    "proficient": false,
+                    "bonus": 0
+               }
+          },
+          "armorClass": 17,
+          "hitPoints": {
+               "current": 126,
+               "maximum": 126,
+               "temporary": 0
+          },
+          "hitDice": {
+               "total": "11d12",
+               "current": "11d12"
+          },
+          "speed": 40,
+          "proficiencies": {
+               "weapons": [],
+               "tools": [],
+               "languages": [
+                    "Giant"
+               ]
+          },
+          "equipment": [],
+          "features": [
+               {
+                    "name": "Stone Camouflage",
+                    "desc": "The giant has advantage on Dexterity (Stealth) checks made to hide in rocky terrain."
+               }
+          ],
+          "spells": {
+               "level1": [],
+               "level2": [],
+               "level3": [],
+               "level4": [],
+               "level5": [],
+               "level6": [],
+               "level7": [],
+               "level8": [],
+               "level9": []
+          },
+          "location": {
+               "x": 15,
+               "y": 56
+          },
+          "notes": "The Stone Giant inhabits the treacherous terrain of the Stonecrag Uprising.",
+          "relationships": {
+               "name_of_character": "description of relationship"
+          }
+     }
+]
