@@ -103,7 +103,7 @@ public class ServerConnection : MonoBehaviour
                                 go = false;
                                 cameraManager.Follow(tr.gameObject);
                                 await Task.Delay(500);
-                                cameraManager.SetZoomLevel(2f);
+                                cameraManager.SetZoomLevel(1.5f);
                             }
                             continue;
                         }
@@ -113,15 +113,13 @@ public class ServerConnection : MonoBehaviour
 
                         UseMeshyMesh script = playerObject.GetComponent<UseMeshyMesh>();
                         script.SetMesh(entity.meshyId);
-                        script.SetPlayerName(entity.name);
-                        script.cam = cam;
 
                         if (go)
                         {
                             go = false;
                             cameraManager.Follow(playerObject);
                             await Task.Delay(500);
-                            cameraManager.SetZoomLevel(3f);
+                            cameraManager.SetZoomLevel(1.5f);
                         }
                     }
 
@@ -145,12 +143,10 @@ public class ServerConnection : MonoBehaviour
 
                     UseMeshyMesh script = playerObject.GetComponent<UseMeshyMesh>();
                     script.SetMesh(data.meshyId);
-                    script.SetPlayerName(data.name);
-                    script.cam = cam;
 
                     cameraManager.Follow(playerObject);
                     await Task.Delay(500);
-                    cameraManager.SetZoomLevel(3f);
+                    cameraManager.SetZoomLevel(1f);
                     break;
                 }
 
@@ -182,11 +178,12 @@ public class ServerConnection : MonoBehaviour
                     GameObject character = transform.Find(data.name).gameObject;
 
 
-                    cameraManager.SetZoomLevel(3f);
+                    await Task.Delay(1000);
+                    cameraManager.SetZoomLevel(1.5f);
                     await Task.Delay(500);
                     cameraManager.Follow(character);
                     await Task.Delay(500);
-                    cameraManager.SetZoomLevel(1.5f);
+                    cameraManager.SetZoomLevel(1f);
                     break;
                 }
 

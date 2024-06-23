@@ -13,15 +13,6 @@ using Newtonsoft.Json;
 
 public class UseMeshyMesh : MonoBehaviour
 {
-    public Camera cam;
-
-    [Header("Text Mesh Pro")]
-    [SerializeField]
-    private TextMeshPro tmpName;
-    [SerializeField]
-    private TextMeshPro tmpHealth;
-
-
     private GltfImport gltf;
 
     private readonly string meshyApiKey = env.variables["MeshyKey"];
@@ -33,25 +24,6 @@ public class UseMeshyMesh : MonoBehaviour
         if (await LoadModel(meshId)) return;
 
         StartCoroutine(MakeRequest(meshyApiKey, meshId));
-    }
-
-    public void SetPlayerName(string playerName)
-    {
-        tmpName.text = playerName;
-    }
-
-    public void SetPlayerHealth(string playerHealth)
-    {
-        tmpHealth.text = playerHealth;
-    }
-
-    void Update()
-    {
-        if (cam != null)
-        {
-            tmpHealth.transform.LookAt(cam.transform);
-            tmpName.transform.LookAt(cam.transform);
-        }
     }
 
 
