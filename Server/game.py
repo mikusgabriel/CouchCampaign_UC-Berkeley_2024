@@ -18,17 +18,35 @@ openAiClient = OpenAI(api_key=config["openAiKey"])
 
 class Player:
     def __init__(
-        self, userId: str, race: str, classe: str, meshyId: str, x: int, y: int
+        self,
+        userId: str,
+        description: str,
+        race: str,
+        classe: str,
+        meshyId: str,
+        x: int,
+        y: int,
     ) -> None:
         self._id = userId
+        self._description = description
         self._race = race
         self._classe = classe
         self._meshyId = meshyId
         self._x = x
         self._y = y
+        self.choices = None
 
     def id(self):
         return self._id
+
+    def description(self):
+        return self._description
+
+    def race(self):
+        return self._race
+
+    def classe(self):
+        return self._classe
 
     def position(self):
         return {"x": self._x, "y": self._y}
@@ -36,6 +54,58 @@ class Player:
     def move(self, x: int, y: int):
         self._x = x
         self._y = y
+
+    def setFullStatSheet(self, stats: dict[str, any]):
+        self.level = stats["level"]
+        self.alignment = stats["alignment"]
+        self.background = stats["background"]
+        self.experiencePoints = stats["experiencePoints"]
+        self.attributes = stats["attributes"]
+        self.skills = stats["skills"]
+        self.savingThrows = stats["savingThrows"]
+        self.armorClass = stats["armorClass"]
+        self.hitPoints = stats["hitPoints"]
+        self.hitDice = stats["hitDice"]
+        self.speed = stats["speed"]
+        self.proficiencies = stats["proficiencies"]
+        self.equipment = stats["equipment"]
+        self.features = stats["features"]
+        self.spells = stats["spells"]
+        self.personalityTraits = stats["personalityTraits"]
+        self.ideals = stats["ideals"]
+        self.bonds = stats["bonds"]
+        self.flaws = stats["flaws"]
+        self.notes = stats["notes"]
+        self.currentConditions = stats["currentConditions"]
+
+    def getFullStatSheet(self, stats: dict[str, any]):
+        return {
+            "name": self._id,
+            "classe": self._classe,
+            "level": self.level,
+            "race": self._race,
+            "alignment": self.alignment,
+            "background": self.background,
+            "experiencePoints": self.experiencePoints,
+            "attributes": self.attributes,
+            "skills": self.skills,
+            "savingThrows": self.savingThrows,
+            "armorClass": self.armorClass,
+            "hitPoints": self.hitPoints,
+            "hitDice": self.hitDice,
+            "speed": self.speed,
+            "proficiencies": self.proficiencies,
+            "equipment": self.equipment,
+            "features": self.features,
+            "spells": self.spells,
+            "locations": {"x": self._x, "y": self._y},
+            "personalityTraits": self.personalityTraits,
+            "ideals": self.ideals,
+            "bonds": self.bonds,
+            "flaws": self.flaws,
+            "notes": self.notes,
+            "currentConditions": self.currentConditions,
+        }
 
     def toPOJO(self):
         return {
@@ -53,6 +123,7 @@ class GameManager:
         self._players: dict[str, Player] = {}
         self._connections = connections
         self.currentTurn = None
+        self.currentMap = "ryvzyrqpfk"
         self.lastRollResult = None
 
     async def broadcast_client_info(self):
@@ -67,9 +138,9 @@ class GameManager:
 
         if self.currentTurn is None:
             players = [p.toPOJO() for p in self._players.values()]
-            await asyncio.gather(
-                *[
-                    self._connections.send_client(
+            for p in self._players.values():
+                if p.choices is None:
+                    await self._connections.send_client(
                         p.id(),
                         {
                             "type": "status",
@@ -79,12 +150,32 @@ class GameManager:
                             },
                         },
                     )
-                    for p in self._players.values()
-                ]
-            )
+                else:
+                    await self._connections.send_client(
+                        p.id(),
+                        {
+                            "type": "status",
+                            "status": "choice",
+                            "data": {
+                                "choices": p.choices,
+                            },
+                        },
+                    )
+
         else:
             for player in self._players.values():
-                if player == self.currentTurn["player"]:
+                if player.choices is not None:
+                    await self._connections.send_client(
+                        player.id(),
+                        {
+                            "type": "status",
+                            "status": "choice",
+                            "data": {
+                                "choices": player.choices,
+                            },
+                        },
+                    )
+                elif player == self.currentTurn["player"]:
                     if self.currentTurn.get("talkingTo", None) is not None:
                         await self._connections.send_client(
                             player.id(),
@@ -107,6 +198,29 @@ class GameManager:
                     await self._connections.send_client(
                         player.id(), {"type": "status", "status": "wait"}
                     )
+
+    async def setMap(self, mapId: str):
+        for m in json.load(open("game_info/5e-SRD-Maps.json")):
+            if m["mapid"] == mapId:
+                self.currentMap = m
+                break
+
+        self.currentNpcs = []
+        for npc in json.load(open("game_info/5e-SRD-Npcs.json")):
+            if npc["name"] in self.currentMap["npcs"]:
+                self.currentNpcs.append(npc)
+                if len(self.currentNpcs) == len(self.currentMap["npcs"]):
+                    break
+
+        self.currentEnemies = []
+        for enemy in json.load(open("game_info/5e-SRD-Enemies.json")):
+            if enemy["name"] in self.currentMap["enemies"]:
+                self.currentEnemies.append(enemy)
+                if len(self.currentEnemies) == len(self.currentMap["enemies"]):
+                    break
+
+    async def update_unity(self):
+        pass
 
     async def startGame(self):
         player = list(self._players.values())[0]
@@ -135,16 +249,10 @@ class GameManager:
         [x, y] = [0, 0]
         meshyId = meshyApi.generateMeshyMesh(race, classe, description)
 
-        player = Player(userId, race, classe, meshyId, x, y)
+        player = Player(userId, description, race, classe, meshyId, x, y)
         self._players[userId] = player
 
-        # Notify client
-        await self._connections.send_client(
-            userId, {"type": "user", "user": player.toPOJO()}
-        )
-        await self._connections.send_client(
-            userId, {"type": "status", "status": "wait"}
-        )
+        player.choices = self.getPlayerCreationChoices(classe, race)
 
         # Notify Unity
         await self._connections.send_unity(
@@ -479,7 +587,6 @@ You can request any info you want about the game state, so do not hesistate to c
         # return res
 
     def getInfoDND(self, info_wanted: str):
-        print("🚀 ~ info_wanted:", info_wanted)
         possible_endpoints = "ability-scores, alignments, backgrounds, classes, conditions, damage-types, equipment, equipment-categories, feats, features, languages, magic-items, magic-schools, monsters, proficiencies, races, rule-sections, rules, skills, spells, subclasses, subraces, traits, weapon-properties"
         payload = {}
         headers = {"Accept": "application/json"}
@@ -502,7 +609,6 @@ You can request any info you want about the game state, so do not hesistate to c
             ],
         )
         endpoints = json.loads(response.choices[0].message.content)
-        print("🚀 ~ endpoints:", endpoints)
 
         for point in endpoints["possible-terms-after-endpoint"]:
             url = f"https://www.dnd5eapi.co/api/{endpoints['endpoint']}/{point}"
@@ -513,20 +619,16 @@ You can request any info you want about the game state, so do not hesistate to c
 
         return "No info found. You may invent."
 
-    ##NOT SURE IF  GET PLAYER RETURNS PLAYER NAME AND GOTTA ADD getNPC()
-    def talkToNPC(self, gameManager, input: str, hume_analysis: list):
+    def talkToNPC(self, transcript: str, hume_analysis: list):
         with open("5e-SRD-Npcs.json") as file:
-            NPC_json = json.load(file)[gameManager.currentTurn.getNPC()]
+            NPC_json = json.load(file)[self.currentTurn["talkingTo"]]
         with open("5e-SRD-History.json") as file:
             History_json = json.load(file)
 
-        with open("5e-SRD-Players.json") as file:
-            Player_json = json.load(file)[self.currentTurn.getPlayer()]
-
-        gameManager.currentTurn["messages"].append(
+        self.currentTurn["messages"].append(
             {
                 "role": "user",
-                "content": f"analysis:{hume_analysis}, Player_message: {input}",
+                "content": f"analysis:{hume_analysis}, Player_message: {transcript}",
             }
         )
 
@@ -541,9 +643,9 @@ You can request any info you want about the game state, so do not hesistate to c
             messages=[
                 {
                     "role": "system",
-                    "content": f"""You are {NPC_json}. Realize that you are very important to the story. You are talking to {Player_json} and you will contribute to the existing story. The story is as follows: {History_json}. You also have the player emotion analysis to influence your responses, Example: ["happiness" : 0.08122], the more the analysis is closer to 1 the more the emotion is present. For example, if the player analysis results in an angry emotion, you will be colder to the player.""",
+                    "content": f"""You are {NPC_json}. Realize that you are very important to the story. You are talking to {self.currentTurn["player"].getFullStatSheet()} and you will contribute to the existing story. The story is as follows: {History_json}. You also have the player emotion analysis to influence your responses, Example: ["happiness" : 0.08122], the more the analysis is closer to 1 the more the emotion is present. For example, if the player analysis results in an angry emotion, you will be colder to the player.""",
                 },
-                *gameManager.currentTurn["messages"],
+                *self.currentTurn["messages"],
             ],
         )
 
@@ -551,13 +653,13 @@ You can request any info you want about the game state, so do not hesistate to c
         functionname = answer.name
 
         if functionname == "stop_conversation":
-            gameManager.nextTurn()
+            self.nextTurn()
 
-        gameManager.currentTurn["messages"].append(response.choices[0].message)
+        self.currentTurn["messages"].append(response.choices[0].message)
         return response.choices[0].message.content
 
-    def createCharacter1(self, class_chosen: str, race_chosen: str):
-        choice = {
+    def getPlayerCreationChoices(self, class_chosen: str, race_chosen: str):
+        jsonFormat = {
             "choices": [
                 {
                     "name": " ",
@@ -566,8 +668,6 @@ You can request any info you want about the game state, so do not hesistate to c
                 }
             ]
         }
-
-        jsonFormat = choice
         class_info = self.getInfoDND(class_chosen)
         race_info = self.getInfoDND(race_chosen)
         response = openAiClient.chat.completions.create(
@@ -586,6 +686,40 @@ You can request any info you want about the game state, so do not hesistate to c
             ],
         )
 
-        choices = response.choices[0].message.content
+        res = response.choices[0].message.content
+        return json.loads(res)["choices"]
 
-        return choices
+    def createPlayerStatsSheet(
+        self,
+        class_chosen: str,
+        race_chosen: str,
+        choices: dict,
+        name: str,
+        description: str,
+    ):
+        stats = []
+
+        while len(stats) < 6:
+            stats.append(np.sum(np.sort(np.random.randint(1, 7, size=6))[-3:]))
+
+        jsonFormat = json.load(open("game_info/5e-SRD-Character-Sheet.json"))
+        class_info = self.getInfoDND(class_chosen)
+        race_info = self.getInfoDND(race_chosen)
+        response = openAiClient.chat.completions.create(
+            model="gpt-4o",
+            response_format={"type": "json_object"},
+            messages=[
+                {
+                    "role": "system",
+                    "content": f"""You are an assistant that will create the character sheet for a given character. 
+                    The format is json: {jsonFormat}. """,
+                },
+                {
+                    "role": "user",
+                    "content": f"The two jsons you must consider are {class_info} and {race_info}. The player has chosen {choices}. The name is {name} and the description is {description}. The points you can attribute to the stats are {stats}. You must fill out the entire stat sheet like background, etc.",
+                },
+            ],
+        )
+
+        res = response.choices[0].message.content
+        return json.loads(res)

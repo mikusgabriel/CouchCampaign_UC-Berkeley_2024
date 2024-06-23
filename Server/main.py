@@ -137,7 +137,7 @@ async def player_create_POST(body: PlayerCreateBody, req: Request):
 
 
 class PlayerChoiceBody(BaseModel):
-    selected: list[str]
+    selected: dict[str, list[str]]
 
 
 @app.post("/player/choice")
@@ -149,10 +149,18 @@ async def player_choice_POST(body: PlayerChoiceBody, req: Request):
         raise HTTPException(status_code=400, detail="Player doesn't exists.")
 
     if gameManager.currentTurn is None:
-        raise HTTPException(status_code=400, detail="The game hasn't started yet.")
+        player = gameManager.getPlayer(userId)
+        player.choices = None
+        stats = gameManager.createPlayerStatsSheet(
+            player.classe(),
+            player.race(),
+            body.selected,
+            player.id(),
+            player.description(),
+        )
+        player.setFullStatSheet(stats)
 
-    # await gameManager.createPlayer(userId, body.race, body.classe, body.description)
-    await connections.send_client(userId, {"type": "status", "status": "wait"})
+    await gameManager.broadcast_client_info()
     return {"success": True}
 
 
@@ -195,9 +203,7 @@ async def ws_WEBSOCKET(ws: WebSocket):
                         voiceApi.getVoiceEmotions(audioData),
                     )
 
-                    voice_output = gameManager.talkToNPC(
-                        gameManager, transcript, emotions
-                    )
+                    voice_output = gameManager.talkToNPC(transcript, emotions)
                     await connections.send_unity(
                         {"type": "talk", "message": voice_output}
                     )
@@ -220,6 +226,8 @@ async def ws_WEBSOCKET(ws: WebSocket):
 async def ws_WEBSOCKET_UNITY(ws: WebSocket):
     await ws.accept()
     connections.set_unity(ws)
+
+    await gameManager.update_unity()
     string = map.image_to_string("map.png")
     await ws.send_json({"type": "map", "map": string})
 
