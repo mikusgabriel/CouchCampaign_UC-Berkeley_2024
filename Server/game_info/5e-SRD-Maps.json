@@ -12,8 +12,8 @@
                "Wood Woad",
                "Owlbear"
           ],
-          "map": "./maps/gusdlwqkok.png",
-          "mapid": "gusdlwqkok",
+          "map": "./maps/base.png",
+          "mapid": "base",
           "entrancepairs": [
                [
                     [

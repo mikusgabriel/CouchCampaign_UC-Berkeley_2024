@@ -128,7 +128,7 @@ class GameManager:
         self._connections = connections
         self.currentTurn = None
         self.lastRollResult = None
-        self.setMap("wsfobsvdyl")
+        self.setMap("base")
 
     async def broadcast_client_info(self):
         await asyncio.gather(
