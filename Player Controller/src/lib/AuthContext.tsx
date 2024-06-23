@@ -5,6 +5,7 @@ import { type ReactNode, createContext, useContext, useEffect, useState } from "
 
 type Auth = {
     loggedIn: boolean;
+    userId: string | null;
     loading: boolean;
     login: (name: string) => void;
     logout: () => void;
@@ -45,6 +46,7 @@ export function AuthProvider({ children }: ProviderProps) {
         <Provider
             value={{
                 loggedIn: !!userId,
+                userId,
                 loading: loginAction.isPending || logoutAction.isPending,
                 login: loginAction.mutate,
                 logout: logoutAction.mutate,

@@ -26,4 +26,9 @@
 
 :root {
     @apply font-serif text-foreground;
+
+    background-image: url(./bg.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }

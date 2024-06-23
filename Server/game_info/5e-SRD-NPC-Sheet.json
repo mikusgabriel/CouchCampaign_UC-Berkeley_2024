@@ -1,0 +1,157 @@
+{
+    "name": "",
+    "appearance": "",
+    "description": "",
+    "meshyid": "",
+    "class": "",
+    "level": 1,
+    "type": "",
+    "race": "",
+    "alignment": "",
+    "attributes": {
+      "STR": 10,
+      "DEX": 10,
+      "CON": 10,
+      "INT": 10,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "skills": {
+      "Acrobatics": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "Animal Handling": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "Arcana": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "Athletics": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "Deception": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "History": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "Insight": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "Intimidation": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "Investigation": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "Medicine": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "Nature": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "Perception": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "Performance": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "Persuasion": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "Religion": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "Sleight of Hand": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "Stealth": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "Survival": {
+        "proficient": false,
+        "bonus": 0
+      }
+    },
+    "savingThrows": {
+      "strength": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "dexterity": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "constitution": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "intelligence": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "wisdom": {
+        "proficient": false,
+        "bonus": 0
+      },
+      "charisma": {
+        "proficient": false,
+        "bonus": 0
+      }
+    },
+    "armorClass": 10,
+    "hitPoints": {
+      "current": 0,
+      "maximum": 0,
+      "temporary": 0
+    },
+    "hitDice": {
+      "total": "",
+      "current": ""
+    },
+    "speed": 30,
+    "proficiencies": {
+      "weapons": [],
+      "tools": [],
+      "languages": []
+    },
+    "equipment": [],
+    "features": [],
+    "spells": {
+      "level1": [],
+      "level2": [],
+      "level3": [],
+      "level4": [],
+      "level5": [],
+      "level6": [],
+      "level7": [],
+      "level8": [],
+      "level9": []
+    },
+    "location": {
+      "x": 0,
+      "y": 0
+    },
+    "notes": "",
+    "relationships": {
+        "name_of_character": "description of relationship"
+    }
+  }
+  

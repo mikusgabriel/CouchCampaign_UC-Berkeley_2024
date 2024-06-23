@@ -1,0 +1,15 @@
+[
+     {
+          "name": "Stonecrag Uprising",
+          "type": "Random Encounter",
+          "biome": "Mountain",
+          "description": "The Stonecrag Uprising features towering rocky formations and narrow, treacherous paths that wind through the mountains. The air is cold and thin, with a constant howling wind that makes every step more perilous. Scattered patches of hardy vegetation cling to the rugged terrain, and the occasional sound of falling rocks can be heard echoing through the crags.",
+          "connections": [],
+          "npcs": [],
+          "enemies": [
+               "Giant Eagle",
+               "Stone Giant"
+          ],
+          "map": "./maps/9vh3cm31w3.png"
+     }
+]
