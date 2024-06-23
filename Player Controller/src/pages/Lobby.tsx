@@ -56,7 +56,7 @@ export default function LobbyPage() {
 
                 <Button className="m-2" size="lg" onClick={() => mutate()} disabled={isPending || players.length < 2}>
                     {isPending && <LoaderCircle className="animate-spin" />}
-                    Create character
+                    Start game
                 </Button>
             </div>
         </div>

@@ -1,4 +1,4 @@
-from fastapi import WebSocket
+from fastapi import WebSocket, WebSocketDisconnect
 
 
 class Connections:
@@ -23,7 +23,10 @@ class Connections:
             print("Unity connected")
 
     async def send_client(self, id: str, message):
-        await self._clients_ws[id].send_json(message)
+        try:
+            await self._clients_ws[id].send_json(message)
+        except WebSocketDisconnect:
+            print("Client wasn't connected")
 
     async def send_unity(self, message):
         if self._unity_ws:

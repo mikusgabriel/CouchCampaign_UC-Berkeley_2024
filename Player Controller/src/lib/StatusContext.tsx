@@ -39,5 +39,13 @@ type StatusChoice = {
 };
 type StatusLobby = { status: "lobby"; players: { name: string; race: string; classe: string }[] };
 type StatusWait = { status: "wait" };
-type StatusPlay = { status: "play" };
+type StatusPlay = {
+    status: "play";
+    options: {
+        move: { x: number; y: number }[];
+        talk: string[];
+        fight: { x: number; y: number; name: string }[];
+        allies: { x: number; y: number; name: string }[];
+    };
+};
 export type Status = StatusCreate | StatusChoice | StatusLobby | StatusWait | StatusPlay;

@@ -1,7 +1,17 @@
 import asyncio
+import json
+
+import numpy as np
+import requests
+from dotenv import dotenv_values
+from openai import OpenAI
 
 import meshyApi
 from connections import Connections
+
+config = dotenv_values(".env")
+
+openAiClient = OpenAI(api_key=config["openAiKey"])
 
 
 class Player:
@@ -19,7 +29,7 @@ class Player:
         return self._id
 
     def position(self):
-        return [self._x, self._y]
+        return {"x": self._x, "y": self._y}
 
     def move(self, x: int, y: int):
         self._x = x
@@ -71,36 +81,37 @@ class GameManager:
             )
         else:
             for player in self._players.values():
-                if player == self.currentTurn.player:
-                    self._connections.send_client(
-                        player.id(), {"type": "status", "status": "play"}
+                if player == self.currentTurn["player"]:
+                    await self._connections.send_client(
+                        player.id(),
+                        {
+                            "type": "status",
+                            "status": "play",
+                            "data": {"options": self.currentTurn["options"]},
+                        },
                     )
                 else:
-                    self._connections.send_client(
+                    await self._connections.send_client(
                         player.id(), {"type": "status", "status": "wait"}
                     )
+
+    async def startGame(self):
+        player = list(self._players.values())[0]
+        self.currentTurn = {"player": player, "playerIndex": 0}
+        self.currentTurn["options"] = await self.getPlayerOptions(player)
 
     async def nextTurn(self):
         """Processes the end of the current player's turn"""
 
-        # Notify client
-        await self._connections.send_client(
-            self.currentTurn.player.id(), {"type": "state", "state": "wait"}
-        )
-
-        # Next turn
-        playerIndex = self.currentTurn.playerIndex + 1
+        playerIndex = self.currentTurn["playerIndex"] + 1
         if playerIndex >= len(self._players):
             playerIndex = 0
-        player = self._players.values()[playerIndex]
+        player = list(self._players.values())[playerIndex]
         self.currentTurn = {"player": player, "playerIndex": playerIndex}
+        self.currentTurn["options"] = await self.getPlayerOptions(player)
 
-        # Notify client
-        await self._connections.send_client(
-            self.currentTurn.player.id(), {"type": "state", "state": "play"}
-        )
-
-        # Notify Unity
+        # Notify
+        await self.broadcast_client_info()
         await self._connections.send_unity(
             {"type": "current_player", "player": player.toPOJO()}
         )
@@ -109,9 +120,9 @@ class GameManager:
         """Creates a player from the user's data"""
 
         [x, y] = [0, 0]
-        # meshyId = meshyApi.generateMeshyMesh(race, classe, description)
+        meshyId = meshyApi.generateMeshyMesh(race, classe, description)
 
-        player = Player(userId, race, classe, "meshyId", x, y)
+        player = Player(userId, race, classe, meshyId, x, y)
         self._players[userId] = player
 
         # Notify client
@@ -126,8 +137,8 @@ class GameManager:
         await self._connections.send_unity(
             {
                 "type": "spawn",
-                "x": player.position()[0],
-                "y": player.position()[1],
+                "x": player.position()["x"],
+                "y": player.position()["y"],
                 "name": userId,
                 "meshyId": player.toPOJO()["meshyId"],
             }
@@ -157,3 +168,313 @@ class GameManager:
                 ],
             }
         )
+
+    # Make sure to look at the rules to know how many movements points and which abilities the current player can use. Each classe and race have their own unique passive and stats.
+    async def getPlayerOptions(self, player: Player):
+        self.currentTurn["messages"] = [
+            {
+                "role": "system",
+                "content": """
+You are the dungeon master of a game of dungeons and dragons. You will make no assumptions about the game. I want you to call functions for searching.
+
+Your role is to return a json object populated with the following keys, according to the current game state, once you have enough knowledge. Call the function to search for information about abilities, equipments, and spells.
+- abilities: an array of objects containing name and description of every ability that the player can use this turn. Make sure to keep the description short and concise, so it can fit in one line. Only include spells that can be used by the player this turn. Do not include spells that the player canno't target and therefore cannot use.
+- talk: an array containing the names of the NPCs who are close enough to the player for them to talk together. You cannot talk to other players.
+- fight: an array of objects containing x, y, and a name, corresponding to the position and name of the enemies that are close enough to get attacked by the player this turn.
+
+You can request any info you want about the game state, so do not hesistate to call the functions.
+""",
+            },
+            {
+                "role": "user",
+                "content": f"""Player info: {json.dumps({
+                      "name": "guibi",
+                      "meshyid": "01903d68-78aa-7813-9a85-d319d530e173",
+                      "class": "Druid",
+                      "level": 5,
+                      "type": "NPC",
+                      "race": "Human",
+                      "alignment": "Neutral Good",
+                      "attributes": {
+                           "STR": 10,
+                           "DEX": 12,
+                           "CON": 14,
+                           "INT": 16,
+                           "WIS": 18,
+                           "CHA": 14
+                      },
+                      "skills": {
+                           "Acrobatics": {
+                                "proficient": False,
+                                "bonus": 0
+                           },
+                           "Animal Handling": {
+                                "proficient": True,
+                                "bonus": 7
+                           },
+                           "Arcana": {
+                                "proficient": True,
+                                "bonus": 6
+                           },
+                           "Athletics": {
+                                "proficient": False,
+                                "bonus": 0
+                           },
+                           "Deception": {
+                                "proficient": False,
+                                "bonus": 0
+                           },
+                           "History": {
+                                "proficient": True,
+                                "bonus": 6
+                           },
+                           "Insight": {
+                                "proficient": True,
+                                "bonus": 8
+                           },
+                           "Intimidation": {
+                                "proficient": False,
+                                "bonus": 0
+                           },
+                           "Investigation": {
+                                "proficient": False,
+                                "bonus": 0
+                           },
+                           "Medicine": {
+                                "proficient": True,
+                                "bonus": 8
+                           },
+                           "Nature": {
+                                "proficient": True,
+                                "bonus": 8
+                           },
+                           "Perception": {
+                                "proficient": True,
+                                "bonus": 8
+                           },
+                           "Performance": {
+                                "proficient": False,
+                                "bonus": 0
+                           },
+                           "Persuasion": {
+                                "proficient": True,
+                                "bonus": 6
+                           },
+                           "Religion": {
+                                "proficient": False,
+                                "bonus": 0
+                           },
+                           "Sleight of Hand": {
+                                "proficient": False,
+                                "bonus": 0
+                           },
+                           "Stealth": {
+                                "proficient": False,
+                                "bonus": 0
+                           },
+                           "Survival": {
+                                "proficient": True,
+                                "bonus": 8
+                           }
+                      },
+                      "savingThrows": {
+                           "strength": {
+                                "proficient": False,
+                                "bonus": 0
+                           },
+                           "dexterity": {
+                                "proficient": False,
+                                "bonus": 1
+                           },
+                           "constitution": {
+                                "proficient": True,
+                                "bonus": 4
+                           },
+                           "intelligence": {
+                                "proficient": False,
+                                "bonus": 3
+                           },
+                           "wisdom": {
+                                "proficient": True,
+                                "bonus": 6
+                           },
+                           "charisma": {
+                                "proficient": False,
+                                "bonus": 2
+                           }
+                      },
+                      "armorClass": 12,
+                      "hitPoints": {
+                           "current": 36,
+                           "maximum": 36,
+                           "temporary": 0
+                      },
+                      "hitDice": {
+                           "total": "5d8",
+                           "current": "5d8"
+                      },
+                      "speed": 30,
+                      "proficiencies": {
+                           "weapons": [
+                                "Quarterstaff",
+                                "Dagger"
+                           ],
+                           "tools": [
+                                "Herbalism Kit"
+                           ],
+                           "languages": [
+                                "Common",
+                                "Druidic",
+                                "Sylvan"
+                           ]
+                      },
+                      "equipment": [
+                           "Quarterstaff",
+                           "Herbalism Kit",
+                           "Robes",
+                           "Pouch of Rare Herbs"
+                      ],
+                      "features": [
+                           "Wild Shape",
+                           "Druidic",
+                           "Spellcasting"
+                      ],
+                      "spells": {
+                           "level1": [
+                                "Healing Word",
+                                "Goodberry"
+                           ],
+                           "level2": [
+                                "Lesser Restoration",
+                                "Barkskin"
+                           ],
+                           "level3": [
+                                "Call Lightning",
+                                "Plant Growth"
+                           ],
+                           "level4": [
+                                "Grasping Vine"
+                           ],
+                           "level5": [
+                                "Tree Stride"
+                           ]
+                      },
+                      "location": {
+                           "x": 0,
+                           "y": 0
+                      },
+                      }
+                  )}.
+                Map info: {json.dumps({'size': {'x': 80, 'y': 40}})}
+                Other players: {json.dumps([p.toPOJO() for p in self._players.values() if p != player])}
+                NPCs: {[]}""",
+            },
+        ]
+
+        def gptGoesBrrrrr():
+            response = openAiClient.chat.completions.create(
+                model="gpt-4o",
+                functions=[
+                    {
+                        "name": "getInfoDND",
+                        "description": "This function allows you to search a key term and receive a json with all the info pertaining to the search term in DND. For example, if you search fireball, it will search for the spell fireball and give the stat sheet for fire ball.",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {
+                                "info_wanted": {
+                                    "type": "string",
+                                    "description": "Search term that will be the base for our search.",
+                                }
+                            },
+                        },
+                    },
+                    {
+                        "name": "rollDice",
+                        "description": "This function will speak to the player. After you have either retrieved info, use this to tell the player the info. Do not ask anything after this. If the player has a question, then he can ask it himself.",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {
+                                "input": {
+                                    "type": "string",
+                                    "description": "What will be spoken to the player",
+                                }
+                            },
+                        },
+                    },
+                ],
+                function_call="auto",
+                response_format={"type": "json_object"},
+                messages=self.currentTurn["messages"],
+            )
+            print("Hey")
+            print(response.choices[0].message)
+            if response.choices[0].message.function_call is not None:
+                answer = response.choices[0].message.function_call
+                print(answer)
+                functionname = answer.name
+                print(functionname)
+                functionargs = json.loads(answer.arguments)
+                print(functionargs, functionargs["info_wanted"])
+                if functionname == "getInfoDND":
+                    info = self.getInfoDND(functionargs["info_wanted"])
+                    print(info)
+                    self.currentTurn["messages"].append(
+                        {
+                            "role": "function",
+                            "name": functionname,
+                            "content": info,
+                        }
+                    )
+                    return gptGoesBrrrrr()
+
+            print(self.currentTurn["messages"])
+            print(response.choices[0].message.content)
+            return json.loads(response.choices[0].message.content)
+
+        res = gptGoesBrrrrr()
+        res["move"] = [p.position() for p in self._players.values() if p != player]
+        res["allies"] = [p.position() for p in self._players.values() if p != player]
+        return res
+
+    def coordinatesRange(self, speed: int, location: tuple[int, int]):
+        range = speed / 5
+        return np.vstack(
+            (
+                np.tile(np.arange(-range, range + 1, 1), range * 2 + 1),
+                np.floor(np.arange(0, (range * 2 + 1) ** 2, 1) / (range * 2 + 1))
+                - range,
+            )
+        ).T + np.array(location)
+
+    def getInfoDND(self, info_wanted: str):
+        print("🚀 ~ info_wanted:", info_wanted)
+        possible_endpoints = "ability-scores, alignments, backgrounds, classes, conditions, damage-types, equipment, equipment-categories, feats, features, languages, magic-items, magic-schools, monsters, proficiencies, races, rule-sections, rules, skills, spells, subclasses, subraces, traits, weapon-properties"
+        payload = {}
+        headers = {"Accept": "application/json"}
+
+        jsonFormat = {"endpoint": "", "possible-terms-after-endpoint": []}
+        response = openAiClient.chat.completions.create(
+            model="gpt-4o",
+            response_format={"type": "json_object"},
+            messages=[
+                {
+                    "role": "system",
+                    "content": f"""You are a search engine of a dnd db. You know these endpoints exist: {possible_endpoints}. 
+                    The format is json: {jsonFormat}. You must choose an endpoint and 
+                    then give three possible terms for after the end point for example. http://www.dnd5eapi.co/endpoint/term """,
+                },
+                {
+                    "role": "user",
+                    "content": f"I want the info about {info_wanted}",
+                },
+            ],
+        )
+        endpoints = json.loads(response.choices[0].message.content)
+        print("🚀 ~ endpoints:", endpoints)
+
+        for point in endpoints["possible-terms-after-endpoint"]:
+            url = f"https://www.dnd5eapi.co/api/{endpoints['endpoint']}/{point}"
+
+            response = requests.request("GET", url, headers=headers, data=payload)
+            if response.text != '{"error":"Not found"}':
+                return response.text

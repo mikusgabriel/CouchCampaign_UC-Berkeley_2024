@@ -20,9 +20,9 @@ import { Textarea } from "@/components/ui/TextArea";
 export default function CreatePage() {
     const { logout, userId } = useAuth();
     const [tab, setTab] = useState<"race" | "classe" | "desc">("race");
-    const [race, setRace] = useState<RaceKey | null>(null);
-    const [classe, setClasse] = useState<ClasseKey | null>(null);
-    const [description, setDescription] = useState<string>("");
+    const [race, setRace] = useState<RaceKey | null>("Dwarf");
+    const [classe, setClasse] = useState<ClasseKey | null>("Cleric");
+    const [description, setDescription] = useState<string>("a");
 
     const { mutate, isPending, error } = useMutation({
         mutationFn: async () => {

@@ -9,7 +9,7 @@ function App() {
 
     if (status.status === "create") return <CreatePage />;
     if (status.status === "lobby") return <LobbyPage />;
-    if (status.status === "choice") return <ChoicePage {...status} />;
+    if (status.status === "choice") return <ChoicePage />;
     return <HomePage />;
 }
 

@@ -41,6 +41,57 @@ async def logout_POST(res: Response):
     return {"success": True}
 
 
+@app.post("/player/start")
+async def player_start_POST(req: Request):
+    userId = req.cookies.get("id")
+    if userId is None:
+        raise HTTPException(status_code=401, detail="Please login in first.")
+    if gameManager.getPlayer(userId) is None:
+        raise HTTPException(status_code=400, detail="Player doesn't exists.")
+
+    if gameManager.currentTurn is not None:
+        raise HTTPException(status_code=400, detail="The game is already in progress.")
+
+    await gameManager.startGame()
+    await gameManager.broadcast_client_info()
+    return {"success": True}
+
+
+class PlayerPlayBody(BaseModel):
+    action: str
+    x: int
+    y: int
+    # name: str | None = None
+
+
+@app.post("/player/play")
+async def player_play_POST(body: PlayerPlayBody, req: Request):
+    userId = req.cookies.get("id")
+    if userId is None:
+        raise HTTPException(status_code=401, detail="Please login in first.")
+    if gameManager.getPlayer(userId) is None:
+        raise HTTPException(status_code=400, detail="Player doesn't exists.")
+
+    if gameManager.currentTurn is None:
+        raise HTTPException(status_code=400, detail="The game hasn't started yet.")
+
+    match body.action:
+        case "move":
+            await gameManager.movePlayer(userId, body.x, body.y)
+            await gameManager.nextTurn()
+
+        case "talk":
+            # await gameManager.movePlayer(userId, body.x, body.y)
+            pass
+
+        case "fight":
+            # await gameManager.movePlayer(userId, body.x, body.y)
+            pass
+
+    await gameManager.broadcast_client_info()
+    return {"success": True}
+
+
 class PlayerDeleteBody(BaseModel):
     name: str
 
