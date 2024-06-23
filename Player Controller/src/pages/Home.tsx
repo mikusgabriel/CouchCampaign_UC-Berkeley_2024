@@ -67,17 +67,27 @@ export default function HomePage() {
                 </Button>
             </div>
 
-            <div className="flex flex-col items-center justify-center px-2 pt-2">
-                <p className="text-xl font-semibold">
-                    {user.name}
-                    <small> {user.hitPoints}PV</small>
-                </p>
+            <div className="flex justify-center px-2 pt-2 gap-8">
+                <div className="flex flex-col">
+                    <p className="text-xl font-semibold">{user.name}</p>
+                    <p className="mb-2">
+                        {user.race} · {user.classe}
+                    </p>
+                    <p>Hit point: {user.hitPoints?.current}PV</p>
+                    <p>XP: {user.experiencePoints}</p>
+
+                    <p>Armor: {user.armorClass}</p>
+                    <p>Speed: {user.speed}</p>
+                </div>
+
                 <p>
-                    {user.race} · {user.classe}
+                    Attributes:{" "}
+                    {Object.entries(user.attributes ?? {}).map(([k, v]) => (
+                        <div key={k}>
+                            {k}: {v}
+                        </div>
+                    ))}
                 </p>
-                <p>Armor: {user.armorClass}</p>
-                <p>Speed: {user.speed}</p>
-                <p>Attributes: {user.attributes}</p>
             </div>
 
             <Separator className="my-2" />

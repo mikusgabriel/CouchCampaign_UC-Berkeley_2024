@@ -14,11 +14,11 @@ export type User = {
     y: number;
 
     experiencePoints?: string;
-    attributes?: string;
+    attributes?: Record<string, number>;
     skills?: string;
     savingThrows?: string;
     armorClass?: string;
-    hitPoints?: string;
+    hitPoints?: { current: number };
     hitDice?: string;
     speed?: string;
 };

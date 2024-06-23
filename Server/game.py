@@ -160,16 +160,18 @@ class GameManager:
                     p.id(),
                     {
                         "type": "user",
-                        "user": p.toPOJO(),
-                        "level": p.level,
-                        "experiencePoints": p.experiencePoints,
-                        "attributes": p.attributes,
-                        "skills": p.skills,
-                        "savingThrows": p.savingThrows,
-                        "armorClass": p.armorClass,
-                        "hitPoints": p.hitPoints,
-                        "hitDice": p.hitDice,
-                        "speed": p.speed,
+                        "user": {
+                            **p.toPOJO(),
+                            "level": p.level,
+                            "experiencePoints": p.experiencePoints,
+                            "attributes": p.attributes,
+                            "skills": p.skills,
+                            "savingThrows": p.savingThrows,
+                            "armorClass": p.armorClass,
+                            "hitPoints": p.hitPoints,
+                            "hitDice": p.hitDice,
+                            "speed": p.speed,
+                        },
                     },
                 )
                 for p in self._players.values()
