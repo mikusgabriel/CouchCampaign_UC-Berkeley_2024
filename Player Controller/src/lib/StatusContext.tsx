@@ -42,10 +42,11 @@ type StatusWait = { status: "wait" };
 type StatusPlay = {
     status: "play";
     options: {
-        move: { x: number; y: number }[];
-        talk: string[];
+        move: [number, number][];
+        talk: { x: number; y: number; name: string }[];
         fight: { x: number; y: number; name: string }[];
         allies: { x: number; y: number; name: string }[];
+        abilities: { name: string; description: string }[];
     };
 };
 export type Status = StatusCreate | StatusChoice | StatusLobby | StatusWait | StatusPlay;

@@ -15,10 +15,14 @@ export default function HomePage() {
 
     const getAt = (x: number, y: number) => {
         if (status.status !== "play") return undefined;
-        const move = status.options.move.find((m) => m.x === x && m.y === y);
-        if (move) return { action: "move", ...move };
         const fight = status.options.fight.find((f) => f.x === x && f.y === y);
         if (fight) return { action: "fight", ...fight };
+        const allies = status.options.allies.find((f) => f.x === x && f.y === y);
+        if (allies) return undefined;
+        const talk = status.options.talk.find((f) => f.x === x && f.y === y);
+        if (talk) return { action: "talk", ...talk };
+        const move = status.options.move.find((m) => m[0] === x && m[1] === y);
+        if (move) return { action: "move", x: move[0], y: move[1] };
     };
 
     const { mutate, isPending, error } = useMutation({
@@ -96,6 +100,14 @@ export default function HomePage() {
                                 {error && (
                                     <p className="text-destructive">An error occured while sending your choice</p>
                                 )}
+
+                                <div className="flex flex-col gap-1 pt-4">
+                                    {status.options.abilities.map((a) => (
+                                        <div key={a.name}>
+                                            <span>{a.name}</span> · <span className="text-sm">{a.description}</span>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         )}
                     </TabsContent>

@@ -1,4 +1,5 @@
 from fastapi import WebSocket, WebSocketDisconnect
+from starlette.websockets import WebSocketState
 
 
 class Connections:
@@ -23,10 +24,11 @@ class Connections:
             print("Unity connected")
 
     async def send_client(self, id: str, message):
-        try:
-            await self._clients_ws[id].send_json(message)
-        except WebSocketDisconnect:
-            print("Client wasn't connected")
+        if self._clients_ws[id].client_state == WebSocketState.CONNECTED:
+            try:
+                await self._clients_ws[id].send_json(message)
+            except WebSocketDisconnect:
+                print("Client wasn't connected")
 
     async def send_unity(self, message):
         if self._unity_ws:
