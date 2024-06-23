@@ -194,12 +194,12 @@ async def ws_WEBSOCKET(ws: WebSocket):
 
             match data["type"]:
                 case "end-turn":
-                    if gameManager.currentTurn.player.id() != userId:
+                    if gameManager.currentTurn["player"].id() != userId:
                         continue
                     await gameManager.nextTurn()
 
                 case "voice":
-                    if gameManager.currentTurn.player.id() != userId:
+                    if gameManager.currentTurn["player"].id() != userId:
                         continue
 
                     if gameManager.currentTurn.get("talkingTo", None) is None:
@@ -207,9 +207,12 @@ async def ws_WEBSOCKET(ws: WebSocket):
 
                     encodedAudioData = data["recording"].split(",")[1]
                     audioData = base64.b64decode(encodedAudioData)
+                    with open("voiceFile.webm", mode="wb") as file:
+                        file.write(audioData)
+
                     [transcript, emotions] = await asyncio.gather(
-                        voiceApi.getVoiceTranscript(audioData),
-                        voiceApi.getVoiceEmotions(audioData),
+                        voiceApi.getVoiceTranscript("voiceFile.webm"),
+                        voiceApi.getVoiceEmotions("voiceFile.webm"),
                     )
 
                     voice_output = gameManager.talkToNPC(transcript, emotions)

@@ -20,6 +20,8 @@ export default function HomePage() {
         move: [],
         abilities: [],
         allies: [],
+        npcs: [],
+        enemies: [],
         fight: [],
         talk: [],
     });
@@ -31,14 +33,15 @@ export default function HomePage() {
     }, [status]);
 
     const getAt = (x: number, y: number) => {
-        const fight = playData.fight.find((f) => f.x === x && f.y === y);
+        const move = playData.move?.find((m) => m[0] === x && m[1] === y);
+        if (!move) return undefined;
+        const fight = playData.fight?.find((f) => f.x === x && f.y === y);
         if (fight) return { action: "fight", ...fight };
-        const allies = playData.allies.find((f) => f.x === x && f.y === y);
+        const allies = playData.allies?.find((f) => f.x === x && f.y === y);
         if (allies) return undefined;
-        const talk = playData.talk.find((f) => f.x === x && f.y === y);
+        const talk = playData.talk?.find((f) => f.x === x && f.y === y);
         if (talk) return { action: "talk", ...talk };
-        const move = playData.move.find((m) => m[0] === x && m[1] === y);
-        if (move) return { action: "move", x: move[0], y: move[1] };
+        return { action: "move", x: move[0], y: move[1] };
     };
 
     const { mutate, isPending, error } = useMutation({
@@ -68,7 +71,7 @@ export default function HomePage() {
                     <TabsList className="w-full justify-around">
                         <TabsTrigger value="spells">Spells</TabsTrigger>
                         <TabsTrigger value="inventory">Inventory</TabsTrigger>
-                        <TabsTrigger value="play" disabled={status.status !== "play"}>
+                        <TabsTrigger value="play" disabled={status.status !== "play" && status.status !== "talk"}>
                             Turn
                         </TabsTrigger>
                     </TabsList>
@@ -81,9 +84,9 @@ export default function HomePage() {
                                 <VoiceRecorder />
 
                                 {status.emotions && (
-                                    <p>
-                                        You sound <span className="font-semibold">{status.emotions[0].emotion}</span>
-                                        and <span className="font-semibold">{status.emotions[1].emotion}</span>
+                                    <p className="text-center">
+                                        <span className="font-semibold">{status.emotions[0].name}</span>
+                                        {" and "} <span className="font-semibold">{status.emotions[1].name}</span>
                                     </p>
                                 )}
 
@@ -116,8 +119,8 @@ export default function HomePage() {
                                         >
                                             {user.x === x && user.y === y && <User />}
                                             {playData.allies.find((a) => a.x === x && a.y === y) && <Smile />}
-                                            {playData.fight.find((f) => f.x === x && f.y === y) && <Sword />}
-                                            {playData.talk.find((t) => t.x === x && t.y === y) && <MessageCircle />}
+                                            {playData.enemies.find((f) => f.x === x && f.y === y) && <Sword />}
+                                            {playData.npcs.find((t) => t.x === x && t.y === y) && <MessageCircle />}
                                         </Button>
                                     ))}
                                 </div>

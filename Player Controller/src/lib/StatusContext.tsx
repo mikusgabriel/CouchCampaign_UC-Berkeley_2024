@@ -47,8 +47,10 @@ export type StatusPlay = {
         talk: { x: number; y: number; name: string }[];
         fight: { x: number; y: number; name: string }[];
         allies: { x: number; y: number; name: string }[];
+        npcs: { x: number; y: number; name: string }[];
+        enemies: { x: number; y: number; name: string }[];
         abilities: { name: string; description: string }[];
     };
 };
-type StatusSpeak = { status: "talk"; to: string; emotions?: { emotion: string; score: number }[] };
+type StatusSpeak = { status: "talk"; to: string; emotions?: { name: string; score: number }[] };
 export type Status = StatusCreate | StatusChoice | StatusLobby | StatusWait | StatusPlay | StatusSpeak;

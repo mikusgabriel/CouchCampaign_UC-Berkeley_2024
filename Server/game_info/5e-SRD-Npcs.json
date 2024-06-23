@@ -1,571 +1,484 @@
 [
-     {
-          "name": "Tharic, the Hermit Druid",
-          "appearance": "Tharic is an elderly human with weathered skin and a long, greying beard. Dressed in simple, earth-toned robes, he carries a wooden staff adorned with feathers and animal teeth. His eyes are a piercing green, reflecting a lifetime of communion with nature.",
-          "description": "Tharic has lived a secluded life in the Aethercrag Wilderness for decades. He is a wise and reclusive druid, deeply attuned to the natural world and its mysteries. Tharic can be both a guardian and a formidable adversary, depending on how he perceives the intentions of those who tread his lands.",
-          "meshyid": "0190453f-fe89-7895-bde6-8d3bba6659f0",
-          "class": "Druid",
-          "level": 5,
-          "type": "NPC",
-          "race": "Human",
-          "mapid": "ryvzyrqpfk",
-          "alignment": "Neutral",
-          "attributes": {
-               "STR": 10,
-               "DEX": 12,
-               "CON": 14,
-               "INT": 12,
-               "WIS": 18,
-               "CHA": 11
-          },
-          "skills": {
-               "Acrobatics": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Animal Handling": {
-                    "proficient": true,
-                    "bonus": 7
-               },
-               "Arcana": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Athletics": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Deception": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "History": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Insight": {
-                    "proficient": true,
-                    "bonus": 7
-               },
-               "Intimidation": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Investigation": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Medicine": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Nature": {
-                    "proficient": true,
-                    "bonus": 6
-               },
-               "Perception": {
-                    "proficient": true,
-                    "bonus": 7
-               },
-               "Performance": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Persuasion": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Religion": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Sleight of Hand": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Stealth": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Survival": {
-                    "proficient": true,
-                    "bonus": 7
-               }
-          },
-          "savingThrows": {
-               "strength": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "dexterity": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "constitution": {
-                    "proficient": true,
-                    "bonus": 2
-               },
-               "intelligence": {
-                    "proficient": true,
-                    "bonus": 5
-               },
-               "wisdom": {
-                    "proficient": true,
-                    "bonus": 7
-               },
-               "charisma": {
-                    "proficient": false,
-                    "bonus": 0
-               }
-          },
-          "armorClass": 13,
-          "hitPoints": {
-               "current": 38,
-               "maximum": 38,
-               "temporary": 0
-          },
-          "hitDice": {
-               "total": "5d8",
-               "current": "5d8"
-          },
-          "speed": 30,
-          "proficiencies": {
-               "weapons": [
-                    "Clubs",
-                    "Daggers",
-                    "Darts",
-                    "Javelins",
-                    "Maces",
-                    "Quarterstaffs",
-                    "Scimitars",
-                    "Sickles",
-                    "Slings",
-                    "Spears"
-               ],
-               "tools": [
-                    "Herbalism Kit"
-               ],
-               "languages": [
-                    "Common",
-                    "Druidic",
-                    "Sylvan"
-               ]
-          },
-          "equipment": [
-               "Leather Armor",
-               "Wooden Staff",
-               "Druidic Focus",
-               "Explorer's Pack",
-               "Herbalism Kit"
-          ],
-          "features": [
-               "Wild Shape",
-               "Druid Circle (Circle of the Land)"
-          ],
-          "spells": {
-               "level1": [
-                    "Goodberry",
-                    "Healing Word",
-                    "Thunderwave"
-               ],
-               "level2": [
-                    "Barkskin",
-                    "Flame Blade"
-               ],
-               "level3": [
-                    "Call Lightning",
-                    "Plant Growth"
-               ],
-               "level4": [],
-               "level5": [],
-               "level6": [],
-               "level7": [],
-               "level8": [],
-               "level9": []
-          },
-          "location": {
-               "x": 30,
-               "y": 43
-          },
-          "notes": "",
-          "relationships": {
-               "name_of_character": "description of relationship"
-          }
-     },
-     {
-          "name": "Elder Druid Lysandra",
-          "appearance": "Lysandra is an elderly, yet sprightly woman, with long, silver hair braided meticulously. Her deep green eyes reflect wisdom and compassion. She is often seen wearing robes woven from leaves and vines, adorned with various crystals and talismans. Her staff, crafted from ancient oak, is adorned with symbols and glowing runes.",
-          "description": "Elder Druid Lysandra is the guardian of Serenity Waters Wilderness, a place of natural harmony and splendor. Revered for her vast knowledge of the natural world and her deep connection to it, she serves as a protector and healer. Lysandra is known for her gentle demeanor and profound wisdom, making her a beloved figure among the creatures and people who dwell within or near the forest.",
-          "meshyid": "01904540-c96a-7895-bc26-e7aedc9a1da6",
-          "class": "Druid",
-          "level": 8,
-          "type": "NPC",
-          "race": "Elf",
-          "mapid": "wsfobsvdyl",
-          "alignment": "Neutral Good",
-          "attributes": {
-               "STR": 8,
-               "DEX": 12,
-               "CON": 14,
-               "INT": 16,
-               "WIS": 20,
-               "CHA": 14
-          },
-          "skills": {
-               "Acrobatics": {
-                    "proficient": false,
-                    "bonus": 1
-               },
-               "Animal Handling": {
-                    "proficient": true,
-                    "bonus": 10
-               },
-               "Arcana": {
-                    "proficient": false,
-                    "bonus": 3
-               },
-               "Athletics": {
-                    "proficient": false,
-                    "bonus": -1
-               },
-               "Deception": {
-                    "proficient": false,
-                    "bonus": 2
-               },
-               "History": {
-                    "proficient": false,
-                    "bonus": 3
-               },
-               "Insight": {
-                    "proficient": true,
-                    "bonus": 10
-               },
-               "Intimidation": {
-                    "proficient": false,
-                    "bonus": 2
-               },
-               "Investigation": {
-                    "proficient": false,
-                    "bonus": 3
-               },
-               "Medicine": {
-                    "proficient": false,
-                    "bonus": 5
-               },
-               "Nature": {
-                    "proficient": true,
-                    "bonus": 6
-               },
-               "Perception": {
-                    "proficient": true,
-                    "bonus": 10
-               },
-               "Performance": {
-                    "proficient": false,
-                    "bonus": 2
-               },
-               "Persuasion": {
-                    "proficient": false,
-                    "bonus": 2
-               },
-               "Religion": {
-                    "proficient": false,
-                    "bonus": 3
-               },
-               "Sleight of Hand": {
-                    "proficient": false,
-                    "bonus": 1
-               },
-               "Stealth": {
-                    "proficient": false,
-                    "bonus": 1
-               },
-               "Survival": {
-                    "proficient": true,
-                    "bonus": 10
-               }
-          },
-          "savingThrows": {
-               "strength": {
-                    "proficient": false,
-                    "bonus": -1
-               },
-               "dexterity": {
-                    "proficient": false,
-                    "bonus": 1
-               },
-               "constitution": {
-                    "proficient": true,
-                    "bonus": 6
-               },
-               "intelligence": {
-                    "proficient": false,
-                    "bonus": 3
-               },
-               "wisdom": {
-                    "proficient": true,
-                    "bonus": 10
-               },
-               "charisma": {
-                    "proficient": false,
-                    "bonus": 2
-               }
-          },
-          "armorClass": 15,
-          "hitPoints": {
-               "current": 44,
-               "maximum": 44,
-               "temporary": 0
-          },
-          "hitDice": {
-               "total": "8d8",
-               "current": "8d8"
-          },
-          "speed": 30,
-          "proficiencies": {
-               "weapons": [
-                    "Quarterstaff",
-                    "Dagger",
-                    "Scimitar"
-               ],
-               "tools": [
-                    "Herbalism Kit"
-               ],
-               "languages": [
-                    "Common",
-                    "Elvish",
-                    "Druidic",
-                    "Sylvan"
-               ]
-          },
-          "equipment": [
-               "Druidic Focus",
-               "Herbalism Kit",
-               "Potion of Healing",
-               "Oak Staff"
-          ],
-          "features": [
-               "Wild Shape",
-               "Druid Circle: Circle of the Land (Forest)",
-               "Spellcasting"
-          ],
-          "spells": {
-               "level1": [
-                    "Cure Wounds",
-                    "Entangle"
-               ],
-               "level2": [
-                    "Lesser Restoration",
-                    "Moonbeam"
-               ],
-               "level3": [
-                    "Call Lightning",
-                    "Plant Growth"
-               ],
-               "level4": [
-                    "Grasping Vine",
-                    "Ice Storm"
-               ],
-               "level5": [],
-               "level6": [],
-               "level7": [],
-               "level8": [],
-               "level9": []
-          },
-          "location": {
-               "x": 20,
-               "y": 43
-          },
-          "notes": "Lysandra is a mentor to young druids and often helps wandering adventurers by providing them with guidance, healing, and protection.",
-          "relationships": {
-               "name_of_character": "description of relationship"
-          }
-     },
-     {
-          "name": "Storm Sorcerer Gregor",
-          "appearance": "This tall and lean figure has piercing blue eyes and hair that appears to crackle with electricity. Clad in dark, wind-whipped robes adorned with symbols of storms, he emanates an aura of raw, untamed energy.",
-          "description": "Gregor is a formidable storm sorcerer known for his control over thunder and lightning. Residing in the perilous Thunderclap Heights, he defends his territory with furious zeal. He's often found meditating at the edge of the cliffs, drawing power from the stormy skies above.",
-          "meshyid": "01904541-1926-7895-b655-95889932d5a2",
-          "class": "Sorcerer",
-          "level": 6,
-          "type": "NPC",
-          "race": "Human",
-          "mapid": "filpdhqvqh",
-          "alignment": "Chaotic Neutral",
-          "attributes": {
-               "STR": 10,
-               "DEX": 14,
-               "CON": 13,
-               "INT": 12,
-               "WIS": 10,
-               "CHA": 18
-          },
-          "skills": {
-               "Acrobatics": {
-                    "proficient": true,
-                    "bonus": 5
-               },
-               "Animal Handling": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Arcana": {
-                    "proficient": true,
-                    "bonus": 4
-               },
-               "Athletics": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Deception": {
-                    "proficient": true,
-                    "bonus": 8
-               },
-               "History": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Insight": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Intimidation": {
-                    "proficient": true,
-                    "bonus": 8
-               },
-               "Investigation": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Medicine": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Nature": {
-                    "proficient": true,
-                    "bonus": 4
-               },
-               "Perception": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Performance": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Persuasion": {
-                    "proficient": true,
-                    "bonus": 8
-               },
-               "Religion": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Sleight of Hand": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Stealth": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "Survival": {
-                    "proficient": false,
-                    "bonus": 0
-               }
-          },
-          "savingThrows": {
-               "strength": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "dexterity": {
-                    "proficient": false,
-                    "bonus": 2
-               },
-               "constitution": {
-                    "proficient": true,
-                    "bonus": 4
-               },
-               "intelligence": {
-                    "proficient": false,
-                    "bonus": 1
-               },
-               "wisdom": {
-                    "proficient": false,
-                    "bonus": 0
-               },
-               "charisma": {
-                    "proficient": true,
-                    "bonus": 8
-               }
-          },
-          "armorClass": 15,
-          "hitPoints": {
-               "current": 39,
-               "maximum": 39,
-               "temporary": 0
-          },
-          "hitDice": {
-               "total": "6d6",
-               "current": "6d6"
-          },
-          "speed": 30,
-          "proficiencies": {
-               "weapons": [
-                    "Daggers",
-                    "Darts",
-                    "Slings",
-                    "Quarterstaffs",
-                    "Light Crossbows"
-               ],
-               "tools": [],
-               "languages": [
-                    "Common",
-                    "Draconic"
-               ]
-          },
-          "equipment": [
-               "Storm Staff (Quarterstaff +1)",
-               "Arcane Focus",
-               "Spellbook",
-               "Explorer's Pack"
-          ],
-          "features": [
-               "Tempestuous Magic",
-               "Heart of the Storm",
-               "Storm Guide",
-               "Font of Magic"
-          ],
-          "spells": {
-               "level1": [
-                    "Mage Armor",
-                    "Thunderwave"
-               ],
-               "level2": [
-                    "Gust of Wind",
-                    "Shatter"
-               ],
-               "level3": [
-                    "Call Lightning",
-                    "Thunder Step"
-               ],
-               "level4": [
-                    "Storm Sphere"
-               ],
-               "level5": [],
-               "level6": [],
-               "level7": [],
-               "level8": [],
-               "level9": []
-          },
-          "location": {
-               "x": 12,
-               "y": 12
-          },
-          "notes": "Gregor's mastery over storms is both a blessing and a curse, giving him great power but also making him unpredictable and volatile.",
-          "relationships": {
-               "Zephyr the Wanderer": "Former ally turned rival, now seeks to claim Gregor's territory for himself."
-          }
-     }
+    {
+        "name": "Tharic, the Hermit Druid",
+        "appearance": "Tharic is an elderly human with weathered skin and a long, greying beard. Dressed in simple, earth-toned robes, he carries a wooden staff adorned with feathers and animal teeth. His eyes are a piercing green, reflecting a lifetime of communion with nature.",
+        "description": "Tharic has lived a secluded life in the Aethercrag Wilderness for decades. He is a wise and reclusive druid, deeply attuned to the natural world and its mysteries. Tharic can be both a guardian and a formidable adversary, depending on how he perceives the intentions of those who tread his lands.",
+        "meshyid": "0190453f-fe89-7895-bde6-8d3bba6659f0",
+        "class": "Druid",
+        "level": 5,
+        "type": "NPC",
+        "race": "Human",
+        "mapid": "ryvzyrqpfk",
+        "alignment": "Neutral",
+        "attributes": {
+            "STR": 10,
+            "DEX": 12,
+            "CON": 14,
+            "INT": 12,
+            "WIS": 18,
+            "CHA": 11
+        },
+        "skills": {
+            "Acrobatics": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Animal Handling": {
+                "proficient": true,
+                "bonus": 7
+            },
+            "Arcana": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Athletics": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Deception": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "History": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Insight": {
+                "proficient": true,
+                "bonus": 7
+            },
+            "Intimidation": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Investigation": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Medicine": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Nature": {
+                "proficient": true,
+                "bonus": 6
+            },
+            "Perception": {
+                "proficient": true,
+                "bonus": 7
+            },
+            "Performance": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Persuasion": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Religion": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Sleight of Hand": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Stealth": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Survival": {
+                "proficient": true,
+                "bonus": 7
+            }
+        },
+        "savingThrows": {
+            "strength": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "dexterity": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "constitution": {
+                "proficient": true,
+                "bonus": 2
+            },
+            "intelligence": {
+                "proficient": true,
+                "bonus": 5
+            },
+            "wisdom": {
+                "proficient": true,
+                "bonus": 7
+            },
+            "charisma": {
+                "proficient": false,
+                "bonus": 0
+            }
+        },
+        "armorClass": 13,
+        "hitPoints": {
+            "current": 38,
+            "maximum": 38,
+            "temporary": 0
+        },
+        "hitDice": {
+            "total": "5d8",
+            "current": "5d8"
+        },
+        "speed": 30,
+        "proficiencies": {
+            "weapons": [
+                "Clubs",
+                "Daggers",
+                "Darts",
+                "Javelins",
+                "Maces",
+                "Quarterstaffs",
+                "Scimitars",
+                "Sickles",
+                "Slings",
+                "Spears"
+            ],
+            "tools": ["Herbalism Kit"],
+            "languages": ["Common", "Druidic", "Sylvan"]
+        },
+        "equipment": ["Leather Armor", "Wooden Staff", "Druidic Focus", "Explorer's Pack", "Herbalism Kit"],
+        "features": ["Wild Shape", "Druid Circle (Circle of the Land)"],
+        "spells": {
+            "level1": ["Goodberry", "Healing Word", "Thunderwave"],
+            "level2": ["Barkskin", "Flame Blade"],
+            "level3": ["Call Lightning", "Plant Growth"],
+            "level4": [],
+            "level5": [],
+            "level6": [],
+            "level7": [],
+            "level8": [],
+            "level9": []
+        },
+        "location": {
+            "x": 30,
+            "y": 43
+        },
+        "notes": "",
+        "relationships": {
+            "name_of_character": "description of relationship"
+        }
+    },
+    {
+        "name": "Elder Druid Lysandra",
+        "appearance": "Lysandra is an elderly, yet sprightly woman, with long, silver hair braided meticulously. Her deep green eyes reflect wisdom and compassion. She is often seen wearing robes woven from leaves and vines, adorned with various crystals and talismans. Her staff, crafted from ancient oak, is adorned with symbols and glowing runes.",
+        "description": "Elder Druid Lysandra is the guardian of Serenity Waters Wilderness, a place of natural harmony and splendor. Revered for her vast knowledge of the natural world and her deep connection to it, she serves as a protector and healer. Lysandra is known for her gentle demeanor and profound wisdom, making her a beloved figure among the creatures and people who dwell within or near the forest.",
+        "meshyid": "01904540-c96a-7895-bc26-e7aedc9a1da6",
+        "class": "Druid",
+        "level": 8,
+        "type": "NPC",
+        "race": "Elf",
+        "mapid": "wsfobsvdyl",
+        "alignment": "Neutral Good",
+        "attributes": {
+            "STR": 8,
+            "DEX": 12,
+            "CON": 14,
+            "INT": 16,
+            "WIS": 20,
+            "CHA": 14
+        },
+        "skills": {
+            "Acrobatics": {
+                "proficient": false,
+                "bonus": 1
+            },
+            "Animal Handling": {
+                "proficient": true,
+                "bonus": 10
+            },
+            "Arcana": {
+                "proficient": false,
+                "bonus": 3
+            },
+            "Athletics": {
+                "proficient": false,
+                "bonus": -1
+            },
+            "Deception": {
+                "proficient": false,
+                "bonus": 2
+            },
+            "History": {
+                "proficient": false,
+                "bonus": 3
+            },
+            "Insight": {
+                "proficient": true,
+                "bonus": 10
+            },
+            "Intimidation": {
+                "proficient": false,
+                "bonus": 2
+            },
+            "Investigation": {
+                "proficient": false,
+                "bonus": 3
+            },
+            "Medicine": {
+                "proficient": false,
+                "bonus": 5
+            },
+            "Nature": {
+                "proficient": true,
+                "bonus": 6
+            },
+            "Perception": {
+                "proficient": true,
+                "bonus": 10
+            },
+            "Performance": {
+                "proficient": false,
+                "bonus": 2
+            },
+            "Persuasion": {
+                "proficient": false,
+                "bonus": 2
+            },
+            "Religion": {
+                "proficient": false,
+                "bonus": 3
+            },
+            "Sleight of Hand": {
+                "proficient": false,
+                "bonus": 1
+            },
+            "Stealth": {
+                "proficient": false,
+                "bonus": 1
+            },
+            "Survival": {
+                "proficient": true,
+                "bonus": 10
+            }
+        },
+        "savingThrows": {
+            "strength": {
+                "proficient": false,
+                "bonus": -1
+            },
+            "dexterity": {
+                "proficient": false,
+                "bonus": 1
+            },
+            "constitution": {
+                "proficient": true,
+                "bonus": 6
+            },
+            "intelligence": {
+                "proficient": false,
+                "bonus": 3
+            },
+            "wisdom": {
+                "proficient": true,
+                "bonus": 10
+            },
+            "charisma": {
+                "proficient": false,
+                "bonus": 2
+            }
+        },
+        "armorClass": 15,
+        "hitPoints": {
+            "current": 44,
+            "maximum": 44,
+            "temporary": 0
+        },
+        "hitDice": {
+            "total": "8d8",
+            "current": "8d8"
+        },
+        "speed": 30,
+        "proficiencies": {
+            "weapons": ["Quarterstaff", "Dagger", "Scimitar"],
+            "tools": ["Herbalism Kit"],
+            "languages": ["Common", "Elvish", "Druidic", "Sylvan"]
+        },
+        "equipment": ["Druidic Focus", "Herbalism Kit", "Potion of Healing", "Oak Staff"],
+        "features": ["Wild Shape", "Druid Circle: Circle of the Land (Forest)", "Spellcasting"],
+        "spells": {
+            "level1": ["Cure Wounds", "Entangle"],
+            "level2": ["Lesser Restoration", "Moonbeam"],
+            "level3": ["Call Lightning", "Plant Growth"],
+            "level4": ["Grasping Vine", "Ice Storm"],
+            "level5": [],
+            "level6": [],
+            "level7": [],
+            "level8": [],
+            "level9": []
+        },
+        "location": {
+            "x": 10,
+            "y": 13
+        },
+        "notes": "Lysandra is a mentor to young druids and often helps wandering adventurers by providing them with guidance, healing, and protection.",
+        "relationships": {
+            "name_of_character": "description of relationship"
+        }
+    },
+    {
+        "name": "Storm Sorcerer Gregor",
+        "appearance": "This tall and lean figure has piercing blue eyes and hair that appears to crackle with electricity. Clad in dark, wind-whipped robes adorned with symbols of storms, he emanates an aura of raw, untamed energy.",
+        "description": "Gregor is a formidable storm sorcerer known for his control over thunder and lightning. Residing in the perilous Thunderclap Heights, he defends his territory with furious zeal. He's often found meditating at the edge of the cliffs, drawing power from the stormy skies above.",
+        "meshyid": "01904541-1926-7895-b655-95889932d5a2",
+        "class": "Sorcerer",
+        "level": 6,
+        "type": "NPC",
+        "race": "Human",
+        "mapid": "filpdhqvqh",
+        "alignment": "Chaotic Neutral",
+        "attributes": {
+            "STR": 10,
+            "DEX": 14,
+            "CON": 13,
+            "INT": 12,
+            "WIS": 10,
+            "CHA": 18
+        },
+        "skills": {
+            "Acrobatics": {
+                "proficient": true,
+                "bonus": 5
+            },
+            "Animal Handling": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Arcana": {
+                "proficient": true,
+                "bonus": 4
+            },
+            "Athletics": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Deception": {
+                "proficient": true,
+                "bonus": 8
+            },
+            "History": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Insight": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Intimidation": {
+                "proficient": true,
+                "bonus": 8
+            },
+            "Investigation": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Medicine": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Nature": {
+                "proficient": true,
+                "bonus": 4
+            },
+            "Perception": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Performance": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Persuasion": {
+                "proficient": true,
+                "bonus": 8
+            },
+            "Religion": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Sleight of Hand": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Stealth": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "Survival": {
+                "proficient": false,
+                "bonus": 0
+            }
+        },
+        "savingThrows": {
+            "strength": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "dexterity": {
+                "proficient": false,
+                "bonus": 2
+            },
+            "constitution": {
+                "proficient": true,
+                "bonus": 4
+            },
+            "intelligence": {
+                "proficient": false,
+                "bonus": 1
+            },
+            "wisdom": {
+                "proficient": false,
+                "bonus": 0
+            },
+            "charisma": {
+                "proficient": true,
+                "bonus": 8
+            }
+        },
+        "armorClass": 15,
+        "hitPoints": {
+            "current": 39,
+            "maximum": 39,
+            "temporary": 0
+        },
+        "hitDice": {
+            "total": "6d6",
+            "current": "6d6"
+        },
+        "speed": 30,
+        "proficiencies": {
+            "weapons": ["Daggers", "Darts", "Slings", "Quarterstaffs", "Light Crossbows"],
+            "tools": [],
+            "languages": ["Common", "Draconic"]
+        },
+        "equipment": ["Storm Staff (Quarterstaff +1)", "Arcane Focus", "Spellbook", "Explorer's Pack"],
+        "features": ["Tempestuous Magic", "Heart of the Storm", "Storm Guide", "Font of Magic"],
+        "spells": {
+            "level1": ["Mage Armor", "Thunderwave"],
+            "level2": ["Gust of Wind", "Shatter"],
+            "level3": ["Call Lightning", "Thunder Step"],
+            "level4": ["Storm Sphere"],
+            "level5": [],
+            "level6": [],
+            "level7": [],
+            "level8": [],
+            "level9": []
+        },
+        "location": {
+            "x": 12,
+            "y": 12
+        },
+        "notes": "Gregor's mastery over storms is both a blessing and a curse, giving him great power but also making him unpredictable and volatile.",
+        "relationships": {
+            "Zephyr the Wanderer": "Former ally turned rival, now seeks to claim Gregor's territory for himself."
+        }
+    }
 ]
