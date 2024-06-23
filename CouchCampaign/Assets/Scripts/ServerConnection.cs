@@ -94,6 +94,7 @@ public class ServerConnection : MonoBehaviour
                     character.name = data.name;
                     UseMeshyMesh script = character.GetComponent<UseMeshyMesh>();
                     script.SetMesh(data.meshyId);
+                    script.setPlayerName(character.name);
                     break;
                 }
             case "move":
