@@ -26,14 +26,3 @@ def image_to_string(image_path):
         return None
 
 
-# Example usage:
-if __name__ == "__main__":
-    image_path = "example.png"  # Replace with your image file path
-    image_str = image_to_string(image_path)
-
-    if image_str:
-        print(
-            f"Image as string (base64): {image_str[:50]}..."
-        )  # Print first 50 characters as example
-    else:
-        print("Failed to convert image to string.")
