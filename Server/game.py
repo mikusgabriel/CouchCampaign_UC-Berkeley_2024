@@ -123,6 +123,7 @@ class GameManager:
         self._players: dict[str, Player] = {}
         self._connections = connections
         self.currentTurn = None
+        self.currentMap = "ryvzyrqpfk"
         self.lastRollResult = None
 
     async def broadcast_client_info(self):
@@ -197,6 +198,29 @@ class GameManager:
                     await self._connections.send_client(
                         player.id(), {"type": "status", "status": "wait"}
                     )
+
+    async def setMap(self, mapId: str):
+        for m in json.load(open("game_info/5e-SRD-Maps.json")):
+            if m["mapid"] == mapId:
+                self.currentMap = m
+                break
+
+        self.currentNpcs = []
+        for npc in json.load(open("game_info/5e-SRD-Npcs.json")):
+            if npc["name"] in self.currentMap["npcs"]:
+                self.currentNpcs.append(npc)
+                if len(self.currentNpcs) == len(self.currentMap["npcs"]):
+                    break
+
+        self.currentEnemies = []
+        for enemy in json.load(open("game_info/5e-SRD-Enemies.json")):
+            if enemy["name"] in self.currentMap["enemies"]:
+                self.currentEnemies.append(enemy)
+                if len(self.currentEnemies) == len(self.currentMap["enemies"]):
+                    break
+
+    async def update_unity(self):
+        pass
 
     async def startGame(self):
         player = list(self._players.values())[0]
