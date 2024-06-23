@@ -124,6 +124,20 @@ public class ServerConnection : MonoBehaviour
                     SendString("{\"type\": \"roll\", \"value\": " + total + "}");
                     break;
                 }
+
+            case "speak":
+                {
+                    var data = JsonUtility.FromJson<TalkJsonData>(message);
+                    textToSpeech.TalkGlobal(data.message);
+                    break;
+                }
+
+            case "music":
+                {
+                    var data = JsonUtility.FromJson<MusicJsonData>(message);
+                    musicPlayer.PlayMusic(data.category);
+                    break;
+                }
         }
     }
 
@@ -180,5 +194,18 @@ public class ServerConnection : MonoBehaviour
     private class MapJsonData : JsonData
     {
         public string map;
+    }
+
+    [Serializable]
+    private class MusicJsonData : JsonData
+    {
+        public string category;
+    }
+
+    [Serializable]
+    private class TalkJsonData : JsonData
+    {
+        public string name;
+        public string message;
     }
 }

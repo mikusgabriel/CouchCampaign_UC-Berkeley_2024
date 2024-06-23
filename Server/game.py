@@ -90,8 +90,8 @@ class GameManager:
                             player.id(),
                             {
                                 "type": "status",
-                                "status": "play",
-                                "data": {"options": self.currentTurn["options"]},
+                                "status": "talk",
+                                "data": {"to": self.currentTurn["talkingTo"]},
                             },
                         )
                     else:

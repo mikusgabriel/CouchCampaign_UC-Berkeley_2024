@@ -7,16 +7,16 @@ public class MapRenderer : MonoBehaviour
     {
         { ColorUtility.ToHtmlStringRGB(new Color(0f, 0.5f, 0f)), 0.10f },               // grass
         { ColorUtility.ToHtmlStringRGB(new Color(0.647f, 0.165f, 0.165f)) , 0.08f },    // path-level0
-        { ColorUtility.ToHtmlStringRGB(new Color(0.823f, 0.705f, 0.549f)) , 0.09f },    // path_level1
-        { ColorUtility.ToHtmlStringRGB(new Color(0.627f, 0.321f, 0.176f)) , 0.10f },    // path_level2
-        { ColorUtility.ToHtmlStringRGB(new Color (0.545f, 0.271f, 0.075f)), 0.11f },    // path_level3
+        { ColorUtility.ToHtmlStringRGB(new Color(0.823f, 0.705f, 0.549f)) , 0.30f },    // path_level1
+        { ColorUtility.ToHtmlStringRGB(new Color(0.627f, 0.321f, 0.176f)) , 0.63f },    // path_level2
+        { ColorUtility.ToHtmlStringRGB(new Color (0.545f, 0.271f, 0.075f)), 0.96f },    // path_level3
         { ColorUtility.ToHtmlStringRGB(new Color(0f, 0f, 1f)), 0.0f },                  // water
         { ColorUtility.ToHtmlStringRGB(new Color(0f, 0.392f, 0f)) , 0.10f },            // forest
         { ColorUtility.ToHtmlStringRGB(new Color(1f, 1f, 0f)) ,0.05f },                 // sand
         { ColorUtility.ToHtmlStringRGB(new Color(1f, 0.549f, 0f)) , 0.12f },            // bridge
-        { ColorUtility.ToHtmlStringRGB(new Color(0.502f, 0.502f, 0.502f)) , 0.15f },    // rocklevel1
-        { ColorUtility.ToHtmlStringRGB(new Color(0.663f, 0.663f, 0.663f)) , 0.16f },    // rocklevel2
-        { ColorUtility.ToHtmlStringRGB(new Color(0.827f, 0.827f, 0.827f)), 0.17f }  // rocklevel3
+        { ColorUtility.ToHtmlStringRGB(new Color(0.502f, 0.502f, 0.502f)) , 0.33f },    // rocklevel1
+        { ColorUtility.ToHtmlStringRGB(new Color(0.663f, 0.663f, 0.663f)) , 0.66f },    // rocklevel2
+        { ColorUtility.ToHtmlStringRGB(new Color(0.827f, 0.827f, 0.827f)), 0.99f }  // rocklevel3
     };
 
 

@@ -195,7 +195,22 @@ async def ws_WEBSOCKET(ws: WebSocket):
                         voiceApi.getVoiceEmotions(audioData),
                     )
 
-                    await ws.send_json({"type": "transcript", "data": transcript})
+                    voice_output = gameManager.talkToNPC(
+                        gameManager, transcript, emotions
+                    )
+                    await connections.send_unity(
+                        {"type": "talk", "message": voice_output}
+                    )
+                    await ws.send_json(
+                        {
+                            "type": "status",
+                            "status": "talk",
+                            "data": {
+                                "to": gameManager.currentTurn["talkingTo"],
+                                "emotions": emotions,
+                            },
+                        },
+                    )
 
     except WebSocketDisconnect:
         connections.remove_client(userId)

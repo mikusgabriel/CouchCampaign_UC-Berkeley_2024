@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class MusicPlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     public AudioSource audiosource;
+
     public void PlayMusic(string category)
     {
         
