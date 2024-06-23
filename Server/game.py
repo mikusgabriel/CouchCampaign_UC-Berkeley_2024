@@ -382,7 +382,7 @@ class GameManager:
                 messages=(
                     {
                         "role": "system",
-                        "content": f"this is the game_history :{game_history}. You will be in control of the gameflow each turn. You will receive and input in this format: Player1 has used Fireball on you. You can use whatever function you want. You will have access to all the players: {players} and all the ennemies: {ennemies}. You will return the json of the person affected with the effects in use.",
+                        "content": f"this is the game_history :{game_history}. You will be in control of the gameflow each turn. You will receive and input in this format: Player1 has used Fireball on Ennemy. You can use whatever function you want. You will have access to all the players: {players} and all the ennemies: {ennemies}. You will return the json of the person affected with the effects in use.",
                     },
                     {"role": "user", "content": "{input} make this work"},
                 ),
