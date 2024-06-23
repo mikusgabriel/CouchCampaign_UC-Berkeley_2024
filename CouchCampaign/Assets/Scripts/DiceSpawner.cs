@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
+using Utilities.Extensions;
 
 public class DiceSpawner : MonoBehaviour
 {
@@ -75,6 +76,12 @@ public class DiceSpawner : MonoBehaviour
                 }
             }
 
+        }
+
+        await Task.Delay(1000);
+        foreach (DiceRoll script in diceRollScripts)
+        {
+            script.gameObject.Destroy();
         }
 
         return diceTotalResult;
