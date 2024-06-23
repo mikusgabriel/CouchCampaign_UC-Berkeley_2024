@@ -13,46 +13,34 @@ using Newtonsoft.Json;
 
 public class UseMeshyMesh : MonoBehaviour
 {
-    public GltfImport gltf;
-
+    [Header("Text Mesh Pro")]
     [SerializeField]
-    public TextMeshPro textMeshProPlayerName;
+    private TextMeshPro tmpName;
     [SerializeField]
-    public TextMeshPro textMeshProPlayerHealth;
+    private TextMeshPro tmpHealth;
 
-    public string playerName;
 
-    public int health;
-
+    private GltfImport gltf;
 
     private readonly string meshyApiKey = env.variables["MeshyKey"];
 
-    
+
 
     public async void SetMesh(string meshId)
     {
         if (await LoadModel(meshId)) return;
-       
+
         StartCoroutine(MakeRequest(meshyApiKey, meshId));
     }
 
     public void setPlayerName(string playerName)
-
     {
-        textMeshProPlayerName.text = playerName;
-
+        tmpName.text = playerName;
     }
 
     public void setPlayerHealth(string playerHealth)
-
     {
-        textMeshProPlayerHealth.text = playerHealth;
-
-    }
-    class MeshyRefine
-    {
-        public string mode = "refine";
-        public string preview_task_id;
+        tmpHealth.text = playerHealth;
     }
 
 
@@ -85,7 +73,6 @@ public class UseMeshyMesh : MonoBehaviour
 
             if (responseData.status != "SUCCEEDED")
             {
-
                 SetMesh(meshId);
                 yield break;
             }
@@ -110,6 +97,7 @@ public class UseMeshyMesh : MonoBehaviour
 
         SaveModel(meshId, modelReq.downloadHandler.data);
         _ = AddModel(modelReq.downloadHandler.data);
+        // StartCoroutine(RefineModel(meshId));
     }
 
 
@@ -130,7 +118,6 @@ public class UseMeshyMesh : MonoBehaviour
         var mesh = transform.Find("Mesh1");
         var renderer = mesh.GetComponent<MeshRenderer>();
         mesh.localPosition = new Vector3(mesh.localPosition.x, renderer.localBounds.size.y / 2 + 0.15f, mesh.localPosition.z);
-        StartCoroutine(RefineModel(meshId));
         return true;
     }
 
@@ -144,37 +131,81 @@ public class UseMeshyMesh : MonoBehaviour
         var renderer = mesh.GetComponent<MeshRenderer>();
         mesh.localPosition = new Vector3(mesh.localPosition.x, renderer.localBounds.size.y / 2 + 0.15f, mesh.localPosition.z);
 
-        
+
         return true;
     }
 
-    [Obsolete]
-    IEnumerator RefineModel(string meshID)
+    IEnumerator RefineModel(string meshId)
     {
-        
-        string url = "https://api.meshy.ai/v2/text-to-3d/" + meshID;
-        var glbUrl = "";
         MeshyRefine meshy = new MeshyRefine();
-        meshy.preview_task_id = meshID;
-        string stringjson = JsonConvert.SerializeObject(meshy);
+        meshy.preview_task_id = meshId;
+        string stringjson = JsonUtility.ToJson(meshy);
+        print(stringjson);
 
 
-        using UnityWebRequest webRequest = UnityWebRequest.Post(url, stringjson);
-        webRequest.SetRequestHeader("Authorization", $"Bearer {meshyApiKey}");
-        
+        using UnityWebRequest refinePostReq = UnityWebRequest.Post("https://api.meshy.ai/v2/text-to-3d/", stringjson, "application/json");
+        refinePostReq.SetRequestHeader("Authorization", $"Bearer {meshyApiKey}");
 
-
-        yield return webRequest.SendWebRequest();
-        if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
-               webRequest.result == UnityWebRequest.Result.ProtocolError)
+        yield return refinePostReq.SendWebRequest();
+        if (refinePostReq.result == UnityWebRequest.Result.ConnectionError ||
+               refinePostReq.result == UnityWebRequest.Result.ProtocolError)
         {
-            Debug.LogError($"Meshy GLB download error: {webRequest.error}");
+            Debug.LogError($"Meshy GLB download error: {refinePostReq.error}");
             yield break;
         }
 
-        SaveModel(meshID, webRequest.downloadHandler.data);
-        _ = AddModel(webRequest.downloadHandler.data);
+        print(refinePostReq.downloadHandler.text);
+        yield return new WaitForSeconds(5f);
 
+        var glbUrl = "";
+        var refineStatus = "";
+        while (refineStatus != "SUCCEEDED")
+        {
+            yield return new WaitForSeconds(5f);
+
+            print("try REFINED");
+            using UnityWebRequest webRequest = UnityWebRequest.Get("https://api.meshy.ai/v2/text-to-3d/" + meshId);
+            webRequest.SetRequestHeader("Authorization", $"Bearer {meshyApiKey}");
+
+            yield return webRequest.SendWebRequest();
+
+
+            if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
+                webRequest.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError($"Meshy download error: {webRequest.error}");
+                yield break;
+            }
+
+            try
+            {
+                var jsonResponse = webRequest.downloadHandler.text;
+                ApiResponseData responseData = JsonUtility.FromJson<ApiResponseData>(jsonResponse);
+
+                if (responseData.status != "SUCCEEDED")
+                    continue;
+
+                print("REFINED");
+                glbUrl = responseData.model_urls.glb;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Error parsing Meshy JSON: {ex.Message}");
+            }
+        }
+
+        using UnityWebRequest modelReq = UnityWebRequest.Get(glbUrl);
+        yield return modelReq.SendWebRequest();
+
+        if (modelReq.result == UnityWebRequest.Result.ConnectionError ||
+                modelReq.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError($"Meshy GLB download error: {modelReq.error}");
+            yield break;
+        }
+
+        SaveModel(meshId, modelReq.downloadHandler.data);
+        _ = AddModel(modelReq.downloadHandler.data);
     }
 
 
@@ -198,5 +229,14 @@ public class UseMeshyMesh : MonoBehaviour
     private class ModelUrlData
     {
         public string glb;
+    }
+
+
+
+    [Serializable]
+    private class MeshyRefine
+    {
+        public string mode = "refine";
+        public string preview_task_id;
     }
 }
