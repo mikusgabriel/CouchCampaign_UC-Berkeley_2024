@@ -50,7 +50,7 @@ def generateNode():
         first_node.description, first_node.npcs, first_node.enemies = generateDescription(first_node.biome, first_node.maptype, first_node.name, first_node.connectingnodes)
         first_node.enemytiles, first_node.npctiles, first_node.entrancelocations = mapEnemyNpcPlacements(first_node.mapurl,0,0)
         
-        if len(first_node.entrancelocations) >= 2:
+        if 4>= len(first_node.entrancelocations) >= 2:
             first_node.id = rnd_filename
             first_node.description, first_node.npcs, first_node.enemies = generateDescription(first_node.biome, first_node.maptype, first_node.name, first_node.connectingnodes)
             first_node.enemytiles, first_node.npctiles, first_node.entrancelocations = mapEnemyNpcPlacements(first_node.mapurl,len(first_node.npcs),len(first_node.enemies))
@@ -388,6 +388,10 @@ def generateWorld():
         counter = 0
         for names in nodes.npcs:
             npclist.append(generateNPC(f"Name: {names}. Area they are in: {nodes.description} and located at {nodes.npctiles[counter]}"))
+            npclist[len(npclist)-1]["location"] = {
+               "x": nodes.npctiles[counter][1],
+               "y": nodes.npctiles[counter][0]
+            }            
             npclist[len(npclist)-1]["mapid"] = nodes.id
             counter +=1
         counter = 0
@@ -395,6 +399,10 @@ def generateWorld():
             print(counter)
             
             enemylist.append(generateNPC(f"Name: {names}. Area they are in: {nodes.description} and located at {nodes.enemytiles[counter]}"))
+            enemylist[len(enemylist)-1]["location"] = {
+               "x": nodes.enemytiles[counter][1],
+               "y": nodes.enemytiles[counter][0]
+            }
             enemylist[len(enemylist)-1]["mapid"] = nodes.id
 
             counter+=1
@@ -533,6 +541,6 @@ def generateStory():
 
 
                 
-    
+generateWorld()
 generateStory()
 
