@@ -79,7 +79,7 @@ class Player:
         self.notes = stats["notes"]
         self.currentConditions = stats["currentConditions"]
 
-    def getFullStatSheet(self, stats: dict[str, any]):
+    def getFullStatSheet(self):
         return {
             "name": self._id,
             "classe": self._classe,
@@ -331,187 +331,11 @@ You can request any info you want about the game state, so do not hesistate to c
             },
             {
                 "role": "user",
-                "content": f"""Player info: {json.dumps({
-                      "name": "guibi",
-                      "meshyid": "01903d68-78aa-7813-9a85-d319d530e173",
-                      "class": "Druid",
-                      "level": 5,
-                      "type": "NPC",
-                      "race": "Human",
-                      "alignment": "Neutral Good",
-                      "attributes": {
-                           "STR": 10,
-                           "DEX": 12,
-                           "CON": 14,
-                           "INT": 16,
-                           "WIS": 18,
-                           "CHA": 14
-                      },
-                      "skills": {
-                           "Acrobatics": {
-                                "proficient": False,
-                                "bonus": 0
-                           },
-                           "Animal Handling": {
-                                "proficient": True,
-                                "bonus": 7
-                           },
-                           "Arcana": {
-                                "proficient": True,
-                                "bonus": 6
-                           },
-                           "Athletics": {
-                                "proficient": False,
-                                "bonus": 0
-                           },
-                           "Deception": {
-                                "proficient": False,
-                                "bonus": 0
-                           },
-                           "History": {
-                                "proficient": True,
-                                "bonus": 6
-                           },
-                           "Insight": {
-                                "proficient": True,
-                                "bonus": 8
-                           },
-                           "Intimidation": {
-                                "proficient": False,
-                                "bonus": 0
-                           },
-                           "Investigation": {
-                                "proficient": False,
-                                "bonus": 0
-                           },
-                           "Medicine": {
-                                "proficient": True,
-                                "bonus": 8
-                           },
-                           "Nature": {
-                                "proficient": True,
-                                "bonus": 8
-                           },
-                           "Perception": {
-                                "proficient": True,
-                                "bonus": 8
-                           },
-                           "Performance": {
-                                "proficient": False,
-                                "bonus": 0
-                           },
-                           "Persuasion": {
-                                "proficient": True,
-                                "bonus": 6
-                           },
-                           "Religion": {
-                                "proficient": False,
-                                "bonus": 0
-                           },
-                           "Sleight of Hand": {
-                                "proficient": False,
-                                "bonus": 0
-                           },
-                           "Stealth": {
-                                "proficient": False,
-                                "bonus": 0
-                           },
-                           "Survival": {
-                                "proficient": True,
-                                "bonus": 8
-                           }
-                      },
-                      "savingThrows": {
-                           "strength": {
-                                "proficient": False,
-                                "bonus": 0
-                           },
-                           "dexterity": {
-                                "proficient": False,
-                                "bonus": 1
-                           },
-                           "constitution": {
-                                "proficient": True,
-                                "bonus": 4
-                           },
-                           "intelligence": {
-                                "proficient": False,
-                                "bonus": 3
-                           },
-                           "wisdom": {
-                                "proficient": True,
-                                "bonus": 6
-                           },
-                           "charisma": {
-                                "proficient": False,
-                                "bonus": 2
-                           }
-                      },
-                      "armorClass": 12,
-                      "hitPoints": {
-                           "current": 36,
-                           "maximum": 36,
-                           "temporary": 0
-                      },
-                      "hitDice": {
-                           "total": "5d8",
-                           "current": "5d8"
-                      },
-                      "speed": 30,
-                      "proficiencies": {
-                           "weapons": [
-                                "Quarterstaff",
-                                "Dagger"
-                           ],
-                           "tools": [
-                                "Herbalism Kit"
-                           ],
-                           "languages": [
-                                "Common",
-                                "Druidic",
-                                "Sylvan"
-                           ]
-                      },
-                      "equipment": [
-                           "Quarterstaff",
-                           "Herbalism Kit",
-                           "Robes",
-                           "Pouch of Rare Herbs"
-                      ],
-                      "features": [
-                           "Wild Shape",
-                           "Druidic",
-                           "Spellcasting"
-                      ],
-                      "spells": {
-                           "level1": [
-                                "Healing Word",
-                                "Goodberry"
-                           ],
-                           "level2": [
-                                "Lesser Restoration",
-                                "Barkskin"
-                           ],
-                           "level3": [
-                                "Call Lightning",
-                                "Plant Growth"
-                           ],
-                           "level4": [
-                                "Grasping Vine"
-                           ],
-                           "level5": [
-                                "Tree Stride"
-                           ]
-                      },
-                      "location": {
-                           "x": player.position()["x"],
-                           "y": player.position()["y"],
-                        },
-                      }
-                  )}.
-                Map info: {json.dumps({'size': {'x': 80, 'y': 40}})}
+                "content": f"""Player info: {player.getFullStatSheet()}.
+                Map info: {json.dumps({'min': {'x': 0, 'y': 0}, 'max': {'x': 79, 'y': 39}})}
                 Other players: {json.dumps([p.toPOJO() for p in self._players.values() if p != player])}
-                NPCs: {[]}""",
+                NPCs: {self.currentEnemies}
+                NPCs: {self.currentNpcs}""",
             },
         ]
 
@@ -565,6 +389,13 @@ You can request any info you want about the game state, so do not hesistate to c
             for p in self._players.values()
             if p != player
         ]
+        # res["npcs"] = [
+        #     {"name": npc["name"], **npc["location"]} for npc in self.currentNpcs
+        # ]
+        # res["enemies"] = [
+        #     {"name": enemy["name"], **enemy["location"]}
+        #     for enemy in self.currentEnemies
+        # ]
         return res
 
     def coordinatesRange(self, speed: int, location: tuple[int, int]):
