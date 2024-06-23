@@ -6,11 +6,21 @@ using GLTFast;
 using System.Threading.Tasks;
 using System.IO;
 using CandyCoded.env;
+using TMPro;
 
 
 public class UseMeshyMesh : MonoBehaviour
 {
     public GltfImport gltf;
+
+    [SerializeField]
+    public TextMeshPro textMeshProPlayerName;
+    [SerializeField]
+    public TextMeshPro textMeshProPlayerHealth;
+
+    public string playerName;
+
+    public int health;
 
 
     private readonly string meshyApiKey = env.variables["MeshyKey"];
@@ -22,6 +32,20 @@ public class UseMeshyMesh : MonoBehaviour
         if (await LoadModel(meshId)) return;
        
         StartCoroutine(MakeRequest(meshyApiKey, meshId));
+    }
+
+    public void setPlayerName(string playerName)
+
+    {
+        textMeshProPlayerName.text = playerName;
+
+    }
+
+    public void setPlayerHealth(string playerHealth)
+
+    {
+        textMeshProPlayerHealth.text = playerHealth;
+
     }
 
 
