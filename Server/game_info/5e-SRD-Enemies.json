@@ -1,21 +1,192 @@
 [
      {
-          "name": "Giant Eagle",
-          "appearance": "The Giant Eagle is an impressive sight with its vast wingspan extending over 15 feet. Its feathers shimmer with a golden hue, and its eyes are a piercing yellow that seem to see into the soul. Sharp talons and a strong, hooked beak make it a fearsome predator. It exudes a sense of majesty and nobility.",
-          "description": "A Giant Eagle is a noble creature that speaks its own language and understands speech in the Common tongue. A mated pair of Giant Eagles typically has up to four eggs or young in their nest. They are guardians of the skies above the Azure Crag Wilds, keeping a watchful eye over the rugged terrain.",
+          "name": "Wood Woad",
+          "appearance": "Standing at around 6 feet tall, the Wood Woad appears to be a humanoid figure made entirely of intertwined wood, moss, and leaves. Its eyes glow with an eerie, green light, and its movements are slow but deliberate, mimicking the creaking and groaning of ancient trees. Its body is rugged and thick, almost resembling the bark of a tree, and small plants grow directly from its limbs.",
+          "description": "The Wood Woad is a guardian of the Whispering Grove Wilderness, a sentient being created by ancient druidic magic to protect the sacred forest from intruders. Though generally peaceful if left undisturbed, it becomes a fierce protector when its domain is threatened. The Wood Woad is deeply connected to the forest and can communicate with the trees and plants within it. It harbors an ancient wisdom and can offer guidance to those who show respect for nature.",
+          "meshyid": null,
+          "class": "Monk",
+          "level": 4,
+          "type": "NPC",
+          "race": "Plant",
+          "alignment": "Neutral Good",
+          "attributes": {
+               "STR": 16,
+               "DEX": 12,
+               "CON": 18,
+               "INT": 10,
+               "WIS": 14,
+               "CHA": 8
+          },
+          "skills": {
+               "Acrobatics": {
+                    "proficient": false,
+                    "bonus": 1
+               },
+               "Animal Handling": {
+                    "proficient": false,
+                    "bonus": 2
+               },
+               "Arcana": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Athletics": {
+                    "proficient": true,
+                    "bonus": 5
+               },
+               "Deception": {
+                    "proficient": false,
+                    "bonus": -1
+               },
+               "History": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Insight": {
+                    "proficient": true,
+                    "bonus": 4
+               },
+               "Intimidation": {
+                    "proficient": false,
+                    "bonus": -1
+               },
+               "Investigation": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Medicine": {
+                    "proficient": false,
+                    "bonus": 2
+               },
+               "Nature": {
+                    "proficient": true,
+                    "bonus": 4
+               },
+               "Perception": {
+                    "proficient": true,
+                    "bonus": 4
+               },
+               "Performance": {
+                    "proficient": false,
+                    "bonus": -1
+               },
+               "Persuasion": {
+                    "proficient": false,
+                    "bonus": -1
+               },
+               "Religion": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Sleight of Hand": {
+                    "proficient": false,
+                    "bonus": 1
+               },
+               "Stealth": {
+                    "proficient": false,
+                    "bonus": 1
+               },
+               "Survival": {
+                    "proficient": true,
+                    "bonus": 4
+               }
+          },
+          "savingThrows": {
+               "strength": {
+                    "proficient": true,
+                    "bonus": 6
+               },
+               "dexterity": {
+                    "proficient": false,
+                    "bonus": 1
+               },
+               "constitution": {
+                    "proficient": true,
+                    "bonus": 7
+               },
+               "intelligence": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "wisdom": {
+                    "proficient": true,
+                    "bonus": 4
+               },
+               "charisma": {
+                    "proficient": false,
+                    "bonus": -1
+               }
+          },
+          "armorClass": 15,
+          "hitPoints": {
+               "current": 45,
+               "maximum": 45,
+               "temporary": 0
+          },
+          "hitDice": {
+               "total": "4d8",
+               "current": ""
+          },
+          "speed": 30,
+          "proficiencies": {
+               "weapons": [
+                    "quarterstaff",
+                    "unarmed strike"
+               ],
+               "tools": [
+                    "herbalism kit"
+               ],
+               "languages": [
+                    "Common",
+                    "Druidic"
+               ]
+          },
+          "equipment": [],
+          "features": [
+               "Tree Stride: The Wood Woad can step into a tree and emerge from another tree within 60 feet of the entrance tree as long as both trees are living and at least the Wood Woad's size.",
+               "Regeneration: The Wood Woad regains 5 hit points at the start of its turn if it is in contact with natural soil or vegetation."
+          ],
+          "spells": {
+               "level1": [
+                    "Absorb Elements"
+               ],
+               "level2": [
+                    "Barkskin"
+               ],
+               "level3": [],
+               "level4": [],
+               "level5": [],
+               "level6": [],
+               "level7": [],
+               "level8": [],
+               "level9": []
+          },
+          "location": {
+               "x": 21,
+               "y": 64
+          },
+          "notes": "",
+          "relationships": {
+               "Whispering Grove Druids": "The Wood Woad has a deep bond with the druids who created it and often communicates with them to ensure the protection of the forest."
+          }
+     },
+     {
+          "name": "Owlbear",
+          "appearance": "The Owlbear stands around 8 feet tall and resembles a monstrous cross between an owl and a bear. Its fur is mottled brown and black, with feathers around its head and neck. Its eyes glow with a predatory gleam, and its beak is sharp and menacing.",
+          "description": "The Owlbear is a fearsome predator, combining the keen senses of an owl with the brute strength of a bear. It roams the Whispering Grove Wilderness, defending its territory fiercely from intruders.",
           "meshyid": null,
           "class": "",
           "level": 1,
-          "type": "beast",
-          "race": "Giant Eagle",
-          "alignment": "neutral good",
+          "type": "Beast",
+          "race": "Monstrosity",
+          "alignment": "Unaligned",
           "attributes": {
-               "STR": 16,
-               "DEX": 17,
-               "CON": 13,
-               "INT": 8,
-               "WIS": 14,
-               "CHA": 10
+               "STR": 20,
+               "DEX": 12,
+               "CON": 17,
+               "INT": 3,
+               "WIS": 12,
+               "CHA": 7
           },
           "skills": {
                "Acrobatics": {
@@ -31,8 +202,8 @@
                     "bonus": 0
                },
                "Athletics": {
-                    "proficient": false,
-                    "bonus": 0
+                    "proficient": true,
+                    "bonus": 5
                },
                "Deception": {
                     "proficient": false,
@@ -44,11 +215,11 @@
                },
                "Insight": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": 1
                },
                "Intimidation": {
-                    "proficient": false,
-                    "bonus": 0
+                    "proficient": true,
+                    "bonus": 2
                },
                "Investigation": {
                     "proficient": false,
@@ -64,7 +235,7 @@
                },
                "Perception": {
                     "proficient": true,
-                    "bonus": 4
+                    "bonus": 3
                },
                "Performance": {
                     "proficient": false,
@@ -83,26 +254,26 @@
                     "bonus": 0
                },
                "Stealth": {
-                    "proficient": false,
-                    "bonus": 0
+                    "proficient": true,
+                    "bonus": 1
                },
                "Survival": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": 1
                }
           },
           "savingThrows": {
                "strength": {
-                    "proficient": false,
-                    "bonus": 0
+                    "proficient": true,
+                    "bonus": 5
                },
                "dexterity": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": 1
                },
                "constitution": {
-                    "proficient": false,
-                    "bonus": 0
+                    "proficient": true,
+                    "bonus": 3
                },
                "intelligence": {
                     "proficient": false,
@@ -110,7 +281,7 @@
                },
                "wisdom": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": 1
                },
                "charisma": {
                     "proficient": false,
@@ -119,27 +290,27 @@
           },
           "armorClass": 13,
           "hitPoints": {
-               "current": 26,
-               "maximum": 26,
+               "current": 59,
+               "maximum": 59,
                "temporary": 0
           },
           "hitDice": {
-               "total": "4d10",
-               "current": "4d10"
+               "total": "7d10+21",
+               "current": "7d10+21"
           },
-          "speed": 10,
+          "speed": 40,
           "proficiencies": {
-               "weapons": [],
+               "weapons": [
+                    "Claws",
+                    "Beak"
+               ],
                "tools": [],
-               "languages": [
-                    "Giant Eagle",
-                    "understands Common",
-                    "Auran (can't speak)"
-               ]
+               "languages": []
           },
           "equipment": [],
           "features": [
-               "Keen Sight: The eagle has advantage on Wisdom (Perception) checks that rely on sight."
+               "Keen Sight and Smell: The owlbear has advantage on Wisdom (Perception) checks that rely on sight or smell.",
+               "Multiattack: The owlbear makes two attacks: one with its beak and one with its claws."
           ],
           "spells": {
                "level1": [],
@@ -153,175 +324,12 @@
                "level9": []
           },
           "location": {
-               "x": 3,
-               "y": 38
+               "x": 24,
+               "y": 0
           },
-          "notes": "",
-          "relationships": {}
-     },
-     {
-          "name": "Mountain Troll",
-          "appearance": "A hulking, fearsome creature with mottled gray-blue skin that blends with the rugged terrain of the Azure Crag Wilds. Its eyes glow a faint yellow, reflecting the primal and chaotic nature within.",
-          "description": "Mountain Trolls are formidable giants dwelling in the harsh environment of the Azure Crag Wilds. With their powerful limbs and razor-sharp claws, they navigate the treacherous landscape with ease, preying upon the unwary who venture too far into their domain.",
-          "meshyid": null,
-          "class": "",
-          "level": 5,
-          "type": "giant",
-          "race": "Troll",
-          "alignment": "chaotic evil",
-          "attributes": {
-               "STR": 18,
-               "DEX": 13,
-               "CON": 20,
-               "INT": 7,
-               "WIS": 9,
-               "CHA": 7
-          },
-          "skills": {
-               "Acrobatics": {
-                    "proficient": false,
-                    "bonus": 1
-               },
-               "Animal Handling": {
-                    "proficient": false,
-                    "bonus": -1
-               },
-               "Arcana": {
-                    "proficient": false,
-                    "bonus": -2
-               },
-               "Athletics": {
-                    "proficient": true,
-                    "bonus": 7
-               },
-               "Deception": {
-                    "proficient": false,
-                    "bonus": -2
-               },
-               "History": {
-                    "proficient": false,
-                    "bonus": -2
-               },
-               "Insight": {
-                    "proficient": false,
-                    "bonus": -1
-               },
-               "Intimidation": {
-                    "proficient": false,
-                    "bonus": -2
-               },
-               "Investigation": {
-                    "proficient": false,
-                    "bonus": -2
-               },
-               "Medicine": {
-                    "proficient": false,
-                    "bonus": -1
-               },
-               "Nature": {
-                    "proficient": false,
-                    "bonus": -2
-               },
-               "Perception": {
-                    "proficient": true,
-                    "bonus": 2
-               },
-               "Performance": {
-                    "proficient": false,
-                    "bonus": -2
-               },
-               "Persuasion": {
-                    "proficient": false,
-                    "bonus": -2
-               },
-               "Religion": {
-                    "proficient": false,
-                    "bonus": -2
-               },
-               "Sleight of Hand": {
-                    "proficient": false,
-                    "bonus": 1
-               },
-               "Stealth": {
-                    "proficient": false,
-                    "bonus": 1
-               },
-               "Survival": {
-                    "proficient": false,
-                    "bonus": 0
-               }
-          },
-          "savingThrows": {
-               "strength": {
-                    "proficient": false,
-                    "bonus": 4
-               },
-               "dexterity": {
-                    "proficient": false,
-                    "bonus": 1
-               },
-               "constitution": {
-                    "proficient": false,
-                    "bonus": 5
-               },
-               "intelligence": {
-                    "proficient": false,
-                    "bonus": -2
-               },
-               "wisdom": {
-                    "proficient": false,
-                    "bonus": -1
-               },
-               "charisma": {
-                    "proficient": false,
-                    "bonus": -2
-               }
-          },
-          "armorClass": 15,
-          "hitPoints": {
-               "current": 84,
-               "maximum": 84,
-               "temporary": 0
-          },
-          "hitDice": {
-               "total": "8d10",
-               "current": "8d10"
-          },
-          "speed": 30,
-          "proficiencies": {
-               "weapons": [],
-               "tools": [],
-               "languages": [
-                    "Giant"
-               ]
-          },
-          "equipment": [],
-          "features": [
-               {
-                    "name": "Keen Smell",
-                    "desc": "The troll has advantage on Wisdom (Perception) checks that rely on smell."
-               },
-               {
-                    "name": "Regeneration",
-                    "desc": "The troll regains 10 hit points at the start of its turn. If the troll takes acid or fire damage, this trait doesn't function at the start of the troll's next turn. The troll dies only if it starts its turn with 0 hit points and doesn't regenerate."
-               }
-          ],
-          "spells": {
-               "level1": [],
-               "level2": [],
-               "level3": [],
-               "level4": [],
-               "level5": [],
-               "level6": [],
-               "level7": [],
-               "level8": [],
-               "level9": []
-          },
-          "location": {
-               "x": 18,
-               "y": 21
-          },
-          "notes": "Mountain Trolls are particularly dangerous in the Azure Crag Wilds due to their ability to blend into the rough, stony terrain. Travelers are advised to stay vigilant and avoid lingering near their known habitats.",
-          "relationships": {}
+          "notes": "Owlbears are notoriously difficult to tame but have been known to form bonds with those who show exceptional skill and patience in handling them.",
+          "relationships": {
+               "name_of_character": "description of relationship"
+          }
      }
 ]
