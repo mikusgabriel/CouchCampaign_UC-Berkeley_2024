@@ -49,6 +49,9 @@ class Player:
     def classe(self):
         return self._classe
 
+    def meshy(self):
+        return self._meshyId
+
     def position(self):
         return {"x": self._x, "y": self._y}
 
@@ -242,7 +245,7 @@ class GameManager:
                     for npc in self.currentNpcs
                 ],
                 "players": [
-                    {"name": player.id(), **player.position()}
+                    {"name": player.id(), "meshyid": player.meshy, **player.position()}
                     for player in self._players.values()
                 ],
             }

@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using UnityEngine.TextCore.Text;
 
 
 
@@ -84,9 +85,56 @@ public class ServerConnection : MonoBehaviour
                     var data = JsonUtility.FromJson<MapJsonData>(message);
 
                     byte[] byteArray = Convert.FromBase64String(data.map);
-
                     mapRenderer.LoadMapFromFile(byteArray);
                     mapRenderer.SetTerrainHeight();
+
+                    foreach (Ennemy ennemy in data.ennemies)
+                    {
+                        GameObject monster = Instantiate(characterPrefab,mapRenderer.GetWorldPosition(ennemy.x,ennemy.y),Quaternion.identity,transform);
+                        monster.name = ennemy.name;
+                        UseMeshyMesh script = monster.GetComponent<UseMeshyMesh>();
+                        script.cam = cam;
+                        script.SetMesh(ennemy.meshyId);
+                        script.SetPlayerName(monster.name);
+                        break;
+                    }
+                    foreach (Npc npc in data.npcs)
+                    {
+                        GameObject nonPlayer = Instantiate(characterPrefab, mapRenderer.GetWorldPosition(npc.x, npc.y), Quaternion.identity, transform);
+                        nonPlayer.name = npc.name;
+                        UseMeshyMesh script = nonPlayer.GetComponent<UseMeshyMesh>();
+                        script.cam = cam;
+                        script.SetMesh(npc.meshyId);
+                        script.SetPlayerName(nonPlayer.name);
+                        break;
+
+                    }
+                    foreach (Player player in data.players)
+                    {
+                        print(player.name);
+                        Transform character = transform.Find(player.name);
+
+                        if  (character == null)
+                        {
+                            GameObject playerObject = Instantiate(characterPrefab, mapRenderer.GetWorldPosition(player.x, player.y), Quaternion.identity, transform);
+                            playerObject.name = player.name;
+                            UseMeshyMesh script = playerObject.GetComponent<UseMeshyMesh>();
+                            script.cam = cam;
+                            script.SetMesh(player.meshyId);
+                            script.SetPlayerName(playerObject.name);
+
+
+                        }
+                        else
+                        {
+                            character.position = mapRenderer.GetWorldPosition(player.x, player.y);
+                        }
+                            
+                        
+                     
+
+                    }
+
                     break;
                 }
             case "spawn":
@@ -199,7 +247,52 @@ public class ServerConnection : MonoBehaviour
     {
         public string map;
 
+        public Ennemy[] ennemies;
+        public Npc[] npcs;
+        public Player[] players;
+
+
+
     }
+
+    [Serializable]
+    private class Ennemy : JsonData
+    {
+        public string name;
+
+        public string meshyId;
+
+        public int x;
+        public int y;
+
+    }
+
+    [Serializable]
+    private class Npc : JsonData
+    {
+        public string name;
+
+        public string meshyId;
+
+        public int x;
+        public int y;
+
+    }
+
+    [Serializable]
+    private class Player : JsonData
+    {
+        public string name;
+
+        public string meshyId;
+
+
+        public int x;
+        public int y;
+
+    }
+
+
 
     [Serializable]
     private class MusicJsonData : JsonData
