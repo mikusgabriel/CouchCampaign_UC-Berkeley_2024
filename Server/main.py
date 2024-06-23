@@ -83,6 +83,7 @@ async def player_play_POST(body: PlayerPlayBody, req: Request):
 
         case "talk":
             gameManager.currentTurn["talkingTo"] = body.name
+            gameManager.currentTurn["messages"] = []
 
         case "fight":
             # await gameManager.movePlayer(userId, body.x, body.y)
