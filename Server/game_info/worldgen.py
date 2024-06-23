@@ -6,6 +6,10 @@ import random
 from openai import OpenAI
 import requests
 import os 
+import requests
+import base64
+import re
+import string
 
 def coordinatesRange(range,location):
     return np.vstack((np.tile(np.arange(-range,range+1,1),range*2+1),np.floor(np.arange(0,(range*2+1)**2,1) / (range*2+1)) - range)).T + location
@@ -140,11 +144,11 @@ def mapEnemyNpcPlacements(mapurl,npccount,enemycount):
         newimage[npcenemytiles[index][0], npcenemytiles[index][1], :3] = [64,128,255]
         npcenemytiles.pop(index)
 
-    print(adjacent)
-    print(f"Number of adjacency groups: {len(adjacent)}")
-    im = Image.fromarray(newimage)
-    im.save('test.png')
-    print("Image processing complete.")
+    # print(adjacent)
+    # print(f"Number of adjacency groups: {len(adjacent)}")
+    # im = Image.fromarray(newimage)
+    # im.save('test.png')
+    # print("Image processing complete.")
     return enemytiles, npctiles, spawnableareas
 
 
@@ -289,11 +293,11 @@ def generateDescription(biome_chosen, type_chosen, name,connecting_nodes):
         messages=[
             {
                 "role": "system",
-                "content": f"You are to choose an original description for the following area type and biome given and name and connecting areas. You will also decide the npcs and enemies in that location, Upto 2, and just the names of them no extra description. The enemies can be like Wood woad, wood woad, wood woad, owlbear. Try to use dnd enemies for random encours like owlbear, wood woad, etc."
-                           f"I will give you the type. The JSON format is the following {jsonFormat}. If its a random encounter. use classic dnd enemies. If there are no npcs or enemies, you must leave the list empty. Please make the enemies coherant, you can even add multiple enemies together."},
+                "content": f"You are to choose an original description for the following area type and biome given and name and connecting areas. You will also decide the npcs and enemies in that location, Upto 2, and just the names of them no extra description. The enemies can be like Wood woad, wood woad, wood woad, owlbear. Try to use dnd enemies for random encours like owlbear, wood woad, etc. I want atleast one npc please."
+                           f"I will give you the type. The JSON format is the following {jsonFormat}. If its a random encounter. use classic dnd enemies. If there are no npcs or enemies, you must leave the list empty. Please make the enemies coherant, you can even add multiple same enemies."},
             {
                 "role": "user",
-                "content": f"Description for {type_chosen} in the {biome_chosen} type called {name} knowing its connected to the following areas: {connecting_nodes}",
+                "content": f"Description for {type_chosen} in the {biome_chosen} type called {name} knowing its connected to the following areas: {connecting_nodes}. I want one npc PLEASE",
             },
         ],
     )
@@ -311,14 +315,34 @@ def generateWorld():
     images = os.listdir("./maps")
 
     # Initialize the first node
-    first_biome = random.choice(biomes)
     first_type = random.choice(places)
+    def generate_random_string(length=10):
+        letters = string.ascii_lowercase
+        return ''.join(random.choice(letters) for i in range(length))
+
+    response = json.loads(requests.get("https://27fa-104-196-242-9.ngrok-free.app/imagen").text)
+    first_biome = response["type"]
+
+    image_data = base64.b64decode(response["bs64"])
+
+    # Generate a random filename
+    random_filename = generate_random_string() + ".png"
+
+    # Ensure the directory exists
+    output_directory = "./maps/"
+    os.makedirs(output_directory, exist_ok=True)
+
+    # Save the image with the random filename
+    file_path = os.path.join(output_directory, random_filename)
+    with open(file_path, "wb") as fh:
+        fh.write(image_data)
+
+    print(f"Image saved successfully as {random_filename}.")
+
     first_name = generateNodeName(first_biome, first_type)
     first_node = mapNode(first_type, first_biome)
     first_node.name = first_name
-    index = random.randint(0,len(images)-1)
-    first_node.mapurl = "./maps/" + images[index]
-    # images.pop(index)
+    first_node.mapurl = file_path
 
     map_node_list.append(first_node)
 
