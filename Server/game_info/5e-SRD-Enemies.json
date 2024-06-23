@@ -153,8 +153,8 @@
                "level9": []
           },
           "location": {
-               "x": 7,
-               "y": 37
+               "x": 13,
+               "y": 13
           },
           "notes": "Griffons are fiercely territorial and will not hesitate to attack anything they perceive as a threat.",
           "relationships": {}
@@ -316,8 +316,8 @@
                "level9": []
           },
           "location": {
-               "x": 74,
-               "y": 38
+               "x": 10,
+               "y": 10
           },
           "notes": "The harpy's song is a powerful tool to lure enemies into dangerous terrain or set up an ambush. It is wise to approach this cliff with great caution.",
           "relationships": {}
