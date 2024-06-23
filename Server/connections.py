@@ -24,6 +24,9 @@ class Connections:
             print("Unity connected")
 
     async def send_client(self, id: str, message):
+        if self._clients_ws.get(id, None) is None:
+            return
+
         if self._clients_ws[id].client_state == WebSocketState.CONNECTED:
             try:
                 await self._clients_ws[id].send_json(message)

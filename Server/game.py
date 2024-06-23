@@ -124,8 +124,8 @@ class GameManager:
         self._players: dict[str, Player] = {}
         self._connections = connections
         self.currentTurn = None
-        self.currentMap = "ryvzyrqpfk"
         self.lastRollResult = None
+        self.setMap("wsfobsvdyl")
 
     async def broadcast_client_info(self):
         await asyncio.gather(
@@ -200,7 +200,7 @@ class GameManager:
                         player.id(), {"type": "status", "status": "wait"}
                     )
 
-    async def setMap(self, mapId: str):
+    def setMap(self, mapId: str):
         for m in json.load(open("game_info/5e-SRD-Maps.json")):
             if m["mapid"] == mapId:
                 self.currentMap = m
@@ -223,27 +223,30 @@ class GameManager:
         for i, player in enumerate(self._players.values()):
             player.move(self.currentMap["spawningarea"][0][0][i])
 
-        imgBytes = map.image_to_string(m["map"])
+    async def update_unity(self):
+        imgBytes = map.image_to_string(self.currentMap["map"])
         await self._connections.send_unity(
             {
                 "type": "map",
                 "map": imgBytes,
                 "ennemies": [
-                    {"name": e.name, "meshyid": e.meshyid, **e.location}
-                    for e in self.currentEnemies
+                    {
+                        "name": enemy["name"],
+                        "meshyId": enemy["meshyid"],
+                        **enemy["location"],
+                    }
+                    for enemy in self.currentEnemies
                 ],
                 "npcs": [
-                    {"name": i.name, "meshyid": i.meshyid, **i.location}
-                    for i in self.currentNpcs
+                    {"name": npc["name"], "meshyId": npc["meshyid"], **npc["location"]}
+                    for npc in self.currentNpcs
                 ],
                 "players": [
-                    {"name": b.name, **b.position()} for b in self._players.values()
+                    {"name": player.id(), **player.position()}
+                    for player in self._players.values()
                 ],
             }
         )
-
-    async def update_unity(self):
-        pass
 
     async def startGame(self):
         player = list(self._players.values())[0]
@@ -269,10 +272,12 @@ class GameManager:
     async def createPlayer(self, userId: str, race: str, classe: str, description: str):
         """Creates a player from the user's data"""
 
-        [x, y] = [0, 0]
+        [x, y] = self.currentMap["spawningarea"][0][len(self._players)]
         meshyId = meshyApi.generateMeshyMesh(race, classe, description)
 
-        player = Player(userId, description, race, classe, meshyId, x, y)
+        player = Player(
+            userId, description, race, classe, meshyId, math.floor(x), math.floor(y)
+        )
         self._players[userId] = player
 
         player.choices = self.getPlayerCreationChoices(classe, race)

@@ -228,8 +228,6 @@ async def ws_WEBSOCKET_UNITY(ws: WebSocket):
     connections.set_unity(ws)
 
     await gameManager.update_unity()
-    string = map.image_to_string("map.png")
-    await ws.send_json({"type": "map", "map": string})
 
     try:
         while True:
