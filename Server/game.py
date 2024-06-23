@@ -394,6 +394,19 @@ class GameManager:
                             },
                         },
                     },
+                    {
+                        "name": "changeMusic",
+                        "description": "This function will change the music of the game on unity for the players.  You will only call this when theres a flow change. You only have two options, either 'Battle' or 'Calm'. Only when either the players enter a fight , or when they leave a fight.",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {
+                                "category": {
+                                    "type": "string",
+                                    "description": "You will return a category of the music that should be played. So when the players are leaving a fight you will return the string : Calm like this. Calm. Then if the players enter a fight, you will return the string Battle. Battle. Only these two words are valid.",
+                                }
+                            },
+                        },
+                    },
                 ],
                 function_call="auto",
             )
@@ -428,6 +441,17 @@ class GameManager:
                         self.getPlayer(functionargs["name"]).hitPoints
                         - functionargs["damage"]
                     )
+                game_history.append(
+                    {
+                        "role": "function",
+                        "name": functionname,
+                        "content": info,
+                    }
+                )
+            elif functionname == "changeMusic":
+                self._connections.send_unity(
+                    {"type": "music", "message": functionargs["input"]}
+                )
                 game_history.append(
                     {
                         "role": "function",
