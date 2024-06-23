@@ -328,6 +328,9 @@ class GameManager:
     def gameTurn(self, input):
         gptboolean = True
         game_history = json.load(open("./game_info/5e-SRD-DM-History.json"))["messages"]
+        players = json.load(open("./game_info/5e-SRD-Players.json"))
+        ennemies = json.load(open("./game_info/5e-SRD-Enemies.json"))
+
         game_history.append(
             {
                 "role": "user",
@@ -339,11 +342,18 @@ class GameManager:
         while gptboolean:
             response = openAiClient.chat.completions.create(
                 model="gpt-4o",
-                messages=game_history,
+                response_format={"type": "json_object"},
+                messages=(
+                    {
+                        "role": "system",
+                        "content": f"this is the game_history :{game_history}. You will be in control of the gameflow each turn. You will receive and input in this format: Player1 has used Fireball on you. You can use whatever function you want. You will have access to all the players: {players} and all the ennemies: {ennemies}. You will return the json of the person affected with the effects in use.",
+                    },
+                    {"role": "user", "content": "{input} make this work"},
+                ),
                 functions=[
                     {
                         "name": "getInfoDND",
-                        "description": "This function allows you to search a key term and receive a json with all the info pertaining to the search term in DND. For example, if you search fireball, it will search for the spell fireball and give the stat sheet for fire ball.",
+                        "description": "This function allows you to search a key term and receive a json with all the info pertaining to the search term in DND. For example, if you search fireball, it will search for the spell fireball and give the stat sheet for fire ball. You",
                         "parameters": {
                             "type": "object",
                             "properties": {
@@ -351,6 +361,23 @@ class GameManager:
                                     "type": "string",
                                     "description": "Search term that will be the base for our search.",
                                 }
+                            },
+                        },
+                    },
+                    {
+                        "name": "DealDamage",
+                        "description": "This function allows you to deal damage to an ennemy or a player. You will have to search the damage output first.",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {
+                                "damage": {
+                                    "type": "int",
+                                    "description": "The damage it will deal based on your research",
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "Name of the player so he can receive damage",
+                                },
                             },
                         },
                     },
@@ -394,6 +421,20 @@ class GameManager:
                     }
                 )
                 gptboolean = False
+
+            elif functionname == "dealDamage":
+                if self.getPlayer(functionargs["name"]):
+                    (
+                        self.getPlayer(functionargs["name"]).hitPoints
+                        - functionargs["damage"]
+                    )
+                game_history.append(
+                    {
+                        "role": "function",
+                        "name": functionname,
+                        "content": info,
+                    }
+                )
             counter += 1
         f = open("./game_info/5e-SRD-DM-History.json", "w")
         json.dump(game_history, f, indent=6)
