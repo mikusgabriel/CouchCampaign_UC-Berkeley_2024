@@ -14,6 +14,8 @@ public class ServerConnection : MonoBehaviour
     [SerializeField]
     private CameraManager cameraManager;
     [SerializeField]
+    private Camera cam;
+    [SerializeField]
     private MapRenderer mapRenderer;
 
     [Header("Things")]
@@ -93,8 +95,9 @@ public class ServerConnection : MonoBehaviour
                     GameObject character = Instantiate(characterPrefab, mapRenderer.GetWorldPosition(data.x, data.y), Quaternion.identity, transform);
                     character.name = data.name;
                     UseMeshyMesh script = character.GetComponent<UseMeshyMesh>();
+                    script.cam = cam;
                     script.SetMesh(data.meshyId);
-                    script.setPlayerName(character.name);
+                    script.SetPlayerName(character.name);
                     break;
                 }
             case "move":
@@ -195,6 +198,7 @@ public class ServerConnection : MonoBehaviour
     private class MapJsonData : JsonData
     {
         public string map;
+
     }
 
     [Serializable]
