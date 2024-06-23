@@ -53,7 +53,7 @@ public class DiceSpawner : MonoBehaviour
             if (go)
             {
                 go = false;
-                cameraManager.SetZoomLevel(2.5f);
+                cameraManager.SetZoomLevel(2f);
                 cameraManager.Follow(dice);
             }
         }
