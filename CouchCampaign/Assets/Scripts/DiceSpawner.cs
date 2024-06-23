@@ -24,14 +24,16 @@ public class DiceSpawner : MonoBehaviour
     private GameObject d20;
 
 
-    public async Task<int> RollDice(int[] diceArray)
+    public async Task<int> RollDice(int[] diceArray, CameraManager cameraManager)
     {
         var diceRollScripts = new List<DiceRoll>(diceArray.Length);
         var mapWidth = map.GetComponent<Terrain>().terrainData.size.x;
         var mapLength = map.GetComponent<Terrain>().terrainData.size.z;
 
+        bool go = true;
         foreach (var diceValue in diceArray)
         {
+
             var dicePosX = Random.Range(mapWidth / 4, mapWidth / 2);
             var dicePosY = Random.Range(0.5f, 0.75f);
             var dicePosZ = Random.Range(mapLength / 8, mapLength / 6);
@@ -46,6 +48,13 @@ public class DiceSpawner : MonoBehaviour
             dice.GetComponent<Rigidbody>().AddForce(new Vector3(0, -1f, 5f), ForceMode.Impulse);
 
             diceRollScripts.Add(dice.GetComponent<DiceRoll>());
+
+            if (go)
+            {
+                go = false;
+                cameraManager.SetZoomLevel(2.5f);
+                cameraManager.Follow(dice);
+            }
         }
 
         int diceMoving = diceArray.Length;
