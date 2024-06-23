@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.TextCore.Text;
 
 
@@ -88,52 +89,40 @@ public class ServerConnection : MonoBehaviour
                     mapRenderer.LoadMapFromFile(byteArray);
                     mapRenderer.SetTerrainHeight();
 
-                    foreach (Ennemy ennemy in data.ennemies)
+                    bool go = true;
+                    foreach (Entity entity in data.entities)
                     {
-                        GameObject monster = Instantiate(characterPrefab,mapRenderer.GetWorldPosition(ennemy.x,ennemy.y),Quaternion.identity,transform);
-                        monster.name = ennemy.name;
-                        UseMeshyMesh script = monster.GetComponent<UseMeshyMesh>();
-                        script.cam = cam;
-                        script.SetMesh(ennemy.meshyId);
-                        script.SetPlayerName(monster.name);
-                        break;
-                    }
-                    foreach (Npc npc in data.npcs)
-                    {
-                        GameObject nonPlayer = Instantiate(characterPrefab, mapRenderer.GetWorldPosition(npc.x, npc.y), Quaternion.identity, transform);
-                        nonPlayer.name = npc.name;
-                        UseMeshyMesh script = nonPlayer.GetComponent<UseMeshyMesh>();
-                        script.cam = cam;
-                        script.SetMesh(npc.meshyId);
-                        script.SetPlayerName(nonPlayer.name);
-                        break;
+                        Transform tr = transform.Find(entity.name);
 
-                    }
-                    foreach (Player player in data.players)
-                    {
-                        print(player.name);
-                        Transform character = transform.Find(player.name);
-
-                        if  (character == null)
+                        if (tr != null)
                         {
-                            GameObject playerObject = Instantiate(characterPrefab, mapRenderer.GetWorldPosition(player.x, player.y), Quaternion.identity, transform);
-                            playerObject.name = player.name;
-                            UseMeshyMesh script = playerObject.GetComponent<UseMeshyMesh>();
-                            script.cam = cam;
-                            script.SetMesh(player.meshyId);
-                            script.SetPlayerName(playerObject.name);
+                            tr.position = mapRenderer.GetWorldPosition(entity.x, entity.y);
 
-
+                            if (go)
+                            {
+                                go = false;
+                                cameraManager.Follow(tr.gameObject);
+                                await Task.Delay(500);
+                                cameraManager.SetZoomLevel(1.5f);
+                            }
+                            continue;
                         }
-                        else
+
+                        GameObject playerObject = Instantiate(characterPrefab, mapRenderer.GetWorldPosition(entity.x, entity.y), Quaternion.identity, transform);
+                        playerObject.name = entity.name;
+
+                        UseMeshyMesh script = playerObject.GetComponent<UseMeshyMesh>();
+                        script.SetMesh(entity.meshyId);
+
+                        if (go)
                         {
-                            character.position = mapRenderer.GetWorldPosition(player.x, player.y);
+                            go = false;
+                            cameraManager.Follow(playerObject);
+                            await Task.Delay(500);
+                            cameraManager.SetZoomLevel(1.5f);
                         }
-                            
-                        
-                     
-
                     }
+
 
                     break;
                 }
@@ -141,16 +130,23 @@ public class ServerConnection : MonoBehaviour
             case "spawn":
                 {
                     var data = JsonUtility.FromJson<SpawnJsonData>(message);
-                    GameObject character = Instantiate(characterPrefab, mapRenderer.GetWorldPosition(data.x, data.y), Quaternion.identity, transform);
-                    character.name = data.name;
-                    UseMeshyMesh script = character.GetComponent<UseMeshyMesh>();
-                    script.cam = cam;
-                    script.SetMesh(data.meshyId);
-                    script.SetPlayerName(character.name);
+                    Transform tr = transform.Find(data.name);
 
-                    cameraManager.Follow(character);
+                    if (tr != null)
+                    {
+                        tr.position = mapRenderer.GetWorldPosition(data.x, data.y);
+                        break;
+                    }
+
+                    GameObject playerObject = Instantiate(characterPrefab, mapRenderer.GetWorldPosition(data.x, data.y), Quaternion.identity, transform);
+                    playerObject.name = data.name;
+
+                    UseMeshyMesh script = playerObject.GetComponent<UseMeshyMesh>();
+                    script.SetMesh(data.meshyId);
+
+                    cameraManager.Follow(playerObject);
                     await Task.Delay(500);
-                    cameraManager.SetZoomLevel(3f);
+                    cameraManager.SetZoomLevel(1f);
                     break;
                 }
 
@@ -176,10 +172,25 @@ public class ServerConnection : MonoBehaviour
                     break;
                 }
 
+            case "zoom":
+                {
+                    var data = JsonUtility.FromJson<ZoomJsonData>(message);
+                    GameObject character = transform.Find(data.name).gameObject;
+
+
+                    await Task.Delay(1000);
+                    cameraManager.SetZoomLevel(1.5f);
+                    await Task.Delay(500);
+                    cameraManager.Follow(character);
+                    await Task.Delay(500);
+                    cameraManager.SetZoomLevel(1f);
+                    break;
+                }
+
             case "roll":
                 {
                     var data = JsonUtility.FromJson<RollJsonData>(message);
-                    var total = await diceSpawner.RollDice(data.values);
+                    var total = await diceSpawner.RollDice(data.values, cameraManager);
                     SendString("{\"type\": \"roll\", \"value\": " + total + "}");
                     break;
                 }
@@ -237,6 +248,12 @@ public class ServerConnection : MonoBehaviour
     }
 
     [Serializable]
+    private class ZoomJsonData : JsonData
+    {
+        public string name;
+    }
+
+    [Serializable]
     private class Coordinate
     {
         public int x;
@@ -254,16 +271,11 @@ public class ServerConnection : MonoBehaviour
     {
         public string map;
 
-        public Ennemy[] ennemies;
-        public Npc[] npcs;
-        public Player[] players;
-
-
-
+        public Entity[] entities;
     }
 
     [Serializable]
-    private class Ennemy : JsonData
+    private class Entity : JsonData
     {
         public string name;
 
@@ -273,32 +285,6 @@ public class ServerConnection : MonoBehaviour
         public int y;
 
     }
-
-    [Serializable]
-    private class Npc : JsonData
-    {
-        public string name;
-
-        public string meshyId;
-
-        public int x;
-        public int y;
-
-    }
-
-    [Serializable]
-    private class Player : JsonData
-    {
-        public string name;
-
-        public string meshyId;
-
-
-        public int x;
-        public int y;
-
-    }
-
 
 
     [Serializable]

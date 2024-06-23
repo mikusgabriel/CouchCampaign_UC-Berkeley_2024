@@ -79,15 +79,17 @@ async def player_play_POST(body: PlayerPlayBody, req: Request):
     match body.action:
         case "move":
             await gameManager.movePlayer(userId, body.x, body.y)
-            positions = gameManager.currentMap[0]
             player = gameManager.getPlayer(userId)
-            for i in range(1, len(positions)):
-                if (
-                    positions[i][0] == player.position()["x"]
-                    and positions[i][1] == player.position()["y"]
-                ):
-                    gameManager.setMap(gameManager.currentMap["mapid"])
-                    break
+            areas = gameManager.currentMap["spawningarea"][1:]
+            for t in areas:
+                for pos in t:
+                    if (
+                        pos[1] == player.position()["x"]
+                        and pos[0] == player.position()["y"]
+                    ):
+                        gameManager.setMap(gameManager.currentMap["mapid"])
+                        break
+
             await gameManager.nextTurn()
 
         case "talk":
@@ -95,7 +97,9 @@ async def player_play_POST(body: PlayerPlayBody, req: Request):
             gameManager.currentTurn["messages"] = []
 
         case "fight":
-            # await gameManager.movePlayer(userId, body.x, body.y)
+            gameManager.gameTurn(
+                f"The player {gameManager.getPlayer()} attacked {body.name}"
+            )
             pass
 
     await gameManager.broadcast_client_info()
@@ -247,7 +251,8 @@ async def ws_WEBSOCKET_UNITY(ws: WebSocket):
             print("Unity WebSocket received:", data)
 
             if data["type"] == "roll":
-                gameManager.lastRollResult = data["value"]
+                if gameManager.whenDiceRoll is not None:
+                    gameManager.whenDiceRoll(data["value"])
 
     except WebSocketDisconnect:
         connections.set_unity(None)
