@@ -20,7 +20,7 @@ public class UseMeshyMesh : MonoBehaviour
     public async void SetMesh(string meshId)
     {
         if (await LoadModel(meshId)) return;
-        Debug.Log(meshyApiKey);
+       
         StartCoroutine(MakeRequest(meshyApiKey, meshId));
     }
 

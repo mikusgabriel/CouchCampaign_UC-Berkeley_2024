@@ -124,10 +124,15 @@ async def ws_WEBSOCKET(ws: WebSocket):
         print("websocket disconnected")
 
 
+
+import map
+
 @app.websocket("/ws/unity")
 async def ws_WEBSOCKET_UNITY(ws: WebSocket):
     await ws.accept()
     connections.set_unity(ws)
+    string = map.image_to_string("map.png")
+    await ws.send_json({"type": "map", "map": string })
 
     try:
         while True:

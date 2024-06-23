@@ -1,20 +1,28 @@
 using MikeSchweitzer.WebSocket;
 using System;
-using System.Threading.Tasks;
 using UnityEngine;
-using CandyCoded;
-using CandyCoded.env;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+
 
 
 public class ServerConnection : MonoBehaviour
 {
-
     [SerializeField]
     private WebSocketConnection websocket;
-
     [SerializeField]
     private CameraManager cameraManager;
-    
+    [SerializeField]
+    private MapRenderer mapRenderer;
+
+    [Header("Things")]
+    [SerializeField]
+    private TextToSpeech textToSpeech;
+    [SerializeField]
+    private MusicPlayer musicPlayer;
+    [SerializeField]
+    private DiceSpawner diceSpawner;
 
 
 
@@ -40,8 +48,8 @@ public class ServerConnection : MonoBehaviour
         while (websocket.TryRemoveIncomingMessage(out string message))
         {
             var json = JsonUtility.FromJson<JsonData>(message);
-            
-            OnMessageReceived(json.type,message);
+
+            OnMessageReceived(json.type, message);
         }
     }
 
@@ -62,16 +70,59 @@ public class ServerConnection : MonoBehaviour
     }
 
 
-    //Dunno why there is an error here
     async void OnMessageReceived(string type, string message)
     {
         Debug.Log(message);
 
         switch (type)
         {
-            case "type":
+            case "map":
                 {
-                    Debug.Log("here?"); break;
+                    Debug.Log("here");
+                    var data = JsonUtility.FromJson<MapJsonData>(message);
+
+                    byte[] byteArray = Convert.FromBase64String(data.map);
+
+                    mapRenderer.LoadMapFromFile(byteArray);
+                    mapRenderer.SetTerrainHeight();
+                    break;
+                }
+            case "spawn":
+                {
+                    var data = JsonUtility.FromJson<SpawnJsonData>(message);
+                    GameObject character = Instantiate(characterPrefab, mapRenderer.GetWorldPosition(data.x, data.y), Quaternion.identity, transform);
+                    character.name = data.name;
+                    UseMeshyMesh script = character.GetComponent<UseMeshyMesh>();
+                    script.SetMesh(data.meshyId);
+                    break;
+                }
+            case "move":
+                {
+                    var data = JsonUtility.FromJson<MoveJsonData>(message);
+                    GameObject character = transform.Find(data.name).gameObject;
+
+
+                    cameraManager.Follow(character);
+                    await Task.Delay(500);
+                    cameraManager.SetZoomLevel(1.5f);
+                    await Task.Delay(500);
+
+                    for (int i = 0; i < data.positions.Count; i++)
+                    {
+                        var tcs = new TaskCompletionSource<object>();
+                        LeanTween.move(character, mapRenderer.GetWorldPosition((int)data.positions[i].x, (int)data.positions[i].y), 0.8f)
+                            .setEaseOutExpo()
+                            .setOnComplete(tcs.SetResult);
+                        await tcs.Task;
+                    }
+                    break;
+                }
+            case "roll":
+                {
+                    var data = JsonUtility.FromJson<RollJsonData>(message);
+                    var total = diceSpawner.RollDice(data.values);
+                    SendString("{'type': 'roll', 'value': {" + total + "}}");
+                    break;
                 }
 
 
@@ -97,5 +148,40 @@ public class ServerConnection : MonoBehaviour
     private class JsonData
     {
         public string type;
+    }
+
+    [Serializable]
+    private class SpawnJsonData : JsonData
+    {
+        public string name;
+        public int x;
+        public int y;
+        public string meshyId;
+    }
+
+    [Serializable]
+    private class MoveJsonData : JsonData
+    {
+        public string name;
+        public List<Coordinate> positions;
+    }
+
+    [Serializable]
+    private class Coordinate
+    {
+        public int x;
+        public int y;
+    }
+
+    [Serializable]
+    private class RollJsonData : JsonData
+    {
+        public int[] values;
+    }
+
+    [Serializable]
+    private class MapJsonData : JsonData
+    {
+        public string map;
     }
 }
