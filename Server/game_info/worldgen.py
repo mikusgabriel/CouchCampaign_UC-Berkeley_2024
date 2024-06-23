@@ -227,7 +227,7 @@ def getMeshID(promptInput):
         "art_style": "realistic",
         "negative_prompt": "low quality, low resolution, low poly, ugly, has a base, has no feet, not dnd style",
     }
-    apiKey = "msy_fIpmhBKgcBzOef383zGyxNIpFjUPdOWtAH5O"
+    apiKey = "msy_HMkhArlvcFGHPne1NIACphRLNrcqRy3rZYP6"
     headers = {"Authorization": f"Bearer {apiKey}"}
 
     response = requests.post(
@@ -361,7 +361,7 @@ def generateWorld():
     npclist = []
     enemylist = []
     map_node_list = []
-    nodeAmount = 4
+    nodeAmount = 3
 
     for i in range(nodeAmount):
         map_node_list.append(generateNode())
@@ -476,7 +476,7 @@ def generateNPC(prompt):
                 
     result = json.loads(result)
     result["meshyid"] = None
-    # result["meshyid"] = getMeshID(result["appearance"])
+    result["meshyid"] = getMeshID(result["appearance"])
 
     return result
                 
