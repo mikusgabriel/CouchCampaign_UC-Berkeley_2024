@@ -47,6 +47,7 @@ public class ServerConnection : MonoBehaviour
     {
         while (websocket.TryRemoveIncomingMessage(out string message))
         {
+            print(message);
             var json = JsonUtility.FromJson<JsonData>(message);
 
             OnMessageReceived(json.type, message);
@@ -78,7 +79,6 @@ public class ServerConnection : MonoBehaviour
         {
             case "map":
                 {
-                    Debug.Log("here");
                     var data = JsonUtility.FromJson<MapJsonData>(message);
 
                     byte[] byteArray = Convert.FromBase64String(data.map);
@@ -120,15 +120,12 @@ public class ServerConnection : MonoBehaviour
             case "roll":
                 {
                     var data = JsonUtility.FromJson<RollJsonData>(message);
-                    var total = diceSpawner.RollDice(data.values);
-                    SendString("{'type': 'roll', 'value': {" + total + "}}");
+                    var total = await diceSpawner.RollDice(data.values);
+                    SendString("{\"type\": \"roll\", \"value\": " + total + "}");
                     break;
                 }
-
-
         }
     }
-
 
 
     public void SendJson(object obj)
