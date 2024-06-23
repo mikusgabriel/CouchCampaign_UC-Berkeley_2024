@@ -1,21 +1,206 @@
 [
      {
-          "name": "Elara Windwhisper",
-          "appearance": "Elara is a striking figure with weathered skin that speaks of years spent in the harsh mountain environment. Her piercing blue eyes mirror the glaciers of the north, and her long, silver hair flows like a river of moonlight down her back. She is garbed in practical but elegantly crafted robes adorned with symbols of nature and ancient runes. A wooden staff, intricately carved with etchings of wind patterns and mystical symbols, serves as both her walking aid and magical focus.",
-          "description": "Elara Windwhisper, known as the Mountain Hermit, is a reclusive druid who has lived in seclusion among the towering peaks of the Everpeak Highlands for decades. She is a guardian of nature and possesses profound wisdom about the ancient ruins scattered across the highlands. While she often prefers solitude, she is not unfriendly to those who cross her path, often aiding lost travelers or those seeking knowledge about the mystical landscape.",
+          "name": "Elara Windrider",
+          "appearance": "Elara is a young half-elf with piercing green eyes and long, flowing silver hair. She is clad in lightweight, dark green leather armor that allows for flexibility and ease of movement. She carries a sleek, curved bow and has a quiver of arrows strapped to her back.",
+          "description": "Elara Windrider is a skilled ranger known for her mastery of navigating the treacherous terrains of the Rockspine Escapade. She is fiercely protective of her homeland and acts as a guide for those who seek passage through the mountains. However, she can be wary of outsiders and quick to judge anyone she perceives as a threat.",
           "meshyid": null,
-          "class": "Druid",
+          "class": "Ranger",
           "level": 5,
-          "type": "non-enemy",
-          "race": "Elf",
+          "type": "npc",
+          "race": "Half-Elf",
+          "mapid": "glipacmpaf",
           "alignment": "Neutral Good",
           "attributes": {
                "STR": 10,
-               "DEX": 14,
+               "DEX": 16,
                "CON": 12,
+               "INT": 12,
+               "WIS": 14,
+               "CHA": 10
+          },
+          "skills": {
+               "Acrobatics": {
+                    "proficient": true,
+                    "bonus": 3
+               },
+               "Animal Handling": {
+                    "proficient": true,
+                    "bonus": 4
+               },
+               "Arcana": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Athletics": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Deception": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "History": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Insight": {
+                    "proficient": true,
+                    "bonus": 4
+               },
+               "Intimidation": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Investigation": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Medicine": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Nature": {
+                    "proficient": true,
+                    "bonus": 3
+               },
+               "Perception": {
+                    "proficient": true,
+                    "bonus": 5
+               },
+               "Performance": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Persuasion": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Religion": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Sleight of Hand": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Stealth": {
+                    "proficient": true,
+                    "bonus": 5
+               },
+               "Survival": {
+                    "proficient": true,
+                    "bonus": 5
+               }
+          },
+          "savingThrows": {
+               "strength": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "dexterity": {
+                    "proficient": true,
+                    "bonus": 3
+               },
+               "constitution": {
+                    "proficient": false,
+                    "bonus": 1
+               },
+               "intelligence": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "wisdom": {
+                    "proficient": true,
+                    "bonus": 2
+               },
+               "charisma": {
+                    "proficient": false,
+                    "bonus": 0
+               }
+          },
+          "armorClass": 15,
+          "hitPoints": {
+               "current": 38,
+               "maximum": 38,
+               "temporary": 0
+          },
+          "hitDice": {
+               "total": "5d10",
+               "current": "5d10"
+          },
+          "speed": 35,
+          "proficiencies": {
+               "weapons": [
+                    "Longbow",
+                    "Shortsword"
+               ],
+               "tools": [
+                    "Herbalism Kit",
+                    "Navigator's Tools"
+               ],
+               "languages": [
+                    "Common",
+                    "Elvish",
+                    "Sylvan"
+               ]
+          },
+          "equipment": [
+               "Longbow",
+               "Quiver of Arrows",
+               "Shortsword",
+               "Explorer's Pack",
+               "Cloak of Protection"
+          ],
+          "features": [
+               "Favored Enemy: Beasts",
+               "Natural Explorer: Mountains",
+               "Primeval Awareness"
+          ],
+          "spells": {
+               "level1": [
+                    "Hunter's Mark",
+                    "Cure Wounds",
+                    "Goodberry"
+               ],
+               "level2": [
+                    "Pass Without Trace",
+                    "Lesser Restoration"
+               ],
+               "level3": [],
+               "level4": [],
+               "level5": [],
+               "level6": [],
+               "level7": [],
+               "level8": [],
+               "level9": []
+          },
+          "location": {
+               "x": 22,
+               "y": 57
+          },
+          "notes": "Elara can be a valuable ally to those who convince her of their noble intentions. She is familiar with every nook and cranny of the Rockspine Escapade and can provide valuable survival tips.",
+          "relationships": {
+               "Thorin Stormwatch": "A trusted companion and fellow ranger who often accompanies Elara on her patrols."
+          }
+     },
+     {
+          "name": "Elder Druid Elara",
+          "appearance": "Elara is an elderly elf with long silver hair braided with vines and leaves. Her piercing green eyes shine with wisdom and a deep connection to nature. She is often seen wearing robes made from natural fibers and adorned with small bones, feathers, and stones.",
+          "description": "Elder Druid Elara serves as the guardian of Aeloria Heights, a sprawling wilderness nestled high in the mountains. Known for her deep wisdom and mastery over nature, Elara safeguards the delicate balance of this volatile environment.",
+          "meshyid": null,
+          "class": "Druid",
+          "level": 12,
+          "type": "NPC",
+          "race": "Elf",
+          "mapid": "sssjmstfmn",
+          "alignment": "Neutral Good",
+          "attributes": {
+               "STR": 12,
+               "DEX": 14,
+               "CON": 13,
                "INT": 16,
-               "WIS": 18,
-               "CHA": 14
+               "WIS": 20,
+               "CHA": 15
           },
           "skills": {
                "Acrobatics": {
@@ -24,15 +209,15 @@
                },
                "Animal Handling": {
                     "proficient": true,
-                    "bonus": 7
+                    "bonus": 8
                },
                "Arcana": {
-                    "proficient": true,
-                    "bonus": 6
+                    "proficient": false,
+                    "bonus": 3
                },
                "Athletics": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": 1
                },
                "Deception": {
                     "proficient": false,
@@ -55,16 +240,16 @@
                     "bonus": 3
                },
                "Medicine": {
-                    "proficient": true,
-                    "bonus": 8
+                    "proficient": false,
+                    "bonus": 3
                },
                "Nature": {
                     "proficient": true,
-                    "bonus": 6
+                    "bonus": 8
                },
                "Perception": {
-                    "proficient": false,
-                    "bonus": 4
+                    "proficient": true,
+                    "bonus": 8
                },
                "Performance": {
                     "proficient": false,
@@ -94,7 +279,7 @@
           "savingThrows": {
                "strength": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": 1
                },
                "dexterity": {
                     "proficient": false,
@@ -105,19 +290,433 @@
                     "bonus": 1
                },
                "intelligence": {
-                    "proficient": false,
-                    "bonus": 3
+                    "proficient": true,
+                    "bonus": 7
                },
                "wisdom": {
                     "proficient": true,
-                    "bonus": 8
+                    "bonus": 10
                },
                "charisma": {
-                    "proficient": true,
-                    "bonus": 4
+                    "proficient": false,
+                    "bonus": 2
                }
           },
-          "armorClass": 13,
+          "armorClass": 15,
+          "hitPoints": {
+               "current": 0,
+               "maximum": 68,
+               "temporary": 0
+          },
+          "hitDice": {
+               "total": "12d8",
+               "current": "12d8"
+          },
+          "speed": 30,
+          "proficiencies": {
+               "weapons": [
+                    "Clubs",
+                    "Daggers",
+                    "Javelins",
+                    "Maces",
+                    "Quarterstaffs",
+                    "Sickles",
+                    "Spears",
+                    "Darts",
+                    "Slings",
+                    "Scimitars"
+               ],
+               "tools": [
+                    "Herbalism Kit"
+               ],
+               "languages": [
+                    "Common",
+                    "Druidic",
+                    "Elvish",
+                    "Sylvan"
+               ]
+          },
+          "equipment": [
+               {
+                    "name": "Leather Armor",
+                    "quantity": 1
+               },
+               {
+                    "name": "Scimitar",
+                    "quantity": 1
+               },
+               {
+                    "name": "Druidic Focus",
+                    "quantity": 1
+               },
+               {
+                    "name": "Explorer's Pack",
+                    "quantity": 1
+               }
+          ],
+          "features": [
+               "Ritual Casting",
+               "Wild Shape",
+               "Spellcasting Focus"
+          ],
+          "spells": {
+               "level1": [
+                    "Cure Wounds",
+                    "Entangle",
+                    "Faerie Fire",
+                    "Thunderwave"
+               ],
+               "level2": [
+                    "Barkskin",
+                    "Flame Blade",
+                    "Moonbeam",
+                    "Pass without Trace"
+               ],
+               "level3": [
+                    "Call Lightning",
+                    "Dispel Magic",
+                    "Plant Growth",
+                    "Sleet Storm"
+               ],
+               "level4": [
+                    "Conjure Woodland Beings",
+                    "Dominate Beast",
+                    "Ice Storm"
+               ],
+               "level5": [
+                    "Commune with Nature",
+                    "Mass Cure Wounds",
+                    "Tree Stride"
+               ],
+               "level6": [
+                    "Heroes\u2019 Feast",
+                    "Sunbeam"
+               ],
+               "level7": [
+                    "Fire Storm"
+               ],
+               "level8": [
+                    "Earthquake"
+               ],
+               "level9": [
+                    "Foresight"
+               ]
+          },
+          "location": {
+               "x": 19,
+               "y": 72
+          },
+          "notes": "Elder Druid Elara is known for her wisdom and connection to the ancient spirits of the mountains. She serves as both protector and healer in the wild, often communing with the flora and fauna of Aeloria Heights.",
+          "relationships": {
+               "King Thalor": "An old ally and friend, King Thalor often seeks Elara's counsel on matters concerning the natural world.",
+               "The Rangers of Aeloria": "They see Elara as their mentor and guide in the ways of the wild."
+          }
+     },
+     {
+          "name": "Garrick the Mountaineer",
+          "appearance": "Garrick is a towering figure with a muscular build, weathered skin, and a stern expression. His long, dark hair is tied back in a ponytail, and his eyes are as blue and piercing as the highland skies. He wears a mix of rugged leather and fur garments, reinforced with metal plates for added protection. A massive, intricately carved hunting knife hangs from his belt.",
+          "description": "A seasoned explorer and guardian of the Azurecrest Highlands, Garrick is an enigmatic figure with a wealth of knowledge about the ancient ruins and hidden dangers of the area. He is both a skilled warrior and an adept survivalist, well-equipped to face the many challenges of this treacherous terrain.",
+          "meshyid": null,
+          "class": "Ranger",
+          "level": 5,
+          "type": "NPC",
+          "race": "Human",
+          "mapid": "sfmluvgicv",
+          "alignment": "Neutral Good",
+          "attributes": {
+               "STR": 15,
+               "DEX": 14,
+               "CON": 13,
+               "INT": 12,
+               "WIS": 15,
+               "CHA": 10
+          },
+          "skills": {
+               "Acrobatics": {
+                    "proficient": true,
+                    "bonus": 2
+               },
+               "Animal Handling": {
+                    "proficient": true,
+                    "bonus": 2
+               },
+               "Arcana": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Athletics": {
+                    "proficient": true,
+                    "bonus": 4
+               },
+               "Deception": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "History": {
+                    "proficient": true,
+                    "bonus": 1
+               },
+               "Insight": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Intimidation": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Investigation": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Medicine": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Nature": {
+                    "proficient": true,
+                    "bonus": 1
+               },
+               "Perception": {
+                    "proficient": true,
+                    "bonus": 2
+               },
+               "Performance": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Persuasion": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Religion": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Sleight of Hand": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Stealth": {
+                    "proficient": true,
+                    "bonus": 2
+               },
+               "Survival": {
+                    "proficient": true,
+                    "bonus": 2
+               }
+          },
+          "savingThrows": {
+               "strength": {
+                    "proficient": true,
+                    "bonus": 2
+               },
+               "dexterity": {
+                    "proficient": true,
+                    "bonus": 2
+               },
+               "constitution": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "intelligence": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "wisdom": {
+                    "proficient": true,
+                    "bonus": 2
+               },
+               "charisma": {
+                    "proficient": false,
+                    "bonus": 0
+               }
+          },
+          "armorClass": 15,
+          "hitPoints": {
+               "current": 45,
+               "maximum": 45,
+               "temporary": 0
+          },
+          "hitDice": {
+               "total": "5d10",
+               "current": "5d10"
+          },
+          "speed": 30,
+          "proficiencies": {
+               "weapons": [
+                    "Longbow",
+                    "Shortsword",
+                    "Dagger"
+               ],
+               "tools": [
+                    "Herbalism Kit"
+               ],
+               "languages": [
+                    "Common",
+                    "Elvish"
+               ]
+          },
+          "equipment": [
+               "Longbow",
+               "Quiver of Arrows",
+               "Shortsword",
+               "Hunting Knife",
+               "Rope (50 feet)",
+               "Climbing Gear",
+               "Herbalism Kit"
+          ],
+          "features": [
+               "Favored Enemy",
+               "Natural Explorer",
+               "Primeval Awareness",
+               "Extra Attack"
+          ],
+          "spells": {
+               "level1": [
+                    "Cure Wounds",
+                    "Hunter's Mark"
+               ],
+               "level2": [
+                    "Pass Without Trace",
+                    "Locate Animals or Plants"
+               ],
+               "level3": [],
+               "level4": [],
+               "level5": [],
+               "level6": [],
+               "level7": [],
+               "level8": [],
+               "level9": []
+          },
+          "location": {
+               "x": 37,
+               "y": 77
+          },
+          "notes": "Garrick is known to guide adventurers through the treacherous paths of the Azurecrest Highlands, sometimes in exchange for rare herbs or ancient texts.",
+          "relationships": {
+               "name_of_character": "description of relationship"
+          }
+     },
+     {
+          "name": "Elara, the Enigmatic Alchemist",
+          "appearance": "Elara is a tall, slender half-elf with long, flowing silver hair and piercing emerald eyes. She wears a patchwork robe adorned with various pouches and vials filled with colorful liquids. Her fingers are stained with alchemical substances, and a faint scent of herbs and chemicals accompanies her.",
+          "description": "Elara is a skilled alchemist with a mysterious past. She is known for her proficiency in creating powerful potions and elixirs that can both heal and harm. Elara possesses deep knowledge of ancient alchemical texts and practices. Despite her somewhat aloof and enigmatic demeanor, she is fiercely protective of the creatures and plants that inhabit the Crystal Serpent's Respite.",
+          "meshyid": null,
+          "class": "Alchemist",
+          "level": 5,
+          "type": "NPC",
+          "race": "Half-Elf",
+          "mapid": "llneyfuftd",
+          "alignment": "Neutral",
+          "attributes": {
+               "STR": 8,
+               "DEX": 14,
+               "CON": 12,
+               "INT": 18,
+               "WIS": 16,
+               "CHA": 10
+          },
+          "skills": {
+               "Acrobatics": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Animal Handling": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Arcana": {
+                    "proficient": true,
+                    "bonus": 6
+               },
+               "Athletics": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Deception": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "History": {
+                    "proficient": true,
+                    "bonus": 6
+               },
+               "Insight": {
+                    "proficient": true,
+                    "bonus": 5
+               },
+               "Intimidation": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Investigation": {
+                    "proficient": true,
+                    "bonus": 6
+               },
+               "Medicine": {
+                    "proficient": true,
+                    "bonus": 5
+               },
+               "Nature": {
+                    "proficient": true,
+                    "bonus": 6
+               },
+               "Perception": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Performance": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Persuasion": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Religion": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Sleight of Hand": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Stealth": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Survival": {
+                    "proficient": false,
+                    "bonus": 0
+               }
+          },
+          "savingThrows": {
+               "strength": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "dexterity": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "constitution": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "intelligence": {
+                    "proficient": true,
+                    "bonus": 6
+               },
+               "wisdom": {
+                    "proficient": true,
+                    "bonus": 5
+               },
+               "charisma": {
+                    "proficient": false,
+                    "bonus": 0
+               }
+          },
+          "armorClass": 12,
           "hitPoints": {
                "current": 38,
                "maximum": 38,
@@ -130,66 +729,57 @@
           "speed": 30,
           "proficiencies": {
                "weapons": [
-                    "Club",
-                    "Dagger",
-                    "Dart",
-                    "Javelin",
-                    "Mace",
-                    "Quarterstaff",
-                    "Scimitar",
-                    "Sickle",
-                    "Sling",
-                    "Spear"
+                    "Daggers",
+                    "Slings",
+                    "Crossbows"
                ],
                "tools": [
+                    "Alchemist's Supplies",
                     "Herbalism Kit"
                ],
                "languages": [
                     "Common",
                     "Elvish",
-                    "Druidic",
                     "Sylvan"
                ]
           },
           "equipment": [
-               "Wooden Staff",
-               "Druidic Focus",
-               "Herbalism Kit",
-               "Explorer's Pack",
-               "Robes"
+               "Alchemist's supplies",
+               "Herbalism kit",
+               "Various potions and elixirs",
+               "Leather-bound alchemical journal"
           ],
           "features": [
-               "Wild Shape (2 uses)",
-               "Wild Companion (Summon familiar as a spirit of nature)",
-               "Druidic Circles (Circle of the Land - Mountain)"
+               "Alchemical Savant",
+               "Transmuter's Stone",
+               "Restorative Reagents"
           ],
           "spells": {
                "level1": [
-                    "Cure Wounds",
                     "Detect Magic",
-                    "Entangle"
+                    "Healing Word",
+                    "Identify"
                ],
                "level2": [
-                    "Barkskin",
-                    "Spike Growth",
-                    "Moonbeam"
+                    "Lesser Restoration",
+                    "Enhance Ability"
                ],
                "level3": [
-                    "Call Lightning",
-                    "Plant Growth"
+                    "Dispel Magic",
+                    "Revivify"
                ],
-               "level4": [
-                    "Dominate Beast"
-               ],
-               "level5": [
-                    "Commune with Nature"
-               ]
+               "level4": [],
+               "level5": [],
+               "level6": [],
+               "level7": [],
+               "level8": [],
+               "level9": []
           },
           "location": {
-               "x": 29,
-               "y": 39
+               "x": 3,
+               "y": 53
           },
-          "notes": "Elara is a known source of knowledge about the ancient ruins in the Everpeak Highlands. She is also considered a protector of the natural world in the area, often clashing with those who seek to exploit the land.",
+          "notes": "",
           "relationships": {
                "name_of_character": "description of relationship"
           }
