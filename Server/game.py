@@ -2,6 +2,7 @@ import asyncio
 import json
 import math
 import time
+import map
 
 import numpy as np
 import requests
@@ -218,6 +219,28 @@ class GameManager:
                 self.currentEnemies.append(enemy)
                 if len(self.currentEnemies) == len(self.currentMap["enemies"]):
                     break
+
+        for i, player in enumerate(self._players.values()):
+            player.move(self.currentMap["spawningarea"][0][0][i])
+
+        imgBytes = map.image_to_string(m["map"])
+        await self._connections.send_unity(
+            {
+                "type": "map",
+                "map": imgBytes,
+                "ennemies": [
+                    {"name": e.name, "meshyid": e.meshyid, **e.location}
+                    for e in self.currentEnemies
+                ],
+                "npcs": [
+                    {"name": i.name, "meshyid": i.meshyid, **i.location}
+                    for i in self.currentNpcs
+                ],
+                "players": [
+                    {"name": b.name, **b.position()} for b in self._players.values()
+                ],
+            }
+        )
 
     async def update_unity(self):
         pass
