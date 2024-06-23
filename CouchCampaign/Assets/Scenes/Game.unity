@@ -12201,7 +12201,6 @@ GameObject:
   - component: {fileID: 1685296290}
   - component: {fileID: 1685296289}
   - component: {fileID: 1685296291}
-  - component: {fileID: 1685296292}
   - component: {fileID: 1685296293}
   - component: {fileID: 1685296295}
   - component: {fileID: 1685296294}
@@ -12226,6 +12225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   websocket: {fileID: 1685296291}
   cameraManager: {fileID: 921827076}
+  cam: {fileID: 2061063044}
   mapRenderer: {fileID: 535156192}
   textToSpeech: {fileID: 1685296294}
   musicPlayer: {fileID: 1685296295}
@@ -12257,18 +12257,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8969cf4d966774d589bb80b1dcfc2337, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1685296292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1685296288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35e354a13daf56344b1b67f461998665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1685296293

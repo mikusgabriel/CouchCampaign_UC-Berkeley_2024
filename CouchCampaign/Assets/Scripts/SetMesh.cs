@@ -13,6 +13,8 @@ using Newtonsoft.Json;
 
 public class UseMeshyMesh : MonoBehaviour
 {
+    public Camera cam;
+
     [Header("Text Mesh Pro")]
     [SerializeField]
     private TextMeshPro tmpName;
@@ -33,14 +35,23 @@ public class UseMeshyMesh : MonoBehaviour
         StartCoroutine(MakeRequest(meshyApiKey, meshId));
     }
 
-    public void setPlayerName(string playerName)
+    public void SetPlayerName(string playerName)
     {
         tmpName.text = playerName;
     }
 
-    public void setPlayerHealth(string playerHealth)
+    public void SetPlayerHealth(string playerHealth)
     {
         tmpHealth.text = playerHealth;
+    }
+
+    void Update()
+    {
+        if (cam != null)
+        {
+            tmpHealth.transform.LookAt(cam.transform);
+            tmpName.transform.LookAt(cam.transform);
+        }
     }
 
 

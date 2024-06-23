@@ -6,7 +6,7 @@ import base64
 def image_to_string(image_path):
     try:
         # Open the image file
-        with Image.open(image_path) as img:
+        with Image.open("game_info/" + image_path) as img:
             # Convert image to RGB mode if it's not already in RGB
             img = img.convert("RGB")
 
@@ -24,5 +24,3 @@ def image_to_string(image_path):
     except IOError as e:
         print(f"Error converting image to string: {e}")
         return None
-
-
