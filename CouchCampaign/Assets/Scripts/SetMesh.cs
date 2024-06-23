@@ -6,11 +6,26 @@ using GLTFast;
 using System.Threading.Tasks;
 using System.IO;
 using CandyCoded.env;
+using TMPro;
+using Newtonsoft.Json;
+using UnityEngine.XR;
+using GLTFast.Schema;
+using System.Collections.Generic;
+using OpenCover.Framework.Model;
 
 
 public class UseMeshyMesh : MonoBehaviour
 {
     public GltfImport gltf;
+
+    [SerializeField]
+    public TextMeshPro textMeshProPlayerName;
+    [SerializeField]
+    public TextMeshPro textMeshProPlayerHealth;
+
+    public string playerName;
+
+    public int health;
 
 
     private readonly string meshyApiKey = env.variables["MeshyKey"];
@@ -22,6 +37,25 @@ public class UseMeshyMesh : MonoBehaviour
         if (await LoadModel(meshId)) return;
        
         StartCoroutine(MakeRequest(meshyApiKey, meshId));
+    }
+
+    public void setPlayerName(string playerName)
+
+    {
+        textMeshProPlayerName.text = playerName;
+
+    }
+
+    public void setPlayerHealth(string playerHealth)
+
+    {
+        textMeshProPlayerHealth.text = playerHealth;
+
+    }
+    class MeshyRefine
+    {
+        public string mode = "refine";
+        public string preview_task_id;
     }
 
 
@@ -99,6 +133,7 @@ public class UseMeshyMesh : MonoBehaviour
         var mesh = transform.Find("Mesh1");
         var renderer = mesh.GetComponent<MeshRenderer>();
         mesh.localPosition = new Vector3(mesh.localPosition.x, renderer.localBounds.size.y / 2 + 0.15f, mesh.localPosition.z);
+        StartCoroutine(RefineModel(meshId));
         return true;
     }
 
@@ -111,7 +146,38 @@ public class UseMeshyMesh : MonoBehaviour
         var mesh = transform.Find("Mesh1");
         var renderer = mesh.GetComponent<MeshRenderer>();
         mesh.localPosition = new Vector3(mesh.localPosition.x, renderer.localBounds.size.y / 2 + 0.15f, mesh.localPosition.z);
+
+        
         return true;
+    }
+
+    [Obsolete]
+    IEnumerator RefineModel(string meshID)
+    {
+        
+        string url = "https://api.meshy.ai/v2/text-to-3d/" + meshID;
+        var glbUrl = "";
+        MeshyRefine meshy = new MeshyRefine();
+        meshy.preview_task_id = meshID;
+        string stringjson = JsonConvert.SerializeObject(meshy);
+
+
+        using UnityWebRequest webRequest = UnityWebRequest.Post(url, stringjson);
+        webRequest.SetRequestHeader("Authorization", $"Bearer {meshyApiKey}");
+        
+
+
+        yield return webRequest.SendWebRequest();
+        if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
+               webRequest.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError($"Meshy GLB download error: {webRequest.error}");
+            yield break;
+        }
+
+        SaveModel(meshID, webRequest.downloadHandler.data);
+        _ = AddModel(webRequest.downloadHandler.data);
+
     }
 
 

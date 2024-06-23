@@ -1,1 +1,197 @@
-[]
+[
+     {
+          "name": "Elara Windwhisper",
+          "appearance": "Elara is a striking figure with weathered skin that speaks of years spent in the harsh mountain environment. Her piercing blue eyes mirror the glaciers of the north, and her long, silver hair flows like a river of moonlight down her back. She is garbed in practical but elegantly crafted robes adorned with symbols of nature and ancient runes. A wooden staff, intricately carved with etchings of wind patterns and mystical symbols, serves as both her walking aid and magical focus.",
+          "description": "Elara Windwhisper, known as the Mountain Hermit, is a reclusive druid who has lived in seclusion among the towering peaks of the Everpeak Highlands for decades. She is a guardian of nature and possesses profound wisdom about the ancient ruins scattered across the highlands. While she often prefers solitude, she is not unfriendly to those who cross her path, often aiding lost travelers or those seeking knowledge about the mystical landscape.",
+          "meshyid": null,
+          "class": "Druid",
+          "level": 5,
+          "type": "non-enemy",
+          "race": "Elf",
+          "alignment": "Neutral Good",
+          "attributes": {
+               "STR": 10,
+               "DEX": 14,
+               "CON": 12,
+               "INT": 16,
+               "WIS": 18,
+               "CHA": 14
+          },
+          "skills": {
+               "Acrobatics": {
+                    "proficient": false,
+                    "bonus": 2
+               },
+               "Animal Handling": {
+                    "proficient": true,
+                    "bonus": 7
+               },
+               "Arcana": {
+                    "proficient": true,
+                    "bonus": 6
+               },
+               "Athletics": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Deception": {
+                    "proficient": false,
+                    "bonus": 2
+               },
+               "History": {
+                    "proficient": false,
+                    "bonus": 3
+               },
+               "Insight": {
+                    "proficient": true,
+                    "bonus": 8
+               },
+               "Intimidation": {
+                    "proficient": false,
+                    "bonus": 2
+               },
+               "Investigation": {
+                    "proficient": false,
+                    "bonus": 3
+               },
+               "Medicine": {
+                    "proficient": true,
+                    "bonus": 8
+               },
+               "Nature": {
+                    "proficient": true,
+                    "bonus": 6
+               },
+               "Perception": {
+                    "proficient": false,
+                    "bonus": 4
+               },
+               "Performance": {
+                    "proficient": false,
+                    "bonus": 2
+               },
+               "Persuasion": {
+                    "proficient": false,
+                    "bonus": 2
+               },
+               "Religion": {
+                    "proficient": false,
+                    "bonus": 3
+               },
+               "Sleight of Hand": {
+                    "proficient": false,
+                    "bonus": 2
+               },
+               "Stealth": {
+                    "proficient": false,
+                    "bonus": 2
+               },
+               "Survival": {
+                    "proficient": true,
+                    "bonus": 8
+               }
+          },
+          "savingThrows": {
+               "strength": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "dexterity": {
+                    "proficient": false,
+                    "bonus": 2
+               },
+               "constitution": {
+                    "proficient": false,
+                    "bonus": 1
+               },
+               "intelligence": {
+                    "proficient": false,
+                    "bonus": 3
+               },
+               "wisdom": {
+                    "proficient": true,
+                    "bonus": 8
+               },
+               "charisma": {
+                    "proficient": true,
+                    "bonus": 4
+               }
+          },
+          "armorClass": 13,
+          "hitPoints": {
+               "current": 38,
+               "maximum": 38,
+               "temporary": 0
+          },
+          "hitDice": {
+               "total": "5d8",
+               "current": "5d8"
+          },
+          "speed": 30,
+          "proficiencies": {
+               "weapons": [
+                    "Club",
+                    "Dagger",
+                    "Dart",
+                    "Javelin",
+                    "Mace",
+                    "Quarterstaff",
+                    "Scimitar",
+                    "Sickle",
+                    "Sling",
+                    "Spear"
+               ],
+               "tools": [
+                    "Herbalism Kit"
+               ],
+               "languages": [
+                    "Common",
+                    "Elvish",
+                    "Druidic",
+                    "Sylvan"
+               ]
+          },
+          "equipment": [
+               "Wooden Staff",
+               "Druidic Focus",
+               "Herbalism Kit",
+               "Explorer's Pack",
+               "Robes"
+          ],
+          "features": [
+               "Wild Shape (2 uses)",
+               "Wild Companion (Summon familiar as a spirit of nature)",
+               "Druidic Circles (Circle of the Land - Mountain)"
+          ],
+          "spells": {
+               "level1": [
+                    "Cure Wounds",
+                    "Detect Magic",
+                    "Entangle"
+               ],
+               "level2": [
+                    "Barkskin",
+                    "Spike Growth",
+                    "Moonbeam"
+               ],
+               "level3": [
+                    "Call Lightning",
+                    "Plant Growth"
+               ],
+               "level4": [
+                    "Dominate Beast"
+               ],
+               "level5": [
+                    "Commune with Nature"
+               ]
+          },
+          "location": {
+               "x": 29,
+               "y": 39
+          },
+          "notes": "Elara is a known source of knowledge about the ancient ruins in the Everpeak Highlands. She is also considered a protector of the natural world in the area, often clashing with those who seek to exploit the land.",
+          "relationships": {
+               "name_of_character": "description of relationship"
+          }
+     }
+]

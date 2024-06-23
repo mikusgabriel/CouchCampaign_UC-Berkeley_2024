@@ -487,3 +487,80 @@ You can request any info you want about the game state, so do not hesistate to c
                 return response.text
 
         return "No info found. You may invent."
+
+    ##NOT SURE IF  GET PLAYER RETURNS PLAYER NAME AND GOTTA ADD getNPC()
+    def talkToNPC(self, gameManager, input: str, hume_analysis: list):
+        with open("5e-SRD-Npcs.json") as file:
+            NPC_json = json.load(file)[gameManager.currentTurn.getNPC()]
+        with open("5e-SRD-History.json") as file:
+            History_json = json.load(file)
+
+        with open("5e-SRD-Players.json") as file:
+            Player_json = json.load(file)[self.currentTurn.getPlayer()]
+
+        gameManager.currentTurn["messages"].append(
+            {
+                "role": "user",
+                "content": f"analysis:{hume_analysis}, Player_message: {input}",
+            }
+        )
+
+        function = {
+            "name": "stop_conversation",
+            "description": "This function allows you to stop the conversation with the player if you feel like the emotion analysis is a threat to your life as a NPC. It could also be that you are annoyed by the players precense and you wish to be left alone. Everything is based on what the player says and their emotion analysis.",
+        }
+
+        response = openAiClient.chat.completions.create(
+            model="gpt-4o",
+            functions=function,
+            messages=[
+                {
+                    "role": "system",
+                    "content": f"""You are {NPC_json}. Realize that you are very important to the story. You are talking to {Player_json} and you will contribute to the existing story. The story is as follows: {History_json}. You also have the player emotion analysis to influence your responses, Example: ["happiness" : 0.08122], the more the analysis is closer to 1 the more the emotion is present. For example, if the player analysis results in an angry emotion, you will be colder to the player.""",
+                },
+                *gameManager.currentTurn["messages"],
+            ],
+        )
+
+        answer = response.choices[0].message.function_call
+        functionname = answer.name
+
+        if functionname == "stop_conversation":
+            gameManager.nextTurn()
+
+        gameManager.currentTurn["messages"].append(response.choices[0].message)
+        return response.choices[0].message.content
+
+    def createCharacter1(self, class_chosen: str, race_chosen: str):
+        choice = {
+            "choices": [
+                {
+                    "name": " ",
+                    "choice-count": 0,
+                    "options": [{"name": "", "description": ""}],
+                }
+            ]
+        }
+
+        jsonFormat = choice
+        class_info = self.getInfoDND(class_chosen)
+        race_info = self.getInfoDND(race_chosen)
+        response = openAiClient.chat.completions.create(
+            model="gpt-4o",
+            response_format={"type": "json_object"},
+            messages=[
+                {
+                    "role": "system",
+                    "content": f"""You are a helpful assistant designed to give a json on what the player can choose as
+                    options for the character. The format is json: {jsonFormat}. """,
+                },
+                {
+                    "role": "user",
+                    "content": f"The two jsons you must consider are {class_info} and {race_info}",
+                },
+            ],
+        )
+
+        choices = response.choices[0].message.content
+
+        return choices

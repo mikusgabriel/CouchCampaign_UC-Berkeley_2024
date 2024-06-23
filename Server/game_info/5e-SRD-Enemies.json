@@ -1,21 +1,21 @@
 [
      {
-          "name": "Giant Eagle",
-          "appearance": "The Giant Eagle is an impressive sight with its vast wingspan extending over 15 feet. Its feathers shimmer with a golden hue, and its eyes are a piercing yellow that seem to see into the soul. Sharp talons and a strong, hooked beak make it a fearsome predator. It exudes a sense of majesty and nobility.",
-          "description": "A Giant Eagle is a noble creature that speaks its own language and understands speech in the Common tongue. A mated pair of Giant Eagles typically has up to four eggs or young in their nest. They are guardians of the skies above the Azure Crag Wilds, keeping a watchful eye over the rugged terrain.",
+          "name": "Griffon",
+          "appearance": "A majestic creature with the body of a lion and the head, wings, and talons of an eagle. The griffon's fur is a mix of tawny golds and deep browns, while its feathers shimmer with hues of gold and white. Its eyes are piercing, always on the lookout, reflecting its sharp intelligence.",
+          "description": "Griffons are formidable creatures found in the Everpeak Highlands. They are often seen soaring high above the cliffs and valleys, keeping a vigilant watch over their territory. Despite their fearsome appearance, they are known to be loyal companions to those who earn their trust.",
           "meshyid": null,
-          "class": "",
-          "level": 1,
-          "type": "beast",
-          "race": "Giant Eagle",
-          "alignment": "neutral good",
+          "class": "Monstrosity",
+          "level": 2,
+          "type": "Monstrosity",
+          "race": "",
+          "alignment": "Unaligned",
           "attributes": {
-               "STR": 16,
-               "DEX": 17,
-               "CON": 13,
-               "INT": 8,
-               "WIS": 14,
-               "CHA": 10
+               "STR": 18,
+               "DEX": 15,
+               "CON": 16,
+               "INT": 2,
+               "WIS": 13,
+               "CHA": 8
           },
           "skills": {
                "Acrobatics": {
@@ -64,7 +64,7 @@
                },
                "Perception": {
                     "proficient": true,
-                    "bonus": 4
+                    "bonus": 7
                },
                "Performance": {
                     "proficient": false,
@@ -117,29 +117,25 @@
                     "bonus": 0
                }
           },
-          "armorClass": 13,
+          "armorClass": 12,
           "hitPoints": {
-               "current": 26,
-               "maximum": 26,
+               "current": 59,
+               "maximum": 59,
                "temporary": 0
           },
           "hitDice": {
-               "total": "4d10",
-               "current": "4d10"
+               "total": "7d10",
+               "current": "7d10"
           },
-          "speed": 10,
+          "speed": 30,
           "proficiencies": {
                "weapons": [],
                "tools": [],
-               "languages": [
-                    "Giant Eagle",
-                    "understands Common",
-                    "Auran (can't speak)"
-               ]
+               "languages": []
           },
           "equipment": [],
           "features": [
-               "Keen Sight: The eagle has advantage on Wisdom (Perception) checks that rely on sight."
+               "Keen Sight: The griffon has advantage on Wisdom (Perception) checks that rely on sight."
           ],
           "spells": {
                "level1": [],
@@ -153,42 +149,42 @@
                "level9": []
           },
           "location": {
-               "x": 3,
-               "y": 38
+               "x": 17,
+               "y": 63
           },
           "notes": "",
           "relationships": {}
      },
      {
-          "name": "Mountain Troll",
-          "appearance": "A hulking, fearsome creature with mottled gray-blue skin that blends with the rugged terrain of the Azure Crag Wilds. Its eyes glow a faint yellow, reflecting the primal and chaotic nature within.",
-          "description": "Mountain Trolls are formidable giants dwelling in the harsh environment of the Azure Crag Wilds. With their powerful limbs and razor-sharp claws, they navigate the treacherous landscape with ease, preying upon the unwary who venture too far into their domain.",
+          "name": "Yeti",
+          "appearance": "The Yeti is a hulking, fur-covered creature with an imposing stature, standing close to 10 feet tall. Its fur is thick and white, blending seamlessly with the snowy landscape. Its eyes are a piercing blue that seem to almost glow in the dark, and its hands are large, with sharp claws capable of rending through flesh and armor alike.",
+          "description": "The Yeti, a legendary creature in the Everpeak Highlands, is often spoken of in hushed tones around campfires. Rumored to be the guardian of the mystical ruins scattered across the highlands, the Yeti is both feared and revered. It is said that the Yeti has lived for centuries, its longevity granted by the ancient magics of the ruins it protects. Despite its ferocious appearance, some believe that the Yeti may have a deeper connection to the ancient civilization that once thrived in these highlands.",
           "meshyid": null,
-          "class": "",
-          "level": 5,
-          "type": "giant",
-          "race": "Troll",
-          "alignment": "chaotic evil",
+          "class": "Beast",
+          "level": 7,
+          "type": "Enemy",
+          "race": "Monstrosity",
+          "alignment": "Neutral",
           "attributes": {
                "STR": 18,
-               "DEX": 13,
-               "CON": 20,
+               "DEX": 12,
+               "CON": 16,
                "INT": 7,
-               "WIS": 9,
+               "WIS": 12,
                "CHA": 7
           },
           "skills": {
                "Acrobatics": {
                     "proficient": false,
-                    "bonus": 1
+                    "bonus": 0
                },
                "Animal Handling": {
                     "proficient": false,
-                    "bonus": -1
+                    "bonus": 0
                },
                "Arcana": {
                     "proficient": false,
-                    "bonus": -2
+                    "bonus": 0
                },
                "Athletics": {
                     "proficient": true,
@@ -196,55 +192,55 @@
                },
                "Deception": {
                     "proficient": false,
-                    "bonus": -2
+                    "bonus": 0
                },
                "History": {
                     "proficient": false,
-                    "bonus": -2
+                    "bonus": 0
                },
                "Insight": {
                     "proficient": false,
-                    "bonus": -1
+                    "bonus": 0
                },
                "Intimidation": {
-                    "proficient": false,
-                    "bonus": -2
+                    "proficient": true,
+                    "bonus": 3
                },
                "Investigation": {
                     "proficient": false,
-                    "bonus": -2
+                    "bonus": 0
                },
                "Medicine": {
                     "proficient": false,
-                    "bonus": -1
+                    "bonus": 0
                },
                "Nature": {
                     "proficient": false,
-                    "bonus": -2
+                    "bonus": 0
                },
                "Perception": {
                     "proficient": true,
-                    "bonus": 2
+                    "bonus": 4
                },
                "Performance": {
                     "proficient": false,
-                    "bonus": -2
+                    "bonus": 0
                },
                "Persuasion": {
                     "proficient": false,
-                    "bonus": -2
+                    "bonus": 0
                },
                "Religion": {
                     "proficient": false,
-                    "bonus": -2
+                    "bonus": 0
                },
                "Sleight of Hand": {
                     "proficient": false,
-                    "bonus": 1
+                    "bonus": 0
                },
                "Stealth": {
-                    "proficient": false,
-                    "bonus": 1
+                    "proficient": true,
+                    "bonus": 3
                },
                "Survival": {
                     "proficient": false,
@@ -253,15 +249,15 @@
           },
           "savingThrows": {
                "strength": {
-                    "proficient": false,
-                    "bonus": 4
+                    "proficient": true,
+                    "bonus": 7
                },
                "dexterity": {
                     "proficient": false,
                     "bonus": 1
                },
                "constitution": {
-                    "proficient": false,
+                    "proficient": true,
                     "bonus": 5
                },
                "intelligence": {
@@ -270,41 +266,40 @@
                },
                "wisdom": {
                     "proficient": false,
-                    "bonus": -1
+                    "bonus": 1
                },
                "charisma": {
                     "proficient": false,
                     "bonus": -2
                }
           },
-          "armorClass": 15,
+          "armorClass": 12,
           "hitPoints": {
                "current": 84,
                "maximum": 84,
                "temporary": 0
           },
           "hitDice": {
-               "total": "8d10",
-               "current": "8d10"
+               "total": "7d10+21",
+               "current": "7d10"
           },
-          "speed": 30,
+          "speed": 40,
           "proficiencies": {
-               "weapons": [],
+               "weapons": [
+                    "Claws",
+                    "Fists"
+               ],
                "tools": [],
                "languages": [
-                    "Giant"
+                    "Yeti",
+                    "Basic understanding of Ancient Ruin Glyphs"
                ]
           },
           "equipment": [],
           "features": [
-               {
-                    "name": "Keen Smell",
-                    "desc": "The troll has advantage on Wisdom (Perception) checks that rely on smell."
-               },
-               {
-                    "name": "Regeneration",
-                    "desc": "The troll regains 10 hit points at the start of its turn. If the troll takes acid or fire damage, this trait doesn't function at the start of the troll's next turn. The troll dies only if it starts its turn with 0 hit points and doesn't regenerate."
-               }
+               "Snow Camouflage: The Yeti has advantage on Dexterity (Stealth) checks made to hide in snowy terrain.",
+               "Fear of Fire: The Yeti is frightened while within 30 feet of an open flame.",
+               "Keen Smell: The Yeti has advantage on Wisdom (Perception) checks that rely on smell."
           ],
           "spells": {
                "level1": [],
@@ -318,10 +313,10 @@
                "level9": []
           },
           "location": {
-               "x": 18,
-               "y": 21
+               "x": 37,
+               "y": 15
           },
-          "notes": "Mountain Trolls are particularly dangerous in the Azure Crag Wilds due to their ability to blend into the rough, stony terrain. Travelers are advised to stay vigilant and avoid lingering near their known habitats.",
+          "notes": "The Yeti can be a formidable guardian or an unexpected ally, depending on how the players interact with it. Knowledge of the ancient civilization's glyphs may help in communicating with the Yeti.",
           "relationships": {}
      }
 ]
