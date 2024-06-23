@@ -152,7 +152,7 @@ export default function HomePage() {
 
                 {error && <p className="text-destructive">An error occured while sending your choice</p>}
 
-                <div className="flex flex-col gap-1 pt-4">
+                <div className="flex flex-col gap-1 pt-8 mx-auto">
                     {playData.abilities.map((a) => (
                         <div key={a.name}>
                             <span>{a.name}</span> · <span className="text-sm">{a.description}</span>
