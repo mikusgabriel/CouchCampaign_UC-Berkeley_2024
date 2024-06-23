@@ -1,13 +1,13 @@
 [
      {
           "name": "Giant Eagle",
-          "appearance": "A large, majestic bird with a wingspan that stretches nearly 20 feet. Its feathers are a mix of browns and whites, giving it an appearance of rugged beauty. The eyes of the giant eagle are sharp and piercing, able to spot the smallest movements from great distances.",
-          "description": "A giant eagle is a noble creature that speaks its own language and understands speech in the Common tongue. A mated pair of giant eagles typically has up to four eggs or young in their nest (treated as normal eagles). They inhabit the towering rocky formations and narrow paths of the Stonecrag Uprising, where the cold and howling winds prevail.",
+          "appearance": "The Giant Eagle is an impressive sight with its vast wingspan extending over 15 feet. Its feathers shimmer with a golden hue, and its eyes are a piercing yellow that seem to see into the soul. Sharp talons and a strong, hooked beak make it a fearsome predator. It exudes a sense of majesty and nobility.",
+          "description": "A Giant Eagle is a noble creature that speaks its own language and understands speech in the Common tongue. A mated pair of Giant Eagles typically has up to four eggs or young in their nest. They are guardians of the skies above the Azure Crag Wilds, keeping a watchful eye over the rugged terrain.",
           "meshyid": null,
           "class": "",
           "level": 1,
           "type": "beast",
-          "race": "",
+          "race": "Giant Eagle",
           "alignment": "neutral good",
           "attributes": {
                "STR": 16,
@@ -125,7 +125,7 @@
           },
           "hitDice": {
                "total": "4d10",
-               "current": "4d10+4"
+               "current": "4d10"
           },
           "speed": 10,
           "proficiencies": {
@@ -133,15 +133,13 @@
                "tools": [],
                "languages": [
                     "Giant Eagle",
-                    "understands Common and Auran but can't speak"
+                    "understands Common",
+                    "Auran (can't speak)"
                ]
           },
           "equipment": [],
           "features": [
-               {
-                    "name": "Keen Sight",
-                    "description": "The eagle has advantage on Wisdom (Perception) checks that rely on sight."
-               }
+               "Keen Sight: The eagle has advantage on Wisdom (Perception) checks that rely on sight."
           ],
           "spells": {
                "level1": [],
@@ -155,100 +153,98 @@
                "level9": []
           },
           "location": {
-               "x": 37,
-               "y": 75
+               "x": 3,
+               "y": 38
           },
-          "notes": "The Giant Eagles of the Stonecrag Uprising are known to have formed an unsteady truce with a local group of mountaineers, leading to occasional aerial rides for travelers seeking safe passage through the treacherous terrain.",
-          "relationships": {
-               "name_of_character": "description of relationship"
-          }
+          "notes": "",
+          "relationships": {}
      },
      {
-          "name": "Stone Giant",
-          "appearance": "A towering creature, nearly 18 feet tall, with a muscular and rugged build. Its skin is made of tough, granite-like rock and is covered in dust and small patches of hardened moss. The giant's eyes are a deep, earthy brown, and its facial features are weathered and stoic.",
-          "description": "Stone Giants are formidable adversaries, known for their immense strength and rock-solid resilience. Living in the harsh terrain of the Stonecrag Uprising, they are masters of their environment, using the rocky landscape to their advantage in both hunting and combat.",
+          "name": "Mountain Troll",
+          "appearance": "A hulking, fearsome creature with mottled gray-blue skin that blends with the rugged terrain of the Azure Crag Wilds. Its eyes glow a faint yellow, reflecting the primal and chaotic nature within.",
+          "description": "Mountain Trolls are formidable giants dwelling in the harsh environment of the Azure Crag Wilds. With their powerful limbs and razor-sharp claws, they navigate the treacherous landscape with ease, preying upon the unwary who venture too far into their domain.",
           "meshyid": null,
           "class": "",
-          "level": 1,
-          "type": "enemy",
-          "race": "giant",
-          "alignment": "neutral",
+          "level": 5,
+          "type": "giant",
+          "race": "Troll",
+          "alignment": "chaotic evil",
           "attributes": {
-               "STR": 23,
-               "DEX": 15,
+               "STR": 18,
+               "DEX": 13,
                "CON": 20,
-               "INT": 10,
-               "WIS": 12,
-               "CHA": 9
+               "INT": 7,
+               "WIS": 9,
+               "CHA": 7
           },
           "skills": {
                "Acrobatics": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": 1
                },
                "Animal Handling": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": -1
                },
                "Arcana": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": -2
                },
                "Athletics": {
                     "proficient": true,
-                    "bonus": 12
+                    "bonus": 7
                },
                "Deception": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": -2
                },
                "History": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": -2
                },
                "Insight": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": -1
                },
                "Intimidation": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": -2
                },
                "Investigation": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": -2
                },
                "Medicine": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": -1
                },
                "Nature": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": -2
                },
                "Perception": {
                     "proficient": true,
-                    "bonus": 4
+                    "bonus": 2
                },
                "Performance": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": -2
                },
                "Persuasion": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": -2
                },
                "Religion": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": -2
                },
                "Sleight of Hand": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": 1
                },
                "Stealth": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": 1
                },
                "Survival": {
                     "proficient": false,
@@ -258,40 +254,40 @@
           "savingThrows": {
                "strength": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": 4
                },
                "dexterity": {
-                    "proficient": true,
-                    "bonus": 5
+                    "proficient": false,
+                    "bonus": 1
                },
                "constitution": {
-                    "proficient": true,
-                    "bonus": 8
+                    "proficient": false,
+                    "bonus": 5
                },
                "intelligence": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": -2
                },
                "wisdom": {
-                    "proficient": true,
-                    "bonus": 4
+                    "proficient": false,
+                    "bonus": -1
                },
                "charisma": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": -2
                }
           },
-          "armorClass": 17,
+          "armorClass": 15,
           "hitPoints": {
-               "current": 126,
-               "maximum": 126,
+               "current": 84,
+               "maximum": 84,
                "temporary": 0
           },
           "hitDice": {
-               "total": "11d12",
-               "current": "11d12"
+               "total": "8d10",
+               "current": "8d10"
           },
-          "speed": 40,
+          "speed": 30,
           "proficiencies": {
                "weapons": [],
                "tools": [],
@@ -302,8 +298,12 @@
           "equipment": [],
           "features": [
                {
-                    "name": "Stone Camouflage",
-                    "desc": "The giant has advantage on Dexterity (Stealth) checks made to hide in rocky terrain."
+                    "name": "Keen Smell",
+                    "desc": "The troll has advantage on Wisdom (Perception) checks that rely on smell."
+               },
+               {
+                    "name": "Regeneration",
+                    "desc": "The troll regains 10 hit points at the start of its turn. If the troll takes acid or fire damage, this trait doesn't function at the start of the troll's next turn. The troll dies only if it starts its turn with 0 hit points and doesn't regenerate."
                }
           ],
           "spells": {
@@ -318,12 +318,10 @@
                "level9": []
           },
           "location": {
-               "x": 15,
-               "y": 56
+               "x": 18,
+               "y": 21
           },
-          "notes": "The Stone Giant inhabits the treacherous terrain of the Stonecrag Uprising.",
-          "relationships": {
-               "name_of_character": "description of relationship"
-          }
+          "notes": "Mountain Trolls are particularly dangerous in the Azure Crag Wilds due to their ability to blend into the rough, stony terrain. Travelers are advised to stay vigilant and avoid lingering near their known habitats.",
+          "relationships": {}
      }
 ]

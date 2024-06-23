@@ -182,6 +182,7 @@ def getMeshID(promptInput):
     response.raise_for_status()
     print(response.json())
     return response.json()["result"]
+
 def getInfoDND(info_wanted: str):
     
     possible_endpoints = "ability-scores, alignments, backgrounds, classes, conditions, damage-types, equipment, equipment-categories, feats, features, languages, magic-items, magic-schools, monsters, proficiencies, races, rule-sections, rules, skills, spells, subclasses, subraces, traits, weapon-properties"
@@ -221,6 +222,7 @@ def getInfoDND(info_wanted: str):
           return response.text
 
     return "no info found. You may invent"
+
 class mapNode():
     def __init__(self, maptype, biome):
         self.name = ""
@@ -231,12 +233,13 @@ class mapNode():
         self.enemies = []
         self.connectingnodes = []
         self.imageurl = ""
-        self.enemylocations = []
-        self.npclocations = []
+        self.enemytiles = []
+        self.npctiles = []
         self.entrancenumbers = []
         self.entrancelocations = []
+        self.entracenumbers = []
         
-client = OpenAI(api_key="sk-proj-tPjJIsHbtteRlWHQCsG7T3BlbkFJYK8Ncd28BwLmLD7hxKuT")
+client = OpenAI(api_key="sk-proj-xklwW5mYFK3AmpTgxULaT3BlbkFJP1pz572EVZqPRXxcNIy6")
 places = [
     "Random Encounter",
     # "Town",
@@ -287,7 +290,7 @@ def generateDescription(biome_chosen, type_chosen, name,connecting_nodes):
             {
                 "role": "system",
                 "content": f"You are to choose an original description for the following area type and biome given and name and connecting areas. You will also decide the npcs and enemies in that location, Upto 2, and just the names of them no extra description. The enemies can be like Wood woad, wood woad, wood woad, owlbear. Try to use dnd enemies for random encours like owlbear, wood woad, etc."
-                           f"I will give you the type. The JSON format is the following {jsonFormat}. If its a random encounter. use classic dnd enemies. If there are no npcs or enemies, you must leave the list empty"},
+                           f"I will give you the type. The JSON format is the following {jsonFormat}. If its a random encounter. use classic dnd enemies. If there are no npcs or enemies, you must leave the list empty. Please make the enemies coherant, you can even add multiple enemies together."},
             {
                 "role": "user",
                 "content": f"Description for {type_chosen} in the {biome_chosen} type called {name} knowing its connected to the following areas: {connecting_nodes}",
@@ -296,16 +299,16 @@ def generateDescription(biome_chosen, type_chosen, name,connecting_nodes):
     )
     description, npcs, enemies = json.loads(response.choices[0].message.content)["description"], json.loads(response.choices[0].message.content)["npcs"], json.loads(response.choices[0].message.content)["enemies"]
     return description, npcs, enemies
-def generateWorld():
 
+def generateWorld():
+    totalentrances = []
     npclist = []
     enemylist = []
     map_connection_dict = {}
     map_node_list = []
+    currentnodecount = 0
 
-    nodecount = 3
     images = os.listdir("./maps")
-
 
     # Initialize the first node
     first_biome = random.choice(biomes)
@@ -315,47 +318,27 @@ def generateWorld():
     first_node.name = first_name
     index = random.randint(0,len(images)-1)
     first_node.mapurl = "./maps/" + images[index]
-    images.pop(index)
+    # images.pop(index)
 
     map_node_list.append(first_node)
 
-
-    # # Generate subsequent nodes and connections
-    # for i in range(1, nodecount):
-    #     previous_node = map_node_list[-1]
-    #     # Determine biome and type for the new node
-    #     if random.random() < 0.75 and previous_node.connectingnodes:
-    #         next_biome = previous_node.connectingnodes[0].biome
-    #     else:
-    #         next_biome = random.choice(biomes)
-
-    #     next_type = random.choice([pt for pt in places if pt != previous_node.maptype])
-
-    #     # Create and add the new node
-    #     next_name = generateNodeName(next_biome, next_type)
-    #     new_node = mapNode(next_type, next_biome)
-    #     new_node.name = next_name
-    #     map_node_list.append(new_node)
-
-    #     # Establish connection between nodes
-    #     previous_node.connectingnodes.append(new_node)
-    #     new_node.connectingnodes.append(previous_node)
-
-    #     # Example of connecting nodes in map_connection_dict
-    #     map_connection_dict[i + 1] = [i + 1]  # Adjust as per your logic for connecting nodes
-
-    # Generate descriptions for each node after establishing all connections
-    for node in map_node_list:
-        node.description, node.npcs, node.enemies = generateDescription(node.biome, node.maptype, node.name, node.connectingnodes)
-        enemytiles, npctiles, spawnableareas = mapEnemyNpcPlacements(node.mapurl,len(node.npcs),len(node.enemies))
+    first_node.description, first_node.npcs, first_node.enemies = generateDescription(first_node.biome, first_node.maptype, first_node.name, first_node.connectingnodes)
+    first_node.enemytiles, first_node.npctiles, first_node.entrancelocations = mapEnemyNpcPlacements(first_node.mapurl,len(first_node.npcs),len(first_node.enemies))
     counter = 0
-    for names in node.npcs:
-        npclist.append(generateNPC(f"Name: {names}. Area they are in: {node.description} and located at {npctiles[counter]}"))
+    for names in first_node.npcs:
+        npclist.append(generateNPC(f"Name: {names}. Area they are in: {first_node.description} and located at {first_node.npctiles[counter]}"))
         counter +=1
     counter = 0
-    for names in node.enemies:
-        enemylist.append(generateNPC(f"Name: {names}. Area they are in: {node.description} and located at {enemytiles[counter]}"))
+    for names in first_node.enemies:
+        print(counter)
+        enemylist.append(generateNPC(f"Name: {names}. Area they are in: {first_node.description} and located at {first_node.enemytiles[counter]}"))
         counter+=1
+
+    prevnodecount = 0
+    currentnodecount = len(first_node.entrancelocations)
+    first_node.entrancenumbers = [x + prevnodecount for x in range(1, currentnodecount + 1)]
+    print(first_node.entrancenumbers)
+
     completemap = []
     # Output or further processing
     for node in map_node_list:
@@ -367,8 +350,10 @@ def generateWorld():
             "connections": [n.name for n in node.connectingnodes],
             "npcs": node.npcs,
             "enemies": node.enemies,
-            "map": node.mapurl
-
+            "map": node.mapurl,
+            "entrancenumbers": first_node.entrancenumbers,
+            "entrancecount": len(node.entrancelocations),
+            "spawningarea": node.entrancelocations
         })
 
     f = open("5e-SRD-Maps.json", "w")
@@ -376,18 +361,13 @@ def generateWorld():
     f.close()
 
 
-    # for map in completemap:
-    #     for names in map["npcs"]:
-    #         npclist.append(generateNPC(f"Name: {names}. Area they are in: {map['description']}"))
-    #     for names in map["enemies"]:
-    #         enemylist.append(generateNPC(f"Name: {names}. Area they are in: {map['description']}"))
-
     f = open("5e-SRD-Npcs.json", "w")
     json.dump(npclist,f,indent=5)
     f.close()
     f = open("5e-SRD-Enemies.json", "w")
     json.dump(enemylist,f,indent=5)
     f.close()    
+
 def generateNPC(prompt):
     jsonFormat = json.load(open("5e-SRD-NPC-Sheet.json"))
 
