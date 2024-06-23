@@ -1,54 +1,54 @@
 [
      {
-          "name": "Wood Woad",
-          "appearance": "Standing at around 6 feet tall, the Wood Woad appears to be a humanoid figure made entirely of intertwined wood, moss, and leaves. Its eyes glow with an eerie, green light, and its movements are slow but deliberate, mimicking the creaking and groaning of ancient trees. Its body is rugged and thick, almost resembling the bark of a tree, and small plants grow directly from its limbs.",
-          "description": "The Wood Woad is a guardian of the Whispering Grove Wilderness, a sentient being created by ancient druidic magic to protect the sacred forest from intruders. Though generally peaceful if left undisturbed, it becomes a fierce protector when its domain is threatened. The Wood Woad is deeply connected to the forest and can communicate with the trees and plants within it. It harbors an ancient wisdom and can offer guidance to those who show respect for nature.",
+          "name": "Griffon",
+          "appearance": "A majestic creature with the body of a lion and the head, wings, and talons of an eagle. The griffon's fur is a mix of tawny golds and deep browns, while its feathers shimmer with hues of gold and white. Its eyes are piercing, always on the lookout, reflecting its sharp intelligence.",
+          "description": "Griffons are formidable creatures found in the Everpeak Highlands. They are often seen soaring high above the cliffs and valleys, keeping a vigilant watch over their territory. Despite their fearsome appearance, they are known to be loyal companions to those who earn their trust.",
           "meshyid": null,
-          "class": "Monk",
-          "level": 4,
-          "type": "NPC",
-          "race": "Plant",
-          "alignment": "Neutral Good",
+          "class": "Monstrosity",
+          "level": 2,
+          "type": "Monstrosity",
+          "race": "",
+          "alignment": "Unaligned",
           "attributes": {
-               "STR": 16,
-               "DEX": 12,
-               "CON": 18,
-               "INT": 10,
-               "WIS": 14,
+               "STR": 18,
+               "DEX": 15,
+               "CON": 16,
+               "INT": 2,
+               "WIS": 13,
                "CHA": 8
           },
           "skills": {
                "Acrobatics": {
                     "proficient": false,
-                    "bonus": 1
+                    "bonus": 0
                },
                "Animal Handling": {
                     "proficient": false,
-                    "bonus": 2
+                    "bonus": 0
                },
                "Arcana": {
                     "proficient": false,
                     "bonus": 0
                },
                "Athletics": {
-                    "proficient": true,
-                    "bonus": 5
+                    "proficient": false,
+                    "bonus": 0
                },
                "Deception": {
                     "proficient": false,
-                    "bonus": -1
+                    "bonus": 0
                },
                "History": {
                     "proficient": false,
                     "bonus": 0
                },
                "Insight": {
-                    "proficient": true,
-                    "bonus": 4
+                    "proficient": false,
+                    "bonus": 0
                },
                "Intimidation": {
                     "proficient": false,
-                    "bonus": -1
+                    "bonus": 0
                },
                "Investigation": {
                     "proficient": false,
@@ -56,23 +56,23 @@
                },
                "Medicine": {
                     "proficient": false,
-                    "bonus": 2
+                    "bonus": 0
                },
                "Nature": {
-                    "proficient": true,
-                    "bonus": 4
+                    "proficient": false,
+                    "bonus": 0
                },
                "Perception": {
                     "proficient": true,
-                    "bonus": 4
+                    "bonus": 7
                },
                "Performance": {
                     "proficient": false,
-                    "bonus": -1
+                    "bonus": 0
                },
                "Persuasion": {
                     "proficient": false,
-                    "bonus": -1
+                    "bonus": 0
                },
                "Religion": {
                     "proficient": false,
@@ -80,79 +80,66 @@
                },
                "Sleight of Hand": {
                     "proficient": false,
-                    "bonus": 1
+                    "bonus": 0
                },
                "Stealth": {
                     "proficient": false,
-                    "bonus": 1
+                    "bonus": 0
                },
                "Survival": {
-                    "proficient": true,
-                    "bonus": 4
+                    "proficient": false,
+                    "bonus": 0
                }
           },
           "savingThrows": {
                "strength": {
-                    "proficient": true,
-                    "bonus": 6
+                    "proficient": false,
+                    "bonus": 0
                },
                "dexterity": {
                     "proficient": false,
-                    "bonus": 1
+                    "bonus": 0
                },
                "constitution": {
-                    "proficient": true,
-                    "bonus": 7
+                    "proficient": false,
+                    "bonus": 0
                },
                "intelligence": {
                     "proficient": false,
                     "bonus": 0
                },
                "wisdom": {
-                    "proficient": true,
-                    "bonus": 4
+                    "proficient": false,
+                    "bonus": 0
                },
                "charisma": {
                     "proficient": false,
-                    "bonus": -1
+                    "bonus": 0
                }
           },
-          "armorClass": 15,
+          "armorClass": 12,
           "hitPoints": {
-               "current": 45,
-               "maximum": 45,
+               "current": 59,
+               "maximum": 59,
                "temporary": 0
           },
           "hitDice": {
-               "total": "4d8",
-               "current": ""
+               "total": "7d10",
+               "current": "7d10"
           },
           "speed": 30,
           "proficiencies": {
-               "weapons": [
-                    "quarterstaff",
-                    "unarmed strike"
-               ],
-               "tools": [
-                    "herbalism kit"
-               ],
-               "languages": [
-                    "Common",
-                    "Druidic"
-               ]
+               "weapons": [],
+               "tools": [],
+               "languages": []
           },
           "equipment": [],
           "features": [
-               "Tree Stride: The Wood Woad can step into a tree and emerge from another tree within 60 feet of the entrance tree as long as both trees are living and at least the Wood Woad's size.",
-               "Regeneration: The Wood Woad regains 5 hit points at the start of its turn if it is in contact with natural soil or vegetation."
+               "Keen Sight: The griffon has advantage on Wisdom (Perception) checks that rely on sight."
           ],
           "spells": {
-               "level1": [
-                    "Absorb Elements"
-               ],
-               "level2": [
-                    "Barkskin"
-               ],
+               "level1": [],
+               "level2": [],
                "level3": [],
                "level4": [],
                "level5": [],
@@ -162,29 +149,27 @@
                "level9": []
           },
           "location": {
-               "x": 21,
-               "y": 64
+               "x": 17,
+               "y": 63
           },
           "notes": "",
-          "relationships": {
-               "Whispering Grove Druids": "The Wood Woad has a deep bond with the druids who created it and often communicates with them to ensure the protection of the forest."
-          }
+          "relationships": {}
      },
      {
-          "name": "Owlbear",
-          "appearance": "The Owlbear stands around 8 feet tall and resembles a monstrous cross between an owl and a bear. Its fur is mottled brown and black, with feathers around its head and neck. Its eyes glow with a predatory gleam, and its beak is sharp and menacing.",
-          "description": "The Owlbear is a fearsome predator, combining the keen senses of an owl with the brute strength of a bear. It roams the Whispering Grove Wilderness, defending its territory fiercely from intruders.",
+          "name": "Yeti",
+          "appearance": "The Yeti is a hulking, fur-covered creature with an imposing stature, standing close to 10 feet tall. Its fur is thick and white, blending seamlessly with the snowy landscape. Its eyes are a piercing blue that seem to almost glow in the dark, and its hands are large, with sharp claws capable of rending through flesh and armor alike.",
+          "description": "The Yeti, a legendary creature in the Everpeak Highlands, is often spoken of in hushed tones around campfires. Rumored to be the guardian of the mystical ruins scattered across the highlands, the Yeti is both feared and revered. It is said that the Yeti has lived for centuries, its longevity granted by the ancient magics of the ruins it protects. Despite its ferocious appearance, some believe that the Yeti may have a deeper connection to the ancient civilization that once thrived in these highlands.",
           "meshyid": null,
-          "class": "",
-          "level": 1,
-          "type": "Beast",
+          "class": "Beast",
+          "level": 7,
+          "type": "Enemy",
           "race": "Monstrosity",
-          "alignment": "Unaligned",
+          "alignment": "Neutral",
           "attributes": {
-               "STR": 20,
+               "STR": 18,
                "DEX": 12,
-               "CON": 17,
-               "INT": 3,
+               "CON": 16,
+               "INT": 7,
                "WIS": 12,
                "CHA": 7
           },
@@ -203,7 +188,7 @@
                },
                "Athletics": {
                     "proficient": true,
-                    "bonus": 5
+                    "bonus": 7
                },
                "Deception": {
                     "proficient": false,
@@ -215,11 +200,11 @@
                },
                "Insight": {
                     "proficient": false,
-                    "bonus": 1
+                    "bonus": 0
                },
                "Intimidation": {
                     "proficient": true,
-                    "bonus": 2
+                    "bonus": 3
                },
                "Investigation": {
                     "proficient": false,
@@ -235,7 +220,7 @@
                },
                "Perception": {
                     "proficient": true,
-                    "bonus": 3
+                    "bonus": 4
                },
                "Performance": {
                     "proficient": false,
@@ -255,17 +240,17 @@
                },
                "Stealth": {
                     "proficient": true,
-                    "bonus": 1
+                    "bonus": 3
                },
                "Survival": {
                     "proficient": false,
-                    "bonus": 1
+                    "bonus": 0
                }
           },
           "savingThrows": {
                "strength": {
                     "proficient": true,
-                    "bonus": 5
+                    "bonus": 7
                },
                "dexterity": {
                     "proficient": false,
@@ -273,11 +258,11 @@
                },
                "constitution": {
                     "proficient": true,
-                    "bonus": 3
+                    "bonus": 5
                },
                "intelligence": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": -2
                },
                "wisdom": {
                     "proficient": false,
@@ -285,32 +270,36 @@
                },
                "charisma": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": -2
                }
           },
-          "armorClass": 13,
+          "armorClass": 12,
           "hitPoints": {
-               "current": 59,
-               "maximum": 59,
+               "current": 84,
+               "maximum": 84,
                "temporary": 0
           },
           "hitDice": {
                "total": "7d10+21",
-               "current": "7d10+21"
+               "current": "7d10"
           },
           "speed": 40,
           "proficiencies": {
                "weapons": [
                     "Claws",
-                    "Beak"
+                    "Fists"
                ],
                "tools": [],
-               "languages": []
+               "languages": [
+                    "Yeti",
+                    "Basic understanding of Ancient Ruin Glyphs"
+               ]
           },
           "equipment": [],
           "features": [
-               "Keen Sight and Smell: The owlbear has advantage on Wisdom (Perception) checks that rely on sight or smell.",
-               "Multiattack: The owlbear makes two attacks: one with its beak and one with its claws."
+               "Snow Camouflage: The Yeti has advantage on Dexterity (Stealth) checks made to hide in snowy terrain.",
+               "Fear of Fire: The Yeti is frightened while within 30 feet of an open flame.",
+               "Keen Smell: The Yeti has advantage on Wisdom (Perception) checks that rely on smell."
           ],
           "spells": {
                "level1": [],
@@ -324,12 +313,10 @@
                "level9": []
           },
           "location": {
-               "x": 24,
-               "y": 0
+               "x": 37,
+               "y": 15
           },
-          "notes": "Owlbears are notoriously difficult to tame but have been known to form bonds with those who show exceptional skill and patience in handling them.",
-          "relationships": {
-               "name_of_character": "description of relationship"
-          }
+          "notes": "The Yeti can be a formidable guardian or an unexpected ally, depending on how the players interact with it. Knowledge of the ancient civilization's glyphs may help in communicating with the Yeti.",
+          "relationships": {}
      }
 ]

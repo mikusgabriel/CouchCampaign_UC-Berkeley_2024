@@ -144,11 +144,11 @@ def mapEnemyNpcPlacements(mapurl,npccount,enemycount):
         newimage[npcenemytiles[index][0], npcenemytiles[index][1], :3] = [64,128,255]
         npcenemytiles.pop(index)
 
-    print(adjacent)
-    print(f"Number of adjacency groups: {len(adjacent)}")
-    im = Image.fromarray(newimage)
-    im.save('test.png')
-    print("Image processing complete.")
+    # print(adjacent)
+    # print(f"Number of adjacency groups: {len(adjacent)}")
+    # im = Image.fromarray(newimage)
+    # im.save('test.png')
+    # print("Image processing complete.")
     return enemytiles, npctiles, spawnableareas
 
 
@@ -293,11 +293,11 @@ def generateDescription(biome_chosen, type_chosen, name,connecting_nodes):
         messages=[
             {
                 "role": "system",
-                "content": f"You are to choose an original description for the following area type and biome given and name and connecting areas. You will also decide the npcs and enemies in that location, Upto 2, and just the names of them no extra description. The enemies can be like Wood woad, wood woad, wood woad, owlbear. Try to use dnd enemies for random encours like owlbear, wood woad, etc."
+                "content": f"You are to choose an original description for the following area type and biome given and name and connecting areas. You will also decide the npcs and enemies in that location, Upto 2, and just the names of them no extra description. The enemies can be like Wood woad, wood woad, wood woad, owlbear. Try to use dnd enemies for random encours like owlbear, wood woad, etc. I want atleast one npc please."
                            f"I will give you the type. The JSON format is the following {jsonFormat}. If its a random encounter. use classic dnd enemies. If there are no npcs or enemies, you must leave the list empty. Please make the enemies coherant, you can even add multiple same enemies."},
             {
                 "role": "user",
-                "content": f"Description for {type_chosen} in the {biome_chosen} type called {name} knowing its connected to the following areas: {connecting_nodes}",
+                "content": f"Description for {type_chosen} in the {biome_chosen} type called {name} knowing its connected to the following areas: {connecting_nodes}. I want one npc PLEASE",
             },
         ],
     )
@@ -315,19 +315,15 @@ def generateWorld():
     images = os.listdir("./maps")
 
     # Initialize the first node
-    first_biome = random.choice(biomes)
     first_type = random.choice(places)
-    first_name = generateNodeName(first_biome, first_type)
-    first_node = mapNode(first_type, first_biome)
-    first_node.name = first_name
     def generate_random_string(length=10):
         letters = string.ascii_lowercase
         return ''.join(random.choice(letters) for i in range(length))
 
-    # Fetch the image data
-    pattern = re.compile(r'data-payload="([^"]*)"')
-    response = requests.get("https://ea41-104-196-242-9.ngrok-free.app/imagen").text
-    image_data = base64.b64decode(response)
+    response = json.loads(requests.get("https://27fa-104-196-242-9.ngrok-free.app/imagen").text)
+    first_biome = response["type"]
+
+    image_data = base64.b64decode(response["bs64"])
 
     # Generate a random filename
     random_filename = generate_random_string() + ".png"
@@ -342,6 +338,10 @@ def generateWorld():
         fh.write(image_data)
 
     print(f"Image saved successfully as {random_filename}.")
+
+    first_name = generateNodeName(first_biome, first_type)
+    first_node = mapNode(first_type, first_biome)
+    first_node.name = first_name
     first_node.mapurl = file_path
 
     map_node_list.append(first_node)
