@@ -397,13 +397,13 @@ You can request any info you want about the game state, so do not hesistate to c
             for p in self._players.values()
             if p != player
         ]
-        # res["npcs"] = [
-        #     {"name": npc["name"], **npc["location"]} for npc in self.currentNpcs
-        # ]
-        # res["enemies"] = [
-        #     {"name": enemy["name"], **enemy["location"]}
-        #     for enemy in self.currentEnemies
-        # ]
+        res["npcs"] = [
+            {"name": npc["name"], **npc["location"]} for npc in self.currentNpcs
+        ]
+        res["enemies"] = [
+            {"name": enemy["name"], **enemy["location"]}
+            for enemy in self.currentEnemies
+        ]
         return res
 
     def coordinatesRange(self, speed: int, location: tuple[int, int]):
@@ -482,9 +482,11 @@ You can request any info you want about the game state, so do not hesistate to c
         return "No info found. You may invent."
 
     def talkToNPC(self, transcript: str, hume_analysis: list):
-        with open("5e-SRD-Npcs.json") as file:
-            NPC_json = json.load(file)[self.currentTurn["talkingTo"]]
-        with open("5e-SRD-History.json") as file:
+        for npc in self.currentNpcs:
+            if npc["name"] == self.currentTurn["talkingTo"]:
+                NPC_json = npc
+
+        with open("game_info/5e-SRD-DM-History.json") as file:
             History_json = json.load(file)
 
         self.currentTurn["messages"].append(
@@ -497,11 +499,12 @@ You can request any info you want about the game state, so do not hesistate to c
         function = {
             "name": "stop_conversation",
             "description": "This function allows you to stop the conversation with the player if you feel like the emotion analysis is a threat to your life as a NPC. It could also be that you are annoyed by the players precense and you wish to be left alone. Everything is based on what the player says and their emotion analysis.",
+            "parameters": {},
         }
 
         response = openAiClient.chat.completions.create(
             model="gpt-4o",
-            functions=function,
+            functions=[function],
             messages=[
                 {
                     "role": "system",
@@ -511,11 +514,12 @@ You can request any info you want about the game state, so do not hesistate to c
             ],
         )
 
-        answer = response.choices[0].message.function_call
-        functionname = answer.name
+        if "function_call" in response.choices[0].message:
+            answer = response.choices[0].message.function_call
+            functionname = answer.name
 
-        if functionname == "stop_conversation":
-            self.nextTurn()
+            if functionname == "stop_conversation":
+                self.nextTurn()
 
         self.currentTurn["messages"].append(response.choices[0].message)
         return response.choices[0].message.content

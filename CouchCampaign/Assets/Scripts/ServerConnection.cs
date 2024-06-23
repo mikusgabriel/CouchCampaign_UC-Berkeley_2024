@@ -137,6 +137,7 @@ public class ServerConnection : MonoBehaviour
 
                     break;
                 }
+
             case "spawn":
                 {
                     var data = JsonUtility.FromJson<SpawnJsonData>(message);
@@ -146,8 +147,13 @@ public class ServerConnection : MonoBehaviour
                     script.cam = cam;
                     script.SetMesh(data.meshyId);
                     script.SetPlayerName(character.name);
+
+                    cameraManager.Follow(character);
+                    await Task.Delay(500);
+                    cameraManager.SetZoomLevel(3f);
                     break;
                 }
+
             case "move":
                 {
                     var data = JsonUtility.FromJson<MoveJsonData>(message);
@@ -169,6 +175,7 @@ public class ServerConnection : MonoBehaviour
                     }
                     break;
                 }
+
             case "roll":
                 {
                     var data = JsonUtility.FromJson<RollJsonData>(message);
@@ -177,7 +184,7 @@ public class ServerConnection : MonoBehaviour
                     break;
                 }
 
-            case "speak":
+            case "talk":
                 {
                     var data = JsonUtility.FromJson<TalkJsonData>(message);
                     textToSpeech.TalkGlobal(data.message);

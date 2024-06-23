@@ -479,6 +479,60 @@ def generateNPC(prompt):
     result["meshyid"] = getMeshID(result["appearance"])
 
     return result
+
+def generateStory():
+    
+    f = open("5e-SRD-Maps.json", "r")
+    a = json.load(f)
+    idtomap = {idtomap["mapid"]: idtomap["name"] for idtomap in a}
+    dndmaps = [(dndmaps["name"] +" biome is "+ dndmaps["biome"]) for dndmaps in a]
+    f.close()
+
+    f = open("5e-SRD-Npcs.json", "r")
+    npcs = [(npc["name"] + " is in " + idtomap[npc["mapid"]])  for npc in json.load(f)]
+    f.close()
+
+    f = open("5e-SRD-Enemies.json", "r")
+    enemies = [(npc["name"] + " is in " + idtomap[npc["mapid"]])  for npc in json.load(f)]
+    f.close()
+    f = open("5e-SRD-Players.json", "r")
+    players = [(players["name"] + " is in " + dndmaps[0]["name"]) for players in json.load(f)]
+    f.close()
+
+    print(dndmaps)
+    print(npcs)
+    print(enemies)
+    print(players)
+
+    history = [
+     {
+          "role": "system",
+          "content": "You are the dungeon master of a game of dungeons and dragons. You can call functions when you need to such as to roll dice and such as to search information through a dnd dictionary. For the dice roll, you must provide all the necessary info such as the json of the spell the user wants to cast. For the search all you need to say is i want to know about ____. Keep answers to the players consice unless asked. I want you to make no assumptions about the game. You can request any info you want about the game state, so do not hesistate to call the functions."
+     }
+    ]
+    history.append({
+            "role": "user",
+            "content": f"You will create the story for a DND campaign. This is only for you to remember what you have planned in the future. Create the story based on maps, the npcs, and the players. Maps:  {dndmaps}. Players: {players}. NPCS: {npcs}. Enemies: {enemies}.  ",
+        }),
+    
+    response = client.chat.completions.create(
+        model="gpt-4o",
+        messages=history,
+    )
+
+    answer = response.choices[0].message.content
+    history.append({
+            "role": "system",
+            "content":answer,
+    })
+
+    
+    f = open("5e-SRD-DM-History.json","w")
+    json.dump(history,f,indent=5)
+    f.close()
+
+
                 
     
-generateWorld()
+generateStory()
+

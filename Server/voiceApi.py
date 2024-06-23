@@ -9,12 +9,9 @@ humeClient = HumeBatchClient(config["humeKey"])
 openAiClient = OpenAI(api_key=config["openAiKey"])
 
 
-async def getVoiceEmotions(file: bytes):
-    with open("humeVoiceFile.webm", mode="wb") as file:
-        file.write(file)
-
+async def getVoiceEmotions(filename: bytes):
     config = ProsodyConfig()
-    job = humeClient.submit_job(None, [config], files=["humeVoiceFile.webm"])
+    job = humeClient.submit_job(None, [config], files=[filename])
     job.await_complete()
 
     try:
@@ -45,8 +42,9 @@ async def getVoiceEmotions(file: bytes):
         return []
 
 
-async def getVoiceTranscript(file: bytes):
+async def getVoiceTranscript(filename: bytes):
+    audio_file = open(filename, "rb")
     transcription = openAiClient.audio.transcriptions.create(
-        model="whisper-1", file=file, response_format="text"
+        model="whisper-1", file=audio_file, response_format="text"
     )
     return transcription
