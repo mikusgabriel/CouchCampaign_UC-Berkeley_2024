@@ -7,6 +7,16 @@
       "dependencies": {},
       "hash": "046a378eeb434e11cc9c9e13ff334447b4edd19a"
     },
+    "com.openai.unity": {
+      "version": "https://github.com/RageAgainstThePixel/com.openai.unity.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.utilities.rest": "3.2.0",
+        "com.utilities.encoder.wav": "1.2.1"
+      },
+      "hash": "3f9af234087cce835d47b5d842773918b0d85935"
+    },
     "com.unity.burst": {
       "version": "1.8.15",
       "depth": 1,
@@ -56,7 +66,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ext.nunit": {
-      "version": "1.0.6",
+      "version": "2.0.3",
       "depth": 2,
       "source": "registry",
       "dependencies": {},
@@ -110,13 +120,38 @@
     },
     "com.unity.nuget.mono-cecil": {
       "version": "1.11.4",
-      "depth": 2,
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.1",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.performance.profile-analyzer": {
       "version": "1.2.2",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.render-pipelines.core": {
+      "version": "14.0.11",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.physics": "1.0.0",
+        "com.unity.modules.terrain": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0"
+      }
+    },
+    "com.unity.searcher": {
+      "version": "4.9.2",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
@@ -129,12 +164,21 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.shadergraph": {
+      "version": "14.0.11",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.render-pipelines.core": "14.0.11",
+        "com.unity.searcher": "4.9.2"
+      }
+    },
     "com.unity.test-framework": {
-      "version": "1.1.33",
+      "version": "1.4.2",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.ext.nunit": "1.0.6",
+        "com.unity.ext.nunit": "2.0.3",
         "com.unity.modules.imgui": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0"
       },
@@ -189,6 +233,63 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "com.utilities.async": {
+      "version": "https://github.com/RageAgainstThePixel/com.utilities.async.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.editorcoroutines": "1.0.0",
+        "com.unity.test-framework": "1.4.2",
+        "com.unity.nuget.mono-cecil": "1.11.4"
+      },
+      "hash": "0b6d48860648d6fc762338c1d66d3f3dcd63339a"
+    },
+    "com.utilities.audio": {
+      "version": "https://github.com/RageAgainstThePixel/com.utilities.audio.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.modules.audio": "1.0.0",
+        "com.unity.modules.unitywebrequestaudio": "1.0.0",
+        "com.utilities.async": "2.1.6"
+      },
+      "hash": "741d3330b9d73f626cee73cbba0a9b2c405421e1"
+    },
+    "com.utilities.encoder.wav": {
+      "version": "https://github.com/RageAgainstThePixel/com.utilities.encoder.wav.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.utilities.audio": "1.2.1"
+      },
+      "hash": "324edcb43c7a87becd114a8f5ed3a2cc54985a47"
+    },
+    "com.utilities.extensions": {
+      "version": "https://github.com/RageAgainstThePixel/com.utilities.extensions.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.modules.physics": "1.0.0",
+        "com.unity.ugui": "1.0.0"
+      },
+      "hash": "ddf2da2aabaa6fbda2462ee93c7b9f968fda1b26"
+    },
+    "com.utilities.rest": {
+      "version": "https://github.com/RageAgainstThePixel/com.utilities.rest.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.utilities.async": "2.1.6",
+        "com.utilities.extensions": "1.1.15",
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.modules.unitywebrequestassetbundle": "1.0.0",
+        "com.unity.modules.unitywebrequestaudio": "1.0.0",
+        "com.unity.modules.unitywebrequesttexture": "1.0.0",
+        "com.unity.modules.unitywebrequestwww": "1.0.0",
+        "com.unity.nuget.newtonsoft-json": "3.2.1"
+      },
+      "hash": "1f1339277a7352266d263df950231d52b3ebc3ab"
     },
     "xyz.candycoded.env": {
       "version": "https://github.com/CandyCoded/env.git",

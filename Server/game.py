@@ -1,5 +1,6 @@
 import asyncio
 import json
+import math
 
 import numpy as np
 import requests
@@ -179,8 +180,8 @@ You are the dungeon master of a game of dungeons and dragons. You will make no a
 
 Your role is to return a json object populated with the following keys, according to the current game state, once you have enough knowledge. Call the function to search for information about abilities, equipments, and spells.
 - abilities: an array of objects containing name and description of every ability that the player can use this turn. Make sure to keep the description short and concise, so it can fit in one line. Only include spells that can be used by the player this turn. Do not include spells that the player canno't target and therefore cannot use.
-- talk: an array containing the names of the NPCs who are close enough to the player for them to talk together. You cannot talk to other players.
-- fight: an array of objects containing x, y, and a name, corresponding to the position and name of the enemies that are close enough to get attacked by the player this turn.
+- talk: an array of objects containing the x, the y, and the name corresponding to the position and name of thee NPCs who are close enough to the player for them to talk together. The player cannot talk to other players.
+- fight: an array of objects containing the x, the y, and the name corresponding to the position and name of the enemies that are close enough to get attacked by the player this turn.
 
 You can request any info you want about the game state, so do not hesistate to call the functions.
 """,
@@ -360,9 +361,8 @@ You can request any info you want about the game state, so do not hesistate to c
                            ]
                       },
                       "location": {
-                           "x": 0,
-                           "y": 0
-                      },
+                           "x": player.position()["x"],
+                           "y": player.position()["y"]                      },
                       }
                   )}.
                 Map info: {json.dumps({'size': {'x': 80, 'y': 40}})}
@@ -432,19 +432,26 @@ You can request any info you want about the game state, so do not hesistate to c
             return json.loads(response.choices[0].message.content)
 
         res = gptGoesBrrrrr()
-        res["move"] = [p.position() for p in self._players.values() if p != player]
-        res["allies"] = [p.position() for p in self._players.values() if p != player]
+        res["move"] = self.coordinatesRange(
+            30, (player.position()["x"], player.position()["y"])
+        )
+        res["allies"] = [
+            {"name": p.id(), **p.position()}
+            for p in self._players.values()
+            if p != player
+        ]
         return res
 
     def coordinatesRange(self, speed: int, location: tuple[int, int]):
-        range = speed / 5
-        return np.vstack(
+        range = math.floor(speed / 10)
+        nparr = np.vstack(
             (
                 np.tile(np.arange(-range, range + 1, 1), range * 2 + 1),
                 np.floor(np.arange(0, (range * 2 + 1) ** 2, 1) / (range * 2 + 1))
                 - range,
             )
         ).T + np.array(location)
+        return nparr.tolist()
 
     def getInfoDND(self, info_wanted: str):
         print("🚀 ~ info_wanted:", info_wanted)
@@ -478,3 +485,5 @@ You can request any info you want about the game state, so do not hesistate to c
             response = requests.request("GET", url, headers=headers, data=payload)
             if response.text != '{"error":"Not found"}':
                 return response.text
+
+        return "No info found. You may invent."
