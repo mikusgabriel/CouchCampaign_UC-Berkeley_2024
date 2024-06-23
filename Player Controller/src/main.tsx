@@ -5,6 +5,7 @@ import App from "./App.tsx";
 import { AuthProvider } from "./lib/AuthContext.tsx";
 import { ServerProvider } from "./lib/ServerContext.tsx";
 import { StatusProvider } from "./lib/StatusContext.tsx";
+import { UserProvider } from "./lib/UserContext.tsx";
 
 import "./index.css";
 
@@ -17,7 +18,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <AuthProvider>
                 <ServerProvider>
                     <StatusProvider>
-                        <App />
+                        <UserProvider>
+                            <App />
+                        </UserProvider>
                     </StatusProvider>
                 </ServerProvider>
             </AuthProvider>

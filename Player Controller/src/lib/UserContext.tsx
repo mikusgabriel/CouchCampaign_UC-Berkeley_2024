@@ -3,6 +3,7 @@ import type { RaceKey } from "@/lib/data/races";
 import LoadingPage from "@/pages/Loading";
 import { type ReactNode, createContext, useContext, useEffect, useState } from "react";
 import useServer from "./ServerContext";
+import useStatus from "./StatusContext";
 
 export type User = { name: string; race: RaceKey; classe: ClasseKey; meshyId: string; x: number; y: number };
 const userContext = createContext<User | null>(null);
@@ -10,6 +11,7 @@ const userContext = createContext<User | null>(null);
 type ProviderProps = { children: ReactNode };
 export function UserProvider({ children }: ProviderProps) {
     const server = useServer();
+    const { status } = useStatus();
     const [user, setUser] = useState<User | null>(getStoredUser());
 
     useEffect(
@@ -27,7 +29,7 @@ export function UserProvider({ children }: ProviderProps) {
         else localStorage.removeItem("user");
     }, [user]);
 
-    if (!user) {
+    if (!user && status !== "create") {
         return <LoadingPage />;
     }
 

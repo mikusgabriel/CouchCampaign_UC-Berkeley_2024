@@ -1,3 +1,5 @@
+import asyncio
+
 import meshyApi
 from connections import Connections
 
@@ -40,6 +42,44 @@ class GameManager:
         self._connections = connections
         self.currentTurn = None
 
+    async def broadcast_client_info(self):
+        await asyncio.gather(
+            *[
+                self._connections.send_client(
+                    p.id(), {"type": "user", "user": p.toPOJO()}
+                )
+                for p in self._players.values()
+            ]
+        )
+
+        if self.currentTurn is None:
+            players = [p.toPOJO() for p in self._players.values()]
+            await asyncio.gather(
+                *[
+                    self._connections.send_client(
+                        p.id(),
+                        {
+                            "type": "status",
+                            "status": "lobby",
+                            "data": {
+                                "players": players,
+                            },
+                        },
+                    )
+                    for p in self._players.values()
+                ]
+            )
+        else:
+            for player in self._players.values():
+                if player == self.currentTurn.player:
+                    self._connections.send_client(
+                        player.id(), {"type": "status", "status": "play"}
+                    )
+                else:
+                    self._connections.send_client(
+                        player.id(), {"type": "status", "status": "wait"}
+                    )
+
     async def nextTurn(self):
         """Processes the end of the current player's turn"""
 
@@ -69,16 +109,18 @@ class GameManager:
         """Creates a player from the user's data"""
 
         [x, y] = [0, 0]
-        meshyId = meshyApi.generateMeshyMesh(race, classe, description)
+        # meshyId = meshyApi.generateMeshyMesh(race, classe, description)
 
-        player = Player(userId, race, classe, meshyId, x, y)
+        player = Player(userId, race, classe, "meshyId", x, y)
         self._players[userId] = player
 
         # Notify client
         await self._connections.send_client(
             userId, {"type": "user", "user": player.toPOJO()}
         )
-        await self._connections.send_client(userId, {"type": "status", "status": "wait"})
+        await self._connections.send_client(
+            userId, {"type": "status", "status": "wait"}
+        )
 
         # Notify Unity
         await self._connections.send_unity(
@@ -91,6 +133,9 @@ class GameManager:
             }
         )
         return player
+
+    def removePlayer(self, userId: str):
+        return self._players.pop(userId, None)
 
     def getPlayer(self, userId: str):
         """Returns the specified player, or None"""

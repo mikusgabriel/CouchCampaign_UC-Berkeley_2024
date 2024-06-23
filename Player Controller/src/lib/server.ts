@@ -48,7 +48,7 @@ export default class Server {
     private websocket!: WebSocket;
 }
 
-type StatusServerMessage = { type: "status"; status: Status };
+type StatusServerMessage = { type: "status"; status: Status["status"]; data: Record<string, unknown> | undefined };
 type UserServerMessage = { type: "user"; user: User };
 type ServerMessage = StatusServerMessage | UserServerMessage;
 type ServerMessageHandler = (message: ServerMessage, remove: () => void) => void;
