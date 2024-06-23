@@ -28,7 +28,7 @@ def generateNode():
     while True:
         # Initialize the first node
         first_type = random.choice(places)
-        response = json.loads(requests.get("https://7b4a-104-196-242-9.ngrok-free.app/imagen").text)
+        response = json.loads(requests.get("https://5b71-104-196-242-9.ngrok-free.app/imagen").text)
         first_biome = response["type"]
         image_data = base64.b64decode(response["bs64"])
         # Generate a random filename
@@ -50,7 +50,7 @@ def generateNode():
         first_node.description, first_node.npcs, first_node.enemies = generateDescription(first_node.biome, first_node.maptype, first_node.name, first_node.connectingnodes)
         first_node.enemytiles, first_node.npctiles, first_node.entrancelocations = mapEnemyNpcPlacements(first_node.mapurl,0,0)
         
-        if 4>= len(first_node.entrancelocations) >= 2:
+        if len(first_node.entrancelocations) >= 1:
             first_node.id = rnd_filename
             first_node.description, first_node.npcs, first_node.enemies = generateDescription(first_node.biome, first_node.maptype, first_node.name, first_node.connectingnodes)
             first_node.enemytiles, first_node.npctiles, first_node.entrancelocations = mapEnemyNpcPlacements(first_node.mapurl,len(first_node.npcs),len(first_node.enemies))
@@ -365,8 +365,8 @@ def generateWorld():
     map_node_list = []
     nodeAmount = 2
 
-    first_name = generateNodeName("cliff", "npc-conversation")
-    first_node = mapNode("cliff", "npc-conversation")
+    first_name = generateNodeName("cliff", "npc-conversation-and-enemy")
+    first_node = mapNode("cliff", "npc-conversation-and-enemy")
     first_node.name = first_name
     first_node.mapurl = "./maps/base.png"
     temp1, temp2, first_node.entrancelocations = mapEnemyNpcPlacements(first_node.mapurl,0,0)
@@ -377,6 +377,9 @@ def generateWorld():
     first_node.id = "base"
     first_node.description, first_node.npcs, first_node.enemies = generateDescription(first_node.biome, first_node.maptype, first_node.name, first_node.connectingnodes)
     first_node.enemytiles, first_node.npctiles, first_node.entrancelocations = mapEnemyNpcPlacements(first_node.mapurl,len(first_node.npcs),len(first_node.enemies))
+    
+    map_node_list.append(first_node)
+    
     listofpairs = []
     for i in range(1,len(first_node.entrancelocations)+1):
         mapidgatepairs.append((first_node.id,i))
@@ -562,5 +565,6 @@ def generateStory():
 
 
                 
+generateWorld()
 generateStory()
 

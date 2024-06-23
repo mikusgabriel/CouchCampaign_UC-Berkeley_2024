@@ -1,51 +1,51 @@
 [
      {
-          "name": "Eldrin the Hermit",
-          "appearance": "Eldrin is a weathered old man with long, silver hair that cascades down to his shoulders in unkempt waves. His eyes are a piercing green, filled with an enigmatic wisdom that hints at years of solitude. He wears a robe made of rough, patched-up fabric, and carries a gnarled staff that looks as old as he is.",
-          "description": "Eldrin is a reclusive sage who has lived in the Cragshade Wilderness for decades. Known to the few who have encountered him as an eccentric hermit, Eldrin is actually a guardian of ancient secrets and forbidden knowledge. He prefers the company of animals to people and has an extensive understanding of the natural and mystical elements that permeate the Cragshade Wilderness.",
-          "meshyid": "01904601-fd3e-78a3-b7c5-6bb4dcd9fa91",
-          "class": "Druid",
-          "level": 5,
+          "name": "Elyara the Echo Whisperer",
+          "appearance": "Elyara is a half-elf with cascading silver hair that seems to flow like the wind itself. Her piercing blue eyes hold a depth of knowledge and mystery. She wears an attire made of light, flowy fabrics in shades of twilight blue and silver, adorned with small bells that softly chime with her movements. A delicate lute is slung across her back, always within arm\u2019s reach.",
+          "description": "Elyara the Echo Whisperer is known far and wide for her ability to weave melodies that resonate with the ancient echoes of Echoing Heights. She is a wanderer, a keeper of ancient songs, and a storyteller who brings forgotten tales to life. Her gentle demeanor and enchanting voice have healed hearts and inspired courage, yet there are rumors that not all her echoes are friendly.",
+          "meshyid": "0190465d-aa77-78a9-a04b-8f8d10903142",
+          "class": "Bard",
+          "level": 3,
           "type": "NPC",
-          "race": "Human",
-          "mapid": "gusdlwqkok",
-          "alignment": "Neutral Good",
+          "race": "Half-Elf",
+          "mapid": "base",
+          "alignment": "Chaotic Good",
           "attributes": {
-               "STR": 8,
-               "DEX": 12,
-               "CON": 14,
-               "INT": 15,
-               "WIS": 18,
-               "CHA": 10
+               "STR": 10,
+               "DEX": 14,
+               "CON": 12,
+               "INT": 13,
+               "WIS": 11,
+               "CHA": 16
           },
           "skills": {
                "Acrobatics": {
-                    "proficient": false,
-                    "bonus": 1
+                    "proficient": true,
+                    "bonus": 4
                },
                "Animal Handling": {
-                    "proficient": true,
-                    "bonus": 7
-               },
-               "Arcana": {
-                    "proficient": true,
-                    "bonus": 5
-               },
-               "Athletics": {
-                    "proficient": false,
-                    "bonus": -1
-               },
-               "Deception": {
                     "proficient": false,
                     "bonus": 0
                },
+               "Arcana": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Athletics": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "Deception": {
+                    "proficient": true,
+                    "bonus": 5
+               },
                "History": {
                     "proficient": false,
-                    "bonus": 2
+                    "bonus": 0
                },
                "Insight": {
-                    "proficient": true,
-                    "bonus": 8
+                    "proficient": false,
+                    "bonus": 0
                },
                "Intimidation": {
                     "proficient": false,
@@ -53,39 +53,222 @@
                },
                "Investigation": {
                     "proficient": false,
-                    "bonus": 2
+                    "bonus": 0
                },
                "Medicine": {
                     "proficient": false,
-                    "bonus": 4
+                    "bonus": 0
                },
                "Nature": {
-                    "proficient": true,
-                    "bonus": 8
+                    "proficient": false,
+                    "bonus": 0
                },
                "Perception": {
-                    "proficient": true,
-                    "bonus": 8
+                    "proficient": false,
+                    "bonus": 0
                },
                "Performance": {
-                    "proficient": false,
-                    "bonus": 0
+                    "proficient": true,
+                    "bonus": 5
                },
                "Persuasion": {
-                    "proficient": false,
-                    "bonus": 0
+                    "proficient": true,
+                    "bonus": 5
                },
                "Religion": {
                     "proficient": false,
-                    "bonus": 2
+                    "bonus": 0
                },
                "Sleight of Hand": {
                     "proficient": false,
-                    "bonus": 1
+                    "bonus": 0
                },
                "Stealth": {
                     "proficient": false,
+                    "bonus": 0
+               },
+               "Survival": {
+                    "proficient": false,
+                    "bonus": 0
+               }
+          },
+          "savingThrows": {
+               "strength": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "dexterity": {
+                    "proficient": true,
+                    "bonus": 4
+               },
+               "constitution": {
+                    "proficient": false,
                     "bonus": 1
+               },
+               "intelligence": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "wisdom": {
+                    "proficient": false,
+                    "bonus": 0
+               },
+               "charisma": {
+                    "proficient": true,
+                    "bonus": 5
+               }
+          },
+          "armorClass": 12,
+          "hitPoints": {
+               "current": 18,
+               "maximum": 18,
+               "temporary": 0
+          },
+          "hitDice": {
+               "total": "3d8",
+               "current": "3d8"
+          },
+          "speed": 30,
+          "proficiencies": {
+               "weapons": [
+                    "Simple Weapons",
+                    "Longswords",
+                    "Rapiers",
+                    "Shortswords"
+               ],
+               "tools": [
+                    "Lute",
+                    "Flute",
+                    "Lyre"
+               ],
+               "languages": [
+                    "Common",
+                    "Elvish",
+                    "Sylvan"
+               ]
+          },
+          "equipment": [
+               "Leather Armor",
+               "Dagger",
+               "Lute",
+               "Entertainer\u2019s Pack"
+          ],
+          "features": [
+               "Spellcasting",
+               "Bardic Inspiration (d6)"
+          ],
+          "spells": {
+               "level1": [
+                    "Cure Wounds",
+                    "Charm Person",
+                    "Thunderwave",
+                    "Detect Magic"
+               ],
+               "level2": [],
+               "level3": [],
+               "level4": [],
+               "level5": [],
+               "level6": [],
+               "level7": [],
+               "level8": [],
+               "level9": []
+          },
+          "location": {
+               "x": 61,
+               "y": 27
+          },
+          "notes": "",
+          "relationships": {
+               "Aurora the Seer": "Mentor and occasional companion in travels. Shares a deep bond of music and prophecy."
+          }
+     },
+     {
+          "name": "Eldara the Tranquil",
+          "appearance": "Eldara appears as a slender, ethereal figure composed entirely of water. Her form shifts and flows like a gentle stream, and her eyes shimmer with the depth and clarity of the crystalline lake she guards. Her hair cascades down in waves, blending seamlessly into her aqueous form, and she often manifests with adornments of bioluminescent algae and wildflowers.",
+          "description": "Eldara is a benevolent water spirit who protects the Whispering Waters Phenomenon. She is known for her serene demeanor and unwavering dedication to maintaining the tranquility and purity of the lake. Whispering secrets of nature and ancient wisdom, she is both a guide and guardian to those who seek the solace and knowledge of the waters she oversees.",
+          "meshyid": "0190465e-606a-78a9-9c36-2cb6aeb7b65c",
+          "class": "Druid",
+          "level": 5,
+          "type": "NPC",
+          "race": "Water Spirit",
+          "mapid": "erpqhqytwa",
+          "alignment": "Neutral Good",
+          "attributes": {
+               "STR": 8,
+               "DEX": 14,
+               "CON": 12,
+               "INT": 16,
+               "WIS": 18,
+               "CHA": 16
+          },
+          "skills": {
+               "Acrobatics": {
+                    "proficient": false,
+                    "bonus": 2
+               },
+               "Animal Handling": {
+                    "proficient": true,
+                    "bonus": 6
+               },
+               "Arcana": {
+                    "proficient": false,
+                    "bonus": 3
+               },
+               "Athletics": {
+                    "proficient": false,
+                    "bonus": -1
+               },
+               "Deception": {
+                    "proficient": false,
+                    "bonus": 3
+               },
+               "History": {
+                    "proficient": true,
+                    "bonus": 6
+               },
+               "Insight": {
+                    "proficient": true,
+                    "bonus": 8
+               },
+               "Intimidation": {
+                    "proficient": false,
+                    "bonus": 3
+               },
+               "Investigation": {
+                    "proficient": false,
+                    "bonus": 3
+               },
+               "Medicine": {
+                    "proficient": true,
+                    "bonus": 8
+               },
+               "Nature": {
+                    "proficient": true,
+                    "bonus": 6
+               },
+               "Perception": {
+                    "proficient": false,
+                    "bonus": 4
+               },
+               "Performance": {
+                    "proficient": false,
+                    "bonus": 3
+               },
+               "Persuasion": {
+                    "proficient": false,
+                    "bonus": 3
+               },
+               "Religion": {
+                    "proficient": false,
+                    "bonus": 3
+               },
+               "Sleight of Hand": {
+                    "proficient": false,
+                    "bonus": 2
+               },
+               "Stealth": {
+                    "proficient": false,
+                    "bonus": 2
                },
                "Survival": {
                     "proficient": true,
@@ -98,16 +281,16 @@
                     "bonus": -1
                },
                "dexterity": {
-                    "proficient": false,
-                    "bonus": 1
+                    "proficient": true,
+                    "bonus": 6
                },
                "constitution": {
                     "proficient": false,
-                    "bonus": 2
+                    "bonus": 1
                },
                "intelligence": {
                     "proficient": false,
-                    "bonus": 2
+                    "bonus": 3
                },
                "wisdom": {
                     "proficient": true,
@@ -115,7 +298,7 @@
                },
                "charisma": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": 3
                }
           },
           "armorClass": 15,
@@ -131,7 +314,7 @@
           "speed": 30,
           "proficiencies": {
                "weapons": [
-                    "Quarterstaff",
+                    "Staff",
                     "Dagger"
                ],
                "tools": [
@@ -139,64 +322,72 @@
                ],
                "languages": [
                     "Common",
-                    "Druidic",
+                    "Aquan",
                     "Sylvan"
                ]
           },
           "equipment": [
-               {
-                    "name": "Gnarled Staff",
-                    "description": "An old, twisted staff imbued with natural magic."
-               },
-               {
-                    "name": "Herbalism Kit",
-                    "description": "A collection of tools used for preparing herbal remedies."
-               }
+               "Staff of the Tranquil Waters",
+               "Herbalism Kit",
+               "Rejuvenating Elixir"
           ],
           "features": [
                "Wild Shape",
-               "Druidic"
+               "Aquatic Form",
+               "Calm Emotions",
+               "Healing Waters"
           ],
           "spells": {
                "level1": [
                     "Cure Wounds",
-                    "Entangle"
+                    "Create or Destroy Water",
+                    "Detect Magic"
                ],
                "level2": [
-                    "Moonbeam",
-                    "Spike Growth"
+                    "Lesser Restoration",
+                    "Gust of Wind"
                ],
                "level3": [
-                    "Call Lightning"
-               ]
+                    "Water Breathing",
+                    "Tidal Wave"
+               ],
+               "level4": [
+                    "Control Water"
+               ],
+               "level5": [],
+               "level6": [],
+               "level7": [],
+               "level8": [],
+               "level9": []
           },
           "location": {
-               "x": 6,
-               "y": 20
+               "x": 1,
+               "y": 30
           },
-          "notes": "Eldrin prefers solitude but may offer assistance to those who show respect for nature.",
+          "notes": "Eldara is deeply connected to the Whispering Waters and can summon the tranquillity of the lake to heal and calm those in distress. She is wary of those who might disturb the natural balance and is a fierce protector when it comes to threats against her domain.",
           "relationships": {
-               "Forest Animals": "Eldrin has a strong bond with the creatures of the Cragshade Wilderness."
+               "Loralai the Herbalist": "A trusted friend who often gathers rare herbs and flowers from the lake shore.",
+               "The Ancient Willows": "Communicates regularly with the ancient willows that surround the lake, sharing wisdom and knowledge."
           }
      },
      {
-          "name": "Lyra the Loresworn",
-          "appearance": "Lyra is a tall, ethereal figure draped in flowing robes that seem to shimmer with a spectral light. Her eyes are piercing azure, reflecting the color of the lake she guards. Her silver hair flows down in waves, mirroring the ripples on the water's surface. She carries a staff topped with a crystal that glows faintly.",
-          "description": "Once a revered scholar, Lyra made a pact with the ancient serpent dwelling within the Azure Serpent's Lair to protect its secrets and essence. Now, she serves as both guardian and lorekeeper, ensuring the mystical tranquility of the lake remains undisturbed.",
-          "meshyid": "01904602-e0c2-78a3-9a92-044fad981b99",
-          "class": "Wizard",
-          "level": 5,
-          "type": "NPC",
-          "race": "Human",
-          "mapid": "pnyaykjnjs",
-          "alignment": "Neutral",
+          "name": "Liora, the Whispering Spirit",
+          "appearance": "Liora manifests as a translucent, spectral figure draped in ancient, flowing robes that seem to flutter in an ethereal breeze. Her eyes are hauntingly hollow, and her presence sends chills down the spines of those who encounter her. She seems to glide just above the ground, her form flickering in and out of visibility as if she is on the verge of vanishing entirely.",
+          "description": "Once a wise and powerful sorceress, Liora's spirit now haunts the Precipice of Whispers. An enigmatic and sorrowful figure, she is bound to this place by a lingering sense of unease and unfinished business. Her whispers are said to contain fragments of ancient spells and forgotten lore, drawing the curious and the foolhardy to the edge of the abyss.",
+          "meshyid": "0190465f-3b2b-78a9-bd8d-89d590f702bc",
+          "class": "",
+          "level": 4,
+          "type": "undead",
+          "race": "ghost",
+          "mapid": "ppomluztdu",
+          "alignment": "neutral",
           "attributes": {
-               "STR": 10,
-               "DEX": 12,
-               "CON": 12,
-               "INT": 18,
-               "WIS": 14,
-               "CHA": 16
+               "STR": 7,
+               "DEX": 13,
+               "CON": 10,
+               "INT": 10,
+               "WIS": 12,
+               "CHA": 17
           },
           "skills": {
                "Acrobatics": {
@@ -205,15 +396,15 @@
                },
                "Animal Handling": {
                     "proficient": false,
-                    "bonus": 2
+                    "bonus": 1
                },
                "Arcana": {
                     "proficient": true,
-                    "bonus": 7
+                    "bonus": 2
                },
                "Athletics": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": -2
                },
                "Deception": {
                     "proficient": false,
@@ -221,43 +412,43 @@
                },
                "History": {
                     "proficient": true,
-                    "bonus": 7
+                    "bonus": 2
                },
                "Insight": {
                     "proficient": false,
-                    "bonus": 2
+                    "bonus": 1
                },
                "Intimidation": {
                     "proficient": false,
                     "bonus": 3
                },
                "Investigation": {
-                    "proficient": true,
-                    "bonus": 7
+                    "proficient": false,
+                    "bonus": 0
                },
                "Medicine": {
                     "proficient": false,
-                    "bonus": 2
+                    "bonus": 1
                },
                "Nature": {
-                    "proficient": false,
-                    "bonus": 4
+                    "proficient": true,
+                    "bonus": 0
                },
                "Perception": {
-                    "proficient": false,
-                    "bonus": 2
+                    "proficient": true,
+                    "bonus": 1
                },
                "Performance": {
                     "proficient": false,
                     "bonus": 3
                },
                "Persuasion": {
-                    "proficient": true,
-                    "bonus": 7
+                    "proficient": false,
+                    "bonus": 3
                },
                "Religion": {
-                    "proficient": false,
-                    "bonus": 4
+                    "proficient": true,
+                    "bonus": 2
                },
                "Sleight of Hand": {
                     "proficient": false,
@@ -269,13 +460,13 @@
                },
                "Survival": {
                     "proficient": false,
-                    "bonus": 2
+                    "bonus": 1
                }
           },
           "savingThrows": {
                "strength": {
                     "proficient": false,
-                    "bonus": 0
+                    "bonus": -2
                },
                "dexterity": {
                     "proficient": false,
@@ -283,85 +474,66 @@
                },
                "constitution": {
                     "proficient": false,
-                    "bonus": 1
+                    "bonus": 0
                },
                "intelligence": {
-                    "proficient": true,
-                    "bonus": 7
+                    "proficient": false,
+                    "bonus": 0
                },
                "wisdom": {
                     "proficient": true,
-                    "bonus": 5
+                    "bonus": 3
                },
                "charisma": {
-                    "proficient": false,
-                    "bonus": 3
+                    "proficient": true,
+                    "bonus": 5
                }
           },
-          "armorClass": 12,
+          "armorClass": 11,
           "hitPoints": {
-               "current": 30,
-               "maximum": 30,
+               "current": 45,
+               "maximum": 45,
                "temporary": 0
           },
           "hitDice": {
-               "total": "5d6",
-               "current": "5"
+               "total": "10d8",
+               "current": "10d8"
           },
-          "speed": 30,
+          "speed": 40,
           "proficiencies": {
-               "weapons": [
-                    "Quarterstaff",
-                    "Daggers"
-               ],
-               "tools": [
-                    "Calligrapher\u2019s supplies"
-               ],
+               "weapons": [],
+               "tools": [],
                "languages": [
-                    "Common",
-                    "Elvish",
-                    "Draconic"
+                    "any languages she knew in life"
                ]
           },
-          "equipment": [
-               "Crystal-topped staff",
-               "Ancient tome",
-               "Robes of the Serpent"
-          ],
+          "equipment": [],
           "features": [
-               "Arcane Recovery",
-               "Sculpt Spells",
-               "Potent Cantrip"
+               {
+                    "name": "Ethereal Sight",
+                    "description": "Liora can see 60 ft. into the Ethereal Plane when she is on the Material Plane, and vice versa."
+               },
+               {
+                    "name": "Incorporeal Movement",
+                    "description": "Liora can move through other creatures and objects as if they were difficult terrain. She takes 5 (1d10) force damage if she ends her turn inside an object."
+               }
           ],
           "spells": {
-               "level1": [
-                    "Shield",
-                    "Mage Armor",
-                    "Magic Missile"
-               ],
-               "level2": [
-                    "Mirror Image",
-                    "Misty Step"
-               ],
-               "level3": [
-                    "Counterspell",
-                    "Fireball"
-               ],
-               "level4": [
-                    "Greater Invisibility"
-               ],
-               "level5": [
-                    "Wall of Force"
-               ]
+               "level1": [],
+               "level2": [],
+               "level3": [],
+               "level4": [],
+               "level5": [],
+               "level6": [],
+               "level7": [],
+               "level8": [],
+               "level9": []
           },
           "location": {
-               "x": 61,
-               "y": 33
+               "x": 33,
+               "y": 27
           },
-          "notes": "Lyra is knowledgeable about the ancient serpent and may assist or oppose adventurers depending on their intentions.",
-          "relationships": {
-               "Ancient Serpent": "Guardian and bound ally",
-               "Local Villagers": "Mysterious benefactor"
-          }
+          "notes": "Liora may occasionally hint at her unfinished business and offer cryptic advice or warnings.",
+          "relationships": {}
      }
 ]
