@@ -127,7 +127,7 @@ class GameManager:
         self._players: dict[str, Player] = {}
         self._connections = connections
         self.currentTurn = None
-        self.lastRollResult = None
+        self.whenDiceRoll = None
         self.setMap("wsfobsvdyl")
 
     async def broadcast_client_info(self):
@@ -232,25 +232,27 @@ class GameManager:
             {
                 "type": "map",
                 "map": imgBytes,
-                "ennemies": [
-                    {
-                        "name": enemy["name"],
-                        "meshyId": enemy["meshyid"],
-                        **enemy["location"],
-                    }
-                    for enemy in self.currentEnemies
-                ],
-                "npcs": [
-                    {"name": npc["name"], "meshyId": npc["meshyid"], **npc["location"]}
-                    for npc in self.currentNpcs
-                ],
-                "players": [
-                    {
-                        "name": player.id(),
-                        "meshyid": player.meshy(),
-                        **player.position(),
-                    }
-                    for player in self._players.values()
+                "entities": [
+                    *[
+                        {
+                            "name": enemy["name"],
+                            "meshyId": enemy["meshyid"],
+                            **enemy["location"],
+                        }
+                        for enemy in self.currentEnemies
+                    ],
+                    *[
+                        {
+                            "name": npc["name"],
+                            "meshyId": npc["meshyid"],
+                            **npc["location"],
+                        }
+                        for npc in self.currentNpcs
+                    ],
+                    *[
+                        {"name": player.id(), **player.position()}
+                        for player in self._players.values()
+                    ],
                 ],
             }
         )
@@ -272,9 +274,7 @@ class GameManager:
 
         # Notify
         await self.broadcast_client_info()
-        await self._connections.send_unity(
-            {"type": "current_player", "player": player.toPOJO()}
-        )
+        await self._connections.send_unity({"type": "zoom", "name": player.id()})
 
     async def createPlayer(self, userId: str, race: str, classe: str, description: str):
         """Creates a player from the user's data"""
@@ -324,6 +324,79 @@ class GameManager:
                 ],
             }
         )
+
+    def gameTurn(self, input):
+        gptboolean = True
+        game_history = json.load(open("./game_info/5e-SRD-DM-History.json"))["messages"]
+        game_history.append(
+            {
+                "role": "user",
+                "content": input,
+            }
+        )
+        counter = 1
+
+        while gptboolean:
+            response = openAiClient.chat.completions.create(
+                model="gpt-4o",
+                messages=game_history,
+                functions=[
+                    {
+                        "name": "getInfoDND",
+                        "description": "This function allows you to search a key term and receive a json with all the info pertaining to the search term in DND. For example, if you search fireball, it will search for the spell fireball and give the stat sheet for fire ball.",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {
+                                "info_wanted": {
+                                    "type": "string",
+                                    "description": "Search term that will be the base for our search.",
+                                }
+                            },
+                        },
+                    },
+                    {
+                        "name": "speakToPlayer",
+                        "description": "This function will speak to the player. After you have either retrieved info, use this to tell the player the info. Do not ask anything after this. If the player has a question, then he can ask it himself.",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {
+                                "input": {
+                                    "type": "string",
+                                    "description": "What will be spoken to the player",
+                                }
+                            },
+                        },
+                    },
+                ],
+                function_call="auto",
+            )
+            answer = response.choices[0].message.function_call
+            functionname = answer.name
+            functionargs = json.loads(answer.arguments)
+            if functionname == "getInfoDND":
+                info = self.getInfoDND(functionargs["info_wanted"])
+                game_history.append(
+                    {
+                        "role": "function",
+                        "name": functionname,
+                        "content": info,
+                    }
+                )
+            elif functionname == "speakToPlayer":
+                self._connections.send_unity(
+                    {"type": "talk", "message": functionargs["input"]}
+                )
+                game_history.append(
+                    {
+                        "role": "function",
+                        "name": functionname,
+                        "content": info,
+                    }
+                )
+                gptboolean = False
+            counter += 1
+        f = open("./game_info/5e-SRD-DM-History.json", "w")
+        json.dump(game_history, f, indent=6)
 
     # Make sure to look at the rules to know how many movements points and which abilities the current player can use. Each classe and race have their own unique passive and stats.
     async def getPlayerOptions(self, player: Player):
@@ -443,14 +516,11 @@ You can request any info you want about the game state, so do not hesistate to c
             json.loads(response.choices[0].message.content)
         )
 
-        # res = 0
-        # while True:
-        #     # time.sleep(0.2)
-        #     if self.lastRollResult is not None:
-        #         res = self.lastRollResult
-        #         self.lastRollResult = None
+        def t(total: int):
+            print(total)
+            self.whenDiceRoll = None
 
-        # return res
+        self.whenDiceRoll = t
 
     def getInfoDND(self, info_wanted: str):
         possible_endpoints = "ability-scores, alignments, backgrounds, classes, conditions, damage-types, equipment, equipment-categories, feats, features, languages, magic-items, magic-schools, monsters, proficiencies, races, rule-sections, rules, skills, spells, subclasses, subraces, traits, weapon-properties"
