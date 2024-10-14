@@ -44,7 +44,14 @@ public class MapRenderer : MonoBehaviour
     {
         float scaleX = terrain.terrainData.size.x / 80;
         float scaleZ = terrain.terrainData.size.z / 40;
-        float yHeight = terrain.terrainData.GetHeight((int)(x * scaleX + 0.075f), (int)(y * scaleZ + 0.075f));
+        float yHeight = 0f;
+
+        Color color = texture.GetPixel(x, y);
+        string colorString = ColorUtility.ToHtmlStringRGB(color);
+        if (TILE_COLORS.TryGetValue(colorString, out float height))
+        {
+            yHeight = height;
+        }
 
         return new Vector3(x * scaleX + 0.075f, yHeight, y * scaleZ + 0.075f);
     }

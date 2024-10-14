@@ -52,6 +52,7 @@ public class UseMeshyMesh : MonoBehaviour
         try
         {
             var jsonResponse = webRequest.downloadHandler.text;
+            print(webRequest.downloadHandler.text);
             ApiResponseData responseData = JsonUtility.FromJson<ApiResponseData>(jsonResponse);
 
             if (responseData.status != "SUCCEEDED")
